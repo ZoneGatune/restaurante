@@ -150,7 +150,7 @@
       <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
 
 
-      <form #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)">
+      <form #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)" class="example-form">
         <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="menuService.selectedMenu.$key">
       <div class="form-group">
         <label>Menu</label>
