@@ -298,5 +298,27 @@ export const menus = [
                 'open': false,
             }
         ]
-    }
+    },
+    {
+      'name': 'Restaurant',
+      'icon': 'widgets',
+      'link': false,
+      'open': false,
+      'sub': [
+          {
+              'name': 'Mesa',
+              'link': 'restaurant/mesa',
+              'icon': 'indeterminate_check_box',
+              'chip': false,
+              'open': false,
+          },
+          {
+            'name': 'Plato',
+            'link': 'restaurant/plato',
+            'icon': 'indeterminate_check_box',
+            'chip': false,
+            'open': false,
+        }
+      ]
+  },
 ];

@@ -6,12 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBwlk0KMM75nBsZ8L7j9cZ5N5x0fwqfBjg',
-    authDomain: 'newproject-5d731.firebaseapp.com',
-    databaseURL: 'https://newproject-5d731.firebaseio.com',
-    projectId: 'newproject-5d731',
-    storageBucket: 'newproject-5d731.appspot.com',
-    messagingSenderId: '737689833575'
+    apiKey: 'AIzaSyCSg0L2dT3MjRUdBSq_ojHIMJzACfb-LMc',
+    authDomain: 'restaurante1-6523c.firebaseapp.com',
+    databaseURL: 'https://restaurante1-6523c.firebaseio.com',
+    projectId: 'restaurante1-6523c',
+    storageBucket: 'restaurante1-6523c.appspot.com',
+    messagingSenderId: '842674410278'
   },
   mailApi: '/assets/list.json'
 };
@@ -27,5 +27,5 @@ export const palete = {
     secondaryLight: '#E91E63',
     tertiaryLight: '#9C27B0',
     quaternaryLight: '#673AB7',
-    quinaryLight: '#3F51B5'       
+    quinaryLight: '#3F51B5'
 }
