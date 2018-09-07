@@ -1,3 +1,4 @@
+import { PlatoListComponent } from './plato/plato-list/plato-list.component';
 import { NgModule } from '@angular/core';
 import {
         MatCardModule,
@@ -8,6 +9,9 @@ import {
         MatIconModule,
         MatCheckboxModule,
         MatListModule,
+        MatTooltipModule,
+        MatSortModule,
+        MatPaginatorModule,
        } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
@@ -18,6 +22,9 @@ import { RestaurantRouterModule } from './restaurant.routes';
 import { PlatoComponent } from './plato/plato.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenuService } from './plato/shared/menuservice';
+import { PlatoCrudComponent } from './plato/plato-crud/plato-crud.component';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
     imports: [
@@ -36,10 +43,17 @@ import { MenuService } from './plato/shared/menuservice';
         CoreModule,
         RestaurantRouterModule,
         FormsModule,
-        ReactiveFormsModule ],
+        ReactiveFormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatSortModule
+       ],
     declarations: [
         MesaComponent,
-        PlatoComponent
+        PlatoComponent,
+        PlatoCrudComponent,
+        PlatoListComponent
     ],
     exports: [
     ],

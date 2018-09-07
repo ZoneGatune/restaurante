@@ -1,0 +1,32 @@
+
+<form class="example-form" #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)" >
+  <mat-form-field class="example-full-width">
+  <input matInput name="nombre" #name="ngModel" [(ngModel)]="menuService.selectedMenu.nombre" placeholder="Nombre" required>
+
+  </mat-form-field>
+  <p>
+  <mat-form-field class="example-full-width">
+    <input matInput name="descripcion" #name="ngModel" [(ngModel)]="menuService.selectedMenu.descripcion" placeholder="Descripcion">
+
+  </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <input matInput name="precio" #name="ngModel" [(ngModel)]="menuService.selectedMenu.precio" placeholder="Precio">
+
+    </mat-form-field>
+  </p>
+
+<p>
+<mat-form-field class="example-full-width">
+  <input matInput name="categoria" #name="ngModel" [(ngModel)]="menuService.selectedMenu.categoria" placeholder="Categoria" required>
+
+</mat-form-field>
+</p>
+<p>
+
+<button mat-raised-button color="primary" type="submit" [disabled]="!menuForm.valid">Guardar en Firebase</button>
+
+</p>
+</form>
