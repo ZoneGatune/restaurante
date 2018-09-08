@@ -18,11 +18,21 @@
     </mat-form-field>
   </p>
 
-<p>
-<mat-form-field class="example-full-width">
-  <input matInput name="categoria" #name="ngModel" [(ngModel)]="menuService.selectedMenu.categoria" placeholder="Categoria" required>
 
-</mat-form-field>
+    <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" >
+
+        <mat-divider></mat-divider>
+        <mat-form-field>
+            <mat-select placeholder="Escoga la Categoria" [(ngModel)]="selectedValue" name="categoria">
+              <mat-option *ngFor="let food of categoriaList" [value]="food.valor">
+                        {{ food.nombre }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+
+<p>
+
 </p>
 <p>
 

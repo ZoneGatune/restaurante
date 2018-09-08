@@ -14,6 +14,7 @@ import {
         MatTooltipModule,
         MatSortModule,
         MatPaginatorModule,
+        MatSelectModule
        } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
@@ -51,7 +52,8 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         MatTableModule,
         MatPaginatorModule,
         MatTooltipModule,
-        MatSortModule
+        MatSortModule,
+        MatSelectModule
        ],
     declarations: [
         MesaComponent,

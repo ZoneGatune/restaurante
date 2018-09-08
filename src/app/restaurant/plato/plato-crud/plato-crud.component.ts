@@ -1,3 +1,5 @@
+import { Categoria } from './../../categoria/shared/categoria.model';
+import { CategoriaService } from './../../categoria/shared/categoriaservice';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -21,11 +23,12 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 })
 export class PlatoCrudComponent implements OnInit {
 
-  constructor(private menuService: MenuService, private tostr: ToastrService) { }
-
+  constructor(private menuService: MenuService,
+    private categoriaService: CategoriaService,
+    private tostr: ToastrService) { }
+    selectedValue: string;
   InputHelpers: any = input_HELPERS;
 	links = Links;
-	selectedValue;
 	showMultiListCode: boolean = false;
 	messages = Messages;
 	value = 'Clear me';
@@ -37,19 +40,36 @@ export class PlatoCrudComponent implements OnInit {
 		Validators.required,
 		Validators.pattern(EMAIL_REGEX)]);
 	matcher = new MyErrorStateMatcher();
-
-
+  categoriaList: Categoria[];
 	ngOnInit() {
 
     this.resetForm();
-
+    var x = this.categoriaService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.categoriaList = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        y["$key"] = element.key;
+        this.categoriaList.push(y as Categoria);
+      });
+    });
   }
 
   onSubmit(menuForm: NgForm) {
-    if (menuForm.value.$key == null)
+
+    this.selectedValue;
+
+    if (menuForm.value.$key == null){
+      debugger;
+      //menuForm.value.categoria = this.selectedValue;
+      debugger;
       this.menuService.insertmenu(menuForm.value);
-    else
-      this.menuService.updatemenu(menuForm.value);
+    }
+
+    else{
+      this.menuService.updatemenu(menuForm.value);}
+
+    debugger;
     this.resetForm(menuForm);
     this.tostr.success('Submitted Succcessfully', 'Menu Register');
   }
