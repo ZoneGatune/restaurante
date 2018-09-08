@@ -1,3 +1,5 @@
+import { CategoriaService } from './categoria/shared/categoriaservice';
+import { CategoriaComponent } from './categoria/categoria.component';
 import { PlatoListComponent } from './plato/plato-list/plato-list.component';
 import { NgModule } from '@angular/core';
 import {
@@ -24,6 +26,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenuService } from './plato/shared/menuservice';
 import { PlatoCrudComponent } from './plato/plato-crud/plato-crud.component';
 import { MatTableModule } from '@angular/material/table';
+import { CategoriaCrudComponent } from './categoria/categoria-crud/categoria-crud.component';
+import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
 
 
 @NgModule({
@@ -53,12 +57,16 @@ import { MatTableModule } from '@angular/material/table';
         MesaComponent,
         PlatoComponent,
         PlatoCrudComponent,
-        PlatoListComponent
+        PlatoListComponent,
+        CategoriaComponent,
+        CategoriaCrudComponent,
+        CategoriaListComponent
     ],
     exports: [
     ],
     providers: [
       MenuService,
+      CategoriaService
     ]
 })
 export class RestaurantModule {

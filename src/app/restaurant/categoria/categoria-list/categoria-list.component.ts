@@ -1,9 +1,9 @@
+import { CategoriaService } from './../shared/categoriaservice';
 import { Component, OnInit, ViewEncapsulation, Input,Output,EventEmitter, ViewChild } from '@angular/core';
 import { ResponsiveTableHelpers } from './helpers.data';
 import { MatPaginator } from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { Menu } from '../shared/menu.model';
-import { MenuService } from '../shared/menuservice';
+import { Categoria } from '../shared/categoria.model';
 import { ToastrService } from 'ngx-toastr';
 
 export class MyErrorStateMatcher  {
@@ -14,20 +14,18 @@ export class MyErrorStateMatcher  {
 }
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-
 @Component({
-  selector: 'app-plato-list',
-  templateUrl: './plato-list.component.html',
-  styleUrls: ['./plato-list.component.scss']
+  selector: 'app-categoria-list',
+  templateUrl: './categoria-list.component.html',
+  styleUrls: ['./categoria-list.component.scss']
 })
-export class PlatoListComponent implements OnInit {
-
+export class CategoriaListComponent implements OnInit {
 
 displayedColumns = ['userId', 'userName', 'progress', 'color'];
 rows: Array<any> = [];
   showResponsiveTableCode;
-menuList: Menu[];
-constructor(private menuService: MenuService, private tostr: ToastrService) { }
+categoriaList: Categoria[];
+constructor(private categoriaService: CategoriaService, private tostr: ToastrService) { }
 
 @ViewChild(MatPaginator) paginator1: MatPaginator;
   pageLength = 0;
@@ -42,27 +40,26 @@ constructor(private menuService: MenuService, private tostr: ToastrService) { }
   @Output() sort = new EventEmitter();
   @Output() dup = new EventEmitter();
 
-
   ngOnInit() {
-    var x = this.menuService.getData();
+    var x = this.categoriaService.getData();
     x.snapshotChanges().subscribe(item => {
-      this.menuList = [];
+      this.categoriaList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         y["$key"] = element.key;
-        this.menuList.push(y as Menu);
+        this.categoriaList.push(y as Categoria);
       });
     });
   }
 
-  onEdit(emp: Menu) {
-    this.menuService.selectedMenu = Object.assign({}, emp);
+  onEdit(emp: Categoria) {
+    this.categoriaService.selectedCategoria = Object.assign({}, emp);
   }
 
   onDelete(key: string) {
     if (confirm('Are you sure to delete this record ?') == true) {
-      this.menuService.deletemenu(key);
-      this.tostr.warning("Deleted Successfully", "Employee register");
+      this.categoriaService.deleteCategoria(key);
+      this.tostr.warning("Deleted Successfully", "Categoria register");
     }
   }
 }

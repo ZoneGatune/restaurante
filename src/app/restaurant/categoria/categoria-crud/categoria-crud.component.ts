@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { input_HELPERS, Messages, Links } from '../helpers.data';
-import { MenuService } from '../shared/menuservice';
+import { CategoriaService } from '../shared/categoriaservice';
 import { ToastrService } from 'ngx-toastr';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -15,56 +15,38 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 
 @Component({
-  selector: 'app-plato-crud',
-  templateUrl: './plato-crud.component.html',
-  styleUrls: ['./plato-crud.component.scss']
+  selector: 'app-categoria-crud',
+  templateUrl: './categoria-crud.component.html',
+  styleUrls: ['./categoria-crud.component.scss']
 })
-export class PlatoCrudComponent implements OnInit {
+export class CategoriaCrudComponent implements OnInit {
 
-  constructor(private menuService: MenuService, private tostr: ToastrService) { }
-
-  InputHelpers: any = input_HELPERS;
-	links = Links;
-	selectedValue;
-	showMultiListCode: boolean = false;
-	messages = Messages;
-	value = 'Clear me';
-	emailFormControl = new FormControl('', [
-		Validators.required,
-		Validators.email,
-	]);
-	emailFormControls = new FormControl('', [
-		Validators.required,
-		Validators.pattern(EMAIL_REGEX)]);
-	matcher = new MyErrorStateMatcher();
+  constructor(private categoriaService: CategoriaService, private tostr: ToastrService) { }
 
 
-	ngOnInit() {
+ ngOnInit() {
 
     this.resetForm();
 
   }
 
-  onSubmit(menuForm: NgForm) {
-    if (menuForm.value.$key == null)
-      this.menuService.insertmenu(menuForm.value);
+  onSubmit(categoriaForm: NgForm) {
+    if (categoriaForm.value.$key == null)
+      this.categoriaService.insertCategoria(categoriaForm.value);
     else
-      this.menuService.updatemenu(menuForm.value);
-    this.resetForm(menuForm);
-    this.tostr.success('Submitted Succcessfully', 'Menu Register');
+      this.categoriaService.updateCategoria(categoriaForm.value);
+    this.resetForm(categoriaForm);
+    this.tostr.success('Submitted Succcessfully', 'categoria Register');
   }
 
-  resetForm(menuForm?: NgForm) {
-    if (menuForm != null)
-      menuForm.reset();
-    this.menuService.selectedMenu = {
+  resetForm(categoriaForm?: NgForm) {
+    if ( categoriaForm != null )
+      categoriaForm.reset();
+    this.categoriaService.selectedCategoria = {
       $key: null,
       nombre: '',
-      descripcion: '',
-      precio: '',
-      categoria: 0,
-
-
+      valor: '',
+      estado: '',
     }
   }
 
