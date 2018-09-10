@@ -12,7 +12,9 @@ export class CategoriaService {
    }
 
   getData() {
+    debugger;
     this.categoriaList = this.firebase.list('Categorias');
+    debugger;
     return this.categoriaList;
   }
 
