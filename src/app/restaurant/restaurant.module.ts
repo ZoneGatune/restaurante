@@ -1,3 +1,5 @@
+import { RolService } from './rol/shared/rolservice';
+import { RolComponent } from './rol/rol.component';
 import { CategoriaService } from './categoria/shared/categoriaservice';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { PlatoListComponent } from './plato/plato-list/plato-list.component';
@@ -62,13 +64,15 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         PlatoListComponent,
         CategoriaComponent,
         CategoriaCrudComponent,
-        CategoriaListComponent
+        CategoriaListComponent,
+        RolComponent
     ],
     exports: [
     ],
     providers: [
       MenuService,
-      CategoriaService
+      CategoriaService,
+      RolService
     ]
 })
 export class RestaurantModule {
