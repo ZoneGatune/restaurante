@@ -164,12 +164,69 @@ export const menus = [
     //                     }
     //                 ]
     // },
+    {
+        'name': 'Tables',
+        'icon': 'list',
+        'link': false,
+        'open': false,
+        'chip': { 'value': 2, 'color': 'accent' },
+        'sub': [
+            {
+                'name': 'Fixed',
+                'icon': 'filter_list',
+                'link': 'tables/fixed',
+                'open': false,
+            },
+            {
+                'name': 'Feature',
+                'icon': 'done_all',
+                'link': 'tables/featured',
+                'open': false,
+            },
+            {
+                'name': 'Responsive Tables',
+                'icon': 'filter_center_focus',
+                'link': 'tables/responsive',
+                'open': false,
+            }
+        ]
 
+    },
     {
         'name': 'Guarded Routes',
         'icon': 'mode_edit',
         'link': '/auth/guarded-routes',
         'open': false,
+    }, {
+        'name': 'Scrumboard',
+        'open': false,
+        'link': '/auth/scrumboard',
+        'icon': 'grade',
+    }, {
+        'name': 'Applications',
+        'icon': 'view_module',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'chat',
+                'icon': 'chat',
+                'link': 'chats/chat',
+                'open': false,
+            },
+            {
+                'name': 'mail',
+                'icon': 'mail',
+                'link': 'mail/mail',
+                'open': false,
+            },
+            {
+                'name': 'Editor',
+                'icon': 'editor',
+                'link': 'editor/editor',
+                'open': false,
+            }
+        ]
     }
     , {
         'name': 'Pages',
@@ -195,7 +252,54 @@ export const menus = [
             }
         ]
     }
-    ,
+    , {
+
+        'name': 'Charts',
+        'icon': 'pie_chart_outlined',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'chartjs',
+                'icon': 'view_list',
+                'link': 'charts/chartjs',
+                'open': false,
+
+            },
+            {
+                'name': 'ngx-chart',
+                'icon': 'show_chart',
+                'open': false,
+                'link': 'charts/ngx-charts',
+            },
+            {
+                'name': 'nvd3',
+                'icon': 'pie_chart',
+                'open': false,
+                'link': 'charts/nvd3-charts',
+            }
+        ]
+    },
+    {
+        'name': 'maps',
+        'icon': 'map',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'google-map',
+                'icon': 'directions',
+                'link': 'maps/googlemap',
+                'open': false,
+            },
+            {
+                'name': 'leaflet-map',
+                'icon': 'directions',
+                'link': 'maps/leafletmap',
+                'open': false,
+            }
+        ]
+    },
     {
       'name': 'Restaurant',
       'icon': 'widgets',

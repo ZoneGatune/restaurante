@@ -1,3 +1,5 @@
+import { EmpleadoService } from './empleado/shared/empleadoservice';
+import { EmpleadoComponent } from './empleado/empleado.component';
 import { RolService } from './rol/shared/rolservice';
 import { RolComponent } from './rol/rol.component';
 import { CategoriaService } from './categoria/shared/categoriaservice';
@@ -65,14 +67,16 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         CategoriaComponent,
         CategoriaCrudComponent,
         CategoriaListComponent,
-        RolComponent
+        RolComponent,
+        EmpleadoComponent
     ],
     exports: [
     ],
     providers: [
       MenuService,
       CategoriaService,
-      RolService
+      RolService,
+      EmpleadoService
     ]
 })
 export class RestaurantModule {

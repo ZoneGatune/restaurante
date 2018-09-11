@@ -1,3 +1,4 @@
+import { EmpleadoComponent } from './empleado/empleado.component';
 import { RolComponent } from './rol/rol.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ const pagesRoutes: Routes = [
     { path: 'plato', component: PlatoComponent , data: { animation: 'plato' } },
     { path: 'categoria', component: CategoriaComponent , data: { animation: 'categoria' } },
     { path: 'rol', component: RolComponent , data: { animation: 'rol' } },
+    { path: 'empleado', component: EmpleadoComponent , data: { animation: 'empleado' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];
