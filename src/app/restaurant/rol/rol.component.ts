@@ -56,6 +56,7 @@ export class RolComponent implements OnInit {
   }
 
   onEdit(emp: Rol) {
+    debugger;
     this.rolService.selectedRol = Object.assign({}, emp);
   }
 
@@ -67,6 +68,7 @@ export class RolComponent implements OnInit {
   }
 
   onSubmit(rolForm: NgForm) {
+    debugger;
     if (rolForm.value.$key == null)
       this.rolService.insertrol(rolForm.value);
     else

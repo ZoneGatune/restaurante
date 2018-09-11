@@ -1,5 +1,6 @@
 
 <form class="example-form" #categoriaForm="ngForm" (ngSubmit)="onSubmit(categoriaForm)" >
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="categoriaService.selectedCategoria.$key">
   <mat-form-field class="example-full-width">
   <input matInput name="nombre" #name="ngModel" [(ngModel)]="categoriaService.selectedCategoria.nombre" placeholder="Nombre" required>
   </mat-form-field>

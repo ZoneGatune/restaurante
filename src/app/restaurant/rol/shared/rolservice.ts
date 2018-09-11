@@ -32,6 +32,7 @@ export class RolService {
   }
 
   updaterol(rol : Rol){
+    debugger;
     this.rolList.update(rol.$key,
       {
         nombre: rol.nombre,
