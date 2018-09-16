@@ -1,3 +1,4 @@
+import { MesaCrudComponent } from './mesa-crud/mesa-crud.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { RolComponent } from './rol/rol.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ const pagesRoutes: Routes = [
     { path: 'categoria', component: CategoriaComponent , data: { animation: 'categoria' } },
     { path: 'rol', component: RolComponent , data: { animation: 'rol' } },
     { path: 'empleado', component: EmpleadoComponent , data: { animation: 'empleado' } },
+    { path: 'mesaCrud', component: MesaCrudComponent , data: { animation: 'mesaCrud' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];

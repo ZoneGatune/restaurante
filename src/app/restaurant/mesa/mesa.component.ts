@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MesaCrud } from '../mesa-crud/shared/mesa-crud.model';
+import { MesaCrudService } from '../mesa-crud/shared/mesaCrudService';
 
 @Component({
   selector: 'app-mesa',
@@ -6,17 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mesa.component.scss']
 })
 export class MesaComponent implements OnInit {
-public navigations=[
-{name:"Hari",job:"Full Stack Developer",experience:"10 Yrs",link:"fdsg"},
-{name:"Sujith",job:"Full Stack Developer",experience:"6 Yrs",link:"fdsg"},
-{name:"Ramya",job:"Full Stack Developer",experience:"4 Yrs",link:"fdsg"},
-{name:"Sree",job:"Full Stack Developer",experience:"2 Yrs",link:"fdsg"},
-{name:"Sruthy",job:"Full Stack Developer",experience:"2 Yrs",link:"fdsg"},
-{name:"Fahad",job:"Full Stack Developer",experience:"2 Yrs",link:"fdsg"}
-]
-  constructor() { }
+
+
+  mesaCrudList: MesaCrud[];
+
+
+  constructor(private mesaCrudService: MesaCrudService) { }
 
   ngOnInit() {
-  }
 
+    const x = this.mesaCrudService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.mesaCrudList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.mesaCrudList.push(y as MesaCrud);
+      });
+
+    });
+  }
 }

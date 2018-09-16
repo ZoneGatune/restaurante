@@ -76,7 +76,7 @@
               </mat-toolbar>
               <div class="table-container">
 
-                <table>
+                <table print-table="people">
 
                   <tr *ngFor="let empleado of empleadoList">
                     <td>{{empleado.nombre}}</td>
@@ -101,6 +101,27 @@
 
         </div>
       </div>
+
+      <div id="print-section" hidden>
+          // your html stuff that you want to print
+          <table>
+
+              <tr *ngFor="let empleado of empleadoList">
+                <td>{{empleado.nombre}}</td>
+                <td>{{empleado.dni}} - {{empleado.rol}}</td>
+                <td>
+                  <a (click)="onEdit(empleado)" class="modal-trigger waves-effect btn-flat nopadding">
+                    <i class="material-icons">edit</i></a>
+                </td>
+                <td>
+                  <a (click)="onDelete(empleado.$key)" class="modal-trigger waves-effect btn-flat nopadding">
+                    <i class="material-icons">delete</i></a>
+                </td>
+              </tr>
+
+            </table>
+        </div>
+        <button (click)="print()">print</button>
 
 
     </div>
