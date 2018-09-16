@@ -91,7 +91,7 @@ export class PlatoCrudComponent implements OnInit {
       nombre: "",
       descripcion: "",
       precio: "",
-      categoria: 0
+      categoria: ''
     };
   }
 }

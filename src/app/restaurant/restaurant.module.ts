@@ -1,3 +1,5 @@
+import { CartaService } from './carta/shared/cartaservice';
+import { CartaComponent } from './carta/carta.component';
 import { MesaCrudService } from './mesa-crud/shared/mesaCrudService';
 import { MesaCrudComponent } from './mesa-crud/mesa-crud.component';
 import { EmpleadoService } from './empleado/shared/empleadoservice';
@@ -71,7 +73,8 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         CategoriaListComponent,
         RolComponent,
         EmpleadoComponent,
-        MesaCrudComponent
+        MesaCrudComponent,
+        CartaComponent
     ],
     exports: [
     ],
@@ -80,7 +83,8 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
       CategoriaService,
       RolService,
       EmpleadoService,
-      MesaCrudService
+      MesaCrudService,
+      CartaService
     ]
 })
 export class RestaurantModule {

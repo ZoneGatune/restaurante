@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MesaComponent } from './mesa/mesa.component';
 import { PlatoComponent } from './plato/plato.component';
 import { CategoriaComponent } from './categoria/categoria.component';
+import { CartaComponent } from './carta/carta.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -14,6 +15,7 @@ const pagesRoutes: Routes = [
     { path: 'rol', component: RolComponent , data: { animation: 'rol' } },
     { path: 'empleado', component: EmpleadoComponent , data: { animation: 'empleado' } },
     { path: 'mesaCrud', component: MesaCrudComponent , data: { animation: 'mesaCrud' } },
+    { path: 'carta', component: CartaComponent , data: { animation: 'carta' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];
