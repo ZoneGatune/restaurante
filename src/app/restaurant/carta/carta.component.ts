@@ -1,3 +1,4 @@
+import { CategoriaService } from './../categoria/shared/categoriaservice';
 import { Menu } from './../plato/shared/menu.model';
 import { Categoria } from './shared/categoria.model';
 import { Dia } from './shared/dia.model';
@@ -5,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
-import { Carta } from './shared/carta.model';
 import { CartaService } from './shared/cartaservice';
 import { MenuService } from '../plato/shared/menuservice';
 import { filter } from 'rxjs/operators';
+import { Carta } from './shared/carta.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -50,6 +51,7 @@ export class CartaComponent implements OnInit {
 
   constructor(private cartaService: CartaService,
     private menuService: MenuService,
+    private categoriaService: CategoriaService,
     private tostr: ToastrService) { }
 
 
@@ -66,6 +68,7 @@ export class CartaComponent implements OnInit {
   cartaViernesList: Carta[];
   cartaSabadoList: Carta[];
   cartaDomingoList: Carta[];
+  categorialist: Categoria[];
 
 
     public cargarMenu(valorSelect: string){
@@ -191,14 +194,7 @@ export class CartaComponent implements OnInit {
         console.log(this.menuAjaxList);
 
     });
-
-
-
-
-
-
-  }
-
+ }
 
   onEditCarta(emp: Carta) {
     this.cartaService.selectedCarta = Object.assign({}, emp);
@@ -210,9 +206,41 @@ export class CartaComponent implements OnInit {
       this.tostr.warning('Deleted Successfully', 'carta register');
     }
   }
-
+  carta: Carta = new Carta();
+  diaObj: Dia = new Dia();
+  categoriaObj: Categoria = new Categoria();
   onSubmit(cartaForm: NgForm) {
     if (cartaForm.value.$key == null) {
+      debugger;
+
+      this.carta = cartaForm.value;
+
+      this.diaObj = this.dias.find( x => x.id === this.carta.codigoDia);
+      this.carta.dia = this.diaObj.name;
+      debugger;
+
+      const xCategoria = this.categoriaService.getData();
+      xCategoria.snapshotChanges().subscribe(item => {
+        this.categorialist = [];
+        item.forEach(element => {
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
+          this.categorialist.push(y as Categoria);
+        });
+        debugger;
+
+        this.categoriaObj = this.categorialist.find( x => x.id === this.carta.codigoCategoria);
+        debugger;
+
+        this.carta.categoria = this.categoriaObj.name;
+        debugger;
+
+
+
+      });
+
+
+
       this.cartaService.insertCarta(cartaForm.value);
     } else {
       this.cartaService.updateCarta(cartaForm.value);
@@ -229,7 +257,12 @@ export class CartaComponent implements OnInit {
       $key: null,
       dia: '',
       plato: '',
-      categoria: ''
+      categoria: '',
+      precio: '',
+      descripcion: '',
+      codigoDia: '',
+      codigoPlato: '',
+      codigoCategoria: ''
 
 
     };

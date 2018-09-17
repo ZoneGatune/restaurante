@@ -27,8 +27,13 @@ export class CartaService {
       this.cartaList.push({
         dia: carta.dia,
         plato: carta.plato,
-        categoria: carta.categoria
-    });
+        categoria: carta.categoria,
+        precio: carta.precio,
+        descripcion: carta.categoria,
+        codigoDia: carta.codigoDia,
+        codigoPlato: carta.codigoPlato,
+        codigoCategoria: carta.codigoCategoria
+      });
 
   }
 
@@ -37,7 +42,12 @@ export class CartaService {
       {
         dia: carta.dia,
         plato: carta.plato,
-        categoria: carta.categoria
+        categoria: carta.categoria,
+        precio: carta.precio,
+        descripcion: carta.categoria,
+        codigoDia: carta.codigoDia,
+        codigoPlato: carta.codigoPlato,
+        codigoCategoria: carta.codigoCategoria
       });
   }
 

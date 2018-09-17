@@ -18,15 +18,15 @@
 
       <mat-divider></mat-divider>
       <mat-form-field>
-        <mat-select placeholder="Escoga el Dia" [(ngModel)]="cartaService.selectedCarta.dia" name="dia">
-          <mat-option *ngFor="let food of dias" [value]="food.name">
-            {{ food.name }}
+        <mat-select placeholder="Escoga el Dia" [(ngModel)]="cartaService.selectedCarta.codigoDia" name="codigoDia">
+          <mat-option *ngFor="let dia of dias" [value]="dia.id">
+            {{ dia.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-          <mat-select placeholder="Escoga la categoria" [(ngModel)]="cartaService.selectedCarta.categoria"
+          <mat-select placeholder="Escoga la categoria" [(ngModel)]="cartaService.selectedCarta.codigoCategoria"
           #t (selectionChange)="onChangeCategoria(cartaService.selectedCarta)" name="categoria">
             <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
               {{ categoria.name }}
