@@ -27,7 +27,6 @@ export class CartaService {
       this.cartaList.push({
         dia: carta.dia,
         plato: carta.plato,
-        entrada: carta.entrada,
         categoria: carta.categoria
     });
 
@@ -38,7 +37,6 @@ export class CartaService {
       {
         dia: carta.dia,
         plato: carta.plato,
-        entrada: carta.entrada,
         categoria: carta.categoria
       });
   }

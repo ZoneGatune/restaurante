@@ -25,8 +25,8 @@
     <mat-divider></mat-divider>
     <mat-form-field>
       <mat-select placeholder="Escoga la Categoria" [(ngModel)]="menuService.selectedMenu.categoria" name="categoria">
-        <mat-option *ngFor="let food of categoriaList" [value]="food.name">
-          {{ food.name }}
+        <mat-option *ngFor="let food of categoriaList" [value]="food.nombre">
+          {{ food.nombre }}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -59,14 +59,29 @@ export class CartaComponent implements OnInit {
   cartaList: Carta[];
   menuList =  new Array<Menu>();
   menuAjaxList = new Array<Menu>();
+  cartaLunesList: Carta[];
+  cartaMartesList: Carta[];
+  cartaMiercolesList: Carta[];
+  cartaJuevesList: Carta[];
+  cartaViernesList: Carta[];
+  cartaSabadoList: Carta[];
+  cartaDomingoList: Carta[];
+
+
+    public cargarMenu(valorSelect: string){
+
+    }
 
 
 
   ngOnInit() {
 
-    this.loadDias();
     this.loadCategorias();
     this.resetForm();
+    this.loadDias();
+
+
+
     const x = this.cartaService.getData();
     x.snapshotChanges().subscribe(item => {
       this.cartaList = [];
@@ -77,20 +92,113 @@ export class CartaComponent implements OnInit {
       });
     });
 
-    const varMenu = this.menuService.getData();
-    varMenu.snapshotChanges().subscribe(item => {
-      this.menuList == new Array<Menu>();
+    const xLunes = this.cartaService.getData();
+    xLunes.snapshotChanges().subscribe(item => {
+      this.cartaLunesList = [];
       item.forEach(element => {
-        const varMenuY = element.payload.toJSON();
-        varMenuY['$key'] = element.key;
-        this.menuList.push(varMenuY as Menu);
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaLunesList.push(y as Carta);
       });
+      this.cartaLunesList = this.cartaLunesList.filter( x => x.dia === 'Lunes');
+
     });
 
-    debugger;
-    this.menuAjaxList = this.menuList.filter( x => x.categoria === '01');
-    debugger;
+    const xMartes = this.cartaService.getData();
+    xMartes.snapshotChanges().subscribe(item => {
+      this.cartaMartesList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaMartesList.push(y as Carta);
+      });
+      this.cartaMartesList = this.cartaMartesList.filter( x => x.dia === 'Martes');
+
+    });
+
+    const xMiercoles = this.cartaService.getData();
+    xMiercoles.snapshotChanges().subscribe(item => {
+      this.cartaMiercolesList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaMiercolesList.push(y as Carta);
+      });
+      this.cartaMiercolesList = this.cartaMiercolesList.filter( x => x.dia === 'Miercoles');
+
+    });
+
+
+    const xJueves = this.cartaService.getData();
+    xJueves.snapshotChanges().subscribe(item => {
+      this.cartaJuevesList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaJuevesList.push(y as Carta);
+      });
+      this.cartaJuevesList = this.cartaJuevesList.filter( x => x.dia === 'Jueves');
+
+    });
+
+    const xViernes = this.cartaService.getData();
+    xViernes.snapshotChanges().subscribe(item => {
+      this.cartaViernesList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaViernesList.push(y as Carta);
+      });
+      this.cartaViernesList = this.cartaViernesList.filter( x => x.dia === 'Viernes');
+
+    });
+
+    const xSabado = this.cartaService.getData();
+    xSabado.snapshotChanges().subscribe(item => {
+      this.cartaSabadoList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaSabadoList.push(y as Carta);
+      });
+      this.cartaSabadoList = this.cartaSabadoList.filter( x => x.dia === 'Sabado');
+
+    });
+
+    const xDomingo = this.cartaService.getData();
+    xDomingo.snapshotChanges().subscribe(item => {
+      this.cartaDomingoList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaDomingoList.push(y as Carta);
+      });
+      this.cartaDomingoList = this.cartaDomingoList.filter( x => x.dia === 'Domingo');
+
+    });
+
+    var objMenuAjax = this.menuService.getData();
+    objMenuAjax.snapshotChanges().subscribe(item => {
+      this.menuList = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        y["$key"] = element.key;
+        this.menuList.push(y as Menu);
+
+      });
+
+        this.menuAjaxList = this.menuList.filter( x => x.categoria === this.categorias[0].id);
+        console.log(this.menuAjaxList);
+
+    });
+
+
+
+
+
+
   }
+
 
   onEditCarta(emp: Carta) {
     this.cartaService.selectedCarta = Object.assign({}, emp);
@@ -121,10 +229,18 @@ export class CartaComponent implements OnInit {
       $key: null,
       dia: '',
       plato: '',
-      entrada: '',
       categoria: ''
 
 
     };
   }
+
+  onChangeCategoria(obj: Menu) {
+
+    debugger;
+    console.log(obj);
+    this.menuAjaxList = this.menuList.filter( x => x.categoria === obj.categoria);
+    console.log(this.menuAjaxList);
+  }
+
 }
