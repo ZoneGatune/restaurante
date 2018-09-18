@@ -8,6 +8,8 @@ import { MesaComponent } from './mesa/mesa.component';
 import { PlatoComponent } from './plato/plato.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CartaComponent } from './carta/carta.component';
+import { Menu1Component } from './contenedor-menu/menu1.component';
+import { Menu2Component } from './contenedor-menu/menu2.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -18,6 +20,8 @@ const pagesRoutes: Routes = [
     { path: 'mesaCrud', component: MesaCrudComponent , data: { animation: 'mesaCrud' } },
     { path: 'carta', component: CartaComponent , data: { animation: 'carta' } },
     { path: 'listaMenu', component: ListaMenuComponent , data: { animation: 'listaMenu' } },
+    { path: 'menu1', component: Menu1Component , data: { animation: 'menu1' } },
+    { path: 'menu2', component: Menu2Component , data: { animation: 'menu2' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];

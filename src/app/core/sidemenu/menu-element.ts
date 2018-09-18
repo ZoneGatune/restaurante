@@ -257,6 +257,22 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+
+        {
+          'name': 'Menu s/ 7',
+          'link': 'restaurant/menu1',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
+        },
+
+        {
+          'name': 'Menu s/ 8',
+          'link': 'restaurant/menu2',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

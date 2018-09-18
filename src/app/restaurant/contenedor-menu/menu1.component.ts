@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CartaService } from '../carta/shared/cartaservice';
 import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
-import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,17 +16,17 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 
 @Component({
-  selector: 'app-lista-menu',
-  templateUrl: './lista-menu.component.html',
-  styleUrls: ['./lista-menu.component.scss']
+  selector: 'app-menu1',
+  templateUrl: './menu1.component.html',
+  styleUrls: ['./menu1.component.scss']
 })
-export class ListaMenuComponent implements OnInit {
+export class Menu1Component implements OnInit {
 
-  constructor(private cartaService: CartaService, private tostr: ToastrService, public router: Router) { }
+  constructor(private cartaService: CartaService, private tostr: ToastrService) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
-  CartaList: Carta[];
+  cartaList: Carta[];
   categorias = new Array<Categoria>();   // Use any array supports different kind objects
 
   selectedValue;
@@ -51,12 +50,22 @@ export class ListaMenuComponent implements OnInit {
     this.loadCategorias();
 
 
+    const x = this.cartaService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.cartaList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.cartaList.push(y as Carta);
+      });
+
+      this.cartaList = this.cartaList.filter( x => x.codigoDia === '01');
+      this.cartaList = this.cartaList.filter( x => x.codigoCategoria === '01');
+
+    });
+
+
   }
 
-  Onclick() {
-
-    this.router.navigate(['/auth/restaurant/menu1']);
-    // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
-  }
 
 }

@@ -1,3 +1,5 @@
+import { Menu2Component } from './contenedor-menu/menu2.component';
+import { Menu1Component } from './contenedor-menu/menu1.component';
 import { ListaMenuComponent } from './lista-menu/lista-menu.component';
 import { CartaService } from './carta/shared/cartaservice';
 import { CartaComponent } from './carta/carta.component';
@@ -38,6 +40,8 @@ import { PlatoCrudComponent } from './plato/plato-crud/plato-crud.component';
 import { MatTableModule } from '@angular/material/table';
 import { CategoriaCrudComponent } from './categoria/categoria-crud/categoria-crud.component';
 import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -57,6 +61,8 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         CoreModule,
         RestaurantRouterModule,
         FormsModule,
+        MatMenuModule,
+        MatProgressBarModule,
         ReactiveFormsModule,
         MatTableModule,
         MatPaginatorModule,
@@ -76,7 +82,9 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         EmpleadoComponent,
         MesaCrudComponent,
         CartaComponent,
-        ListaMenuComponent
+        ListaMenuComponent,
+        Menu1Component,
+        Menu2Component
     ],
     exports: [
     ],

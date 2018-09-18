@@ -1,0 +1,48 @@
+<div  class="sales-list mat-elevation-z4 "  >
+  <mat-toolbar>
+
+      <mat-toolbar-row>
+          <span>Menu de s/ 7</span>
+          <span class="pull-right"></span>
+          <button mat-icon-button>
+            <mat-icon (click)="reload();" >refresh</mat-icon>
+          </button>
+         <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>list</mat-icon>
+                  <span>List</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>print</mat-icon>
+                  <span>Print</span>
+                </button>
+              </mat-menu>
+        </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-progress-bar *ngIf="showLoader"
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [value]="90"
+        [bufferValue]="'10'">
+    </mat-progress-bar>
+  <mat-list >
+  <mat-list-item *ngFor="let sale of cartaList"   >
+
+      <h3  > {{sale.plato}} </h3>
+      <span class="pull-right"></span>
+      <mat-chip-list    >
+          <mat-chip   color="primary" selected="true" >
+              {{sale.precio}} &nbsp; <mat-icon>star</mat-icon>
+          </mat-chip>
+          <mat-chip   color="warn" selected="true" >
+              {{sale.descripcion}}  &nbsp;<mat-icon>remove_red_eye</mat-icon>
+          </mat-chip>
+
+      </mat-chip-list>
+  </mat-list-item>
+</mat-list>
+
+</div>

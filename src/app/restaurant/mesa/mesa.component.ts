@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MesaCrud } from '../mesa-crud/shared/mesa-crud.model';
 import { MesaCrudService } from '../mesa-crud/shared/mesaCrudService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mesa',
@@ -13,7 +14,8 @@ export class MesaComponent implements OnInit {
   mesaCrudList: MesaCrud[];
 
 
-  constructor(private mesaCrudService: MesaCrudService) { }
+  constructor(private mesaCrudService: MesaCrudService,
+    public router: Router) { }
 
   ngOnInit() {
 
@@ -27,5 +29,14 @@ export class MesaComponent implements OnInit {
       });
 
     });
+
+
   }
+
+  Onclick() {
+
+    this.router.navigate(['/auth/restaurant/listaMenu']);
+    // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
+  }
+
 }
