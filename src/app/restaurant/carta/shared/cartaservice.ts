@@ -31,7 +31,7 @@ export class CartaService {
         precio: carta.precio,
         descripcion: carta.categoria,
         codigoDia: carta.codigoDia,
-        codigoPlato: carta.codigoPlato,
+        codigoMenu: carta.codigoMenu,
         codigoCategoria: carta.codigoCategoria
       });
 
@@ -46,7 +46,7 @@ export class CartaService {
         precio: carta.precio,
         descripcion: carta.categoria,
         codigoDia: carta.codigoDia,
-        codigoPlato: carta.codigoPlato,
+        codigoMenu: carta.codigoMenu,
         codigoCategoria: carta.codigoCategoria
       });
   }

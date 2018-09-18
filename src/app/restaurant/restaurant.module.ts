@@ -1,3 +1,4 @@
+import { ListaMenuComponent } from './lista-menu/lista-menu.component';
 import { CartaService } from './carta/shared/cartaservice';
 import { CartaComponent } from './carta/carta.component';
 import { MesaCrudService } from './mesa-crud/shared/mesaCrudService';
@@ -74,7 +75,8 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
         RolComponent,
         EmpleadoComponent,
         MesaCrudComponent,
-        CartaComponent
+        CartaComponent,
+        ListaMenuComponent
     ],
     exports: [
     ],

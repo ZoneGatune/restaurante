@@ -27,7 +27,7 @@
 
       <mat-form-field>
           <mat-select placeholder="Escoga la categoria" [(ngModel)]="cartaService.selectedCarta.codigoCategoria"
-          #t (selectionChange)="onChangeCategoria(cartaService.selectedCarta)" name="categoria">
+          #t (selectionChange)="onChangeCategoria(cartaService.selectedCarta)" name="codigoCategoria">
             <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
               {{ categoria.name }}
             </mat-option>
@@ -41,8 +41,8 @@
 
       <mat-divider></mat-divider>
       <mat-form-field>
-        <mat-select placeholder="Escoga el Plato" [(ngModel)]="cartaService.selectedCarta.plato" name="plato" >
-          <mat-option *ngFor="let plato of menuAjaxList" [value]="plato.nombre">
+        <mat-select placeholder="Escoga el Plato" [(ngModel)]="cartaService.selectedCarta.codigoMenu" name="codigoMenu" >
+          <mat-option *ngFor="let plato of menuAjaxList" [value]="plato.codigoMenu">
             {{ plato.nombre }}
           </mat-option>
         </mat-select>
@@ -89,10 +89,10 @@
                       <h3>Lunes</h3>
                         <mat-list-item *ngFor="let carta of cartaLunesList">
 
-                        <h3 matLine>{{carta.plato}}</h3>
+                        <h3 matLine>Categoria : Categoria : {{carta.categoria}}</h3>
                         <p matLine>
-                          <span> hola wenas</span>
-                          <span class="demo-2"> -- si diga </span>
+                          <span> {{carta.plato}}</span>
+                          <span class="demo-2"> --s/ {{carta.precio}} </span>
                         </p>
                       </mat-list-item>
                   </mat-list>
@@ -101,10 +101,10 @@
                       <h3>Martes</h3>
                         <mat-list-item *ngFor="let carta of cartaMartesList">
 
-                        <h3 matLine>{{carta.plato}}</h3>
+                        <h3 matLine>Categoria : {{carta.categoria}}</h3>
                         <p matLine>
-                          <span> hola wenas</span>
-                          <span class="demo-2"> -- si diga </span>
+                          <span> {{carta.plato}}</span>
+                          <span class="demo-2"> --s/ {{carta.precio}} </span>
                         </p>
                       </mat-list-item>
                   </mat-list>
@@ -117,10 +117,10 @@
                         <h3>Miercoles</h3>
                           <mat-list-item *ngFor="let carta of cartaMiercolesList">
 
-                          <h3 matLine>{{carta.plato}}</h3>
+                          <h3 matLine>Categoria : {{carta.categoria}}</h3>
                           <p matLine>
-                            <span> hola wenas</span>
-                            <span class="demo-2"> -- si diga </span>
+                            <span> {{carta.plato}}</span>
+                            <span class="demo-2"> --s/ {{carta.precio}} </span>
                           </p>
                         </mat-list-item>
                     </mat-list>
@@ -129,10 +129,10 @@
                         <h3>Jueves</h3>
                           <mat-list-item *ngFor="let carta of cartaJuevesList">
 
-                          <h3 matLine>{{carta.plato}}</h3>
+                          <h3 matLine>Categoria : {{carta.categoria}}</h3>
                           <p matLine>
-                            <span> hola wenas</span>
-                            <span class="demo-2"> -- si diga </span>
+                            <span> {{carta.plato}}</span>
+                            <span class="demo-2"> --s/ {{carta.precio}} </span>
                           </p>
                         </mat-list-item>
                     </mat-list>
@@ -145,10 +145,10 @@
                           <h3>Viernes</h3>
                             <mat-list-item *ngFor="let carta of cartaViernesList">
 
-                            <h3 matLine>{{carta.plato}}</h3>
+                            <h3 matLine>Categoria : {{carta.categoria}}</h3>
                             <p matLine>
-                              <span> hola wenas</span>
-                              <span class="demo-2"> -- si diga </span>
+                              <span> {{carta.plato}}</span>
+                              <span class="demo-2"> --s/ {{carta.precio}} </span>
                             </p>
                           </mat-list-item>
                       </mat-list>
@@ -157,10 +157,10 @@
                           <h3>Sabado</h3>
                             <mat-list-item *ngFor="let carta of cartaSabadoList">
 
-                            <h3 matLine>{{carta.plato}}</h3>
+                            <h3 matLine>Categoria : {{carta.categoria}}</h3>
                             <p matLine>
-                              <span> hola wenas</span>
-                              <span class="demo-2"> -- si diga </span>
+                              <span> {{carta.plato}}</span>
+                              <span class="demo-2"> --s/ {{carta.precio}} </span>
                             </p>
                           </mat-list-item>
                       </mat-list>
@@ -173,10 +173,10 @@
                             <h3>Domingo</h3>
                               <mat-list-item *ngFor="let carta of cartaDomingoList">
 
-                              <h3 matLine>{{carta.plato}}</h3>
+                              <h3 matLine>Categoria : {{carta.categoria}}</h3>
                               <p matLine>
-                                <span> hola wenas</span>
-                                <span class="demo-2"> -- si diga </span>
+                                <span> {{carta.plato}}</span>
+                                <span class="demo-2"> --s/ {{carta.precio}} </span>
                               </p>
                             </mat-list-item>
                         </mat-list>

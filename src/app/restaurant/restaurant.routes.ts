@@ -1,3 +1,4 @@
+import { ListaMenuComponent } from './lista-menu/lista-menu.component';
 import { MesaCrudComponent } from './mesa-crud/mesa-crud.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { RolComponent } from './rol/rol.component';
@@ -16,6 +17,7 @@ const pagesRoutes: Routes = [
     { path: 'empleado', component: EmpleadoComponent , data: { animation: 'empleado' } },
     { path: 'mesaCrud', component: MesaCrudComponent , data: { animation: 'mesaCrud' } },
     { path: 'carta', component: CartaComponent , data: { animation: 'carta' } },
+    { path: 'listaMenu', component: ListaMenuComponent , data: { animation: 'listaMenu' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];

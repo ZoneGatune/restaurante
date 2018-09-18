@@ -8,7 +8,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartaService } from './shared/cartaservice';
 import { MenuService } from '../plato/shared/menuservice';
-import { filter } from 'rxjs/operators';
 import { Carta } from './shared/carta.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -41,12 +40,12 @@ export class CartaComponent implements OnInit {
      }
 
      loadCategorias() {
-      this.categorias.push({'id': '01', 'name': '7'});
-      this.categorias.push({'id': '02', 'name': '8'});
-      this.categorias.push({'id': '03', 'name': '9'});
-      this.categorias.push({'id': '04', 'name': 'Pollo'});
-      this.categorias.push({'id': '05', 'name': 'Ceviche'});
-      this.categorias.push({'id': '06', 'name': 'Entrada'});
+      this.categorias.push({'id': '01', 'name': 'Menu s/7','description': 'Incluye Entrada'});
+    this.categorias.push({'id': '02', 'name': 'Menu s/8','description': 'Incluye Entrada'});
+    this.categorias.push({'id': '03', 'name': 'Menu s/9','description': 'Incluye Entrada'});
+    this.categorias.push({'id': '04', 'name': 'Pollo a la Brasa','description': 'Incluye Papas y ensalada'});
+    this.categorias.push({'id': '05', 'name': 'Ceviche','description': 'Incluye Canchita'});
+      this.categorias.push({'id': '06', 'name': 'Entrada','description': 'Incluye 00'});
    }
 
   constructor(private cartaService: CartaService,
@@ -190,7 +189,7 @@ export class CartaComponent implements OnInit {
 
       });
 
-        this.menuAjaxList = this.menuList.filter( x => x.codigoCategoria === this.categorias[0].id);
+        this.menuAjaxList = this.menuList.filter( x => x.categoria === this.categorias[0].id);
         console.log(this.menuAjaxList);
 
     });
@@ -209,8 +208,7 @@ export class CartaComponent implements OnInit {
   carta: Carta = new Carta();
   diaObj: Dia = new Dia();
   categoriaObj: Categoria = new Categoria();
-
-
+  menuObj: Menu = new Menu();
   onSubmit(cartaForm: NgForm) {
     if (cartaForm.value.$key == null) {
       debugger;
@@ -221,25 +219,20 @@ export class CartaComponent implements OnInit {
       this.carta.dia = this.diaObj.name;
       debugger;
 
-      const xCategoria = this.categoriaService.getData();
-      xCategoria.snapshotChanges().subscribe(item => {
-        this.categorialist = [];
-        item.forEach(element => {
-          const y = element.payload.toJSON();
-          y['$key'] = element.key;
-          this.categorialist.push(y as Categoria);
-        });
-        debugger;
-
-        this.categoriaObj = this.categorialist.find( x => x.id === this.carta.codigoCategoria);
-        debugger;
-
-        this.carta.categoria = this.categoriaObj.name;
-        debugger;
 
 
+      this.categoriaObj = this.categorias.find( x => x.id === this.carta.codigoCategoria);
+      debugger;
 
-      });
+      this.carta.categoria = this.categoriaObj.name;
+      debugger;
+
+      this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
+      debugger;
+      this.carta.descripcion = this.menuObj.descripcion;
+      this.carta.precio = this.menuObj.precio;
+      this.carta.plato = this.menuObj.nombre;
+      debugger;
 
 
 
@@ -263,7 +256,7 @@ export class CartaComponent implements OnInit {
       precio: '',
       descripcion: '',
       codigoDia: '',
-      codigoPlato: '',
+      codigoMenu: 0,
       codigoCategoria: ''
 
 

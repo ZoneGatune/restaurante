@@ -6,10 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Rol } from './shared/rol.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-		const isSubmitted = form && form.submitted;
-		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-	}
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
 }
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -40,15 +40,15 @@ export class RolComponent implements OnInit {
 	matcher = new MyErrorStateMatcher();
 
 
-	ngOnInit() {
+  ngOnInit() {
 
     this.resetForm();
-    var x = this.rolService.getData();
+    const x = this.rolService.getData();
     x.snapshotChanges().subscribe(item => {
       this.rolList = [];
       item.forEach(element => {
-        var y = element.payload.toJSON();
-        y["$key"] = element.key;
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
         this.rolList.push(y as Rol);
       });
     });
@@ -56,37 +56,37 @@ export class RolComponent implements OnInit {
   }
 
   onEdit(emp: Rol) {
-    debugger;
     this.rolService.selectedRol = Object.assign({}, emp);
   }
 
   onDelete(key: string) {
-    if (confirm('Are you sure to delete this record ?') == true) {
+    if (confirm('Are you sure to delete this record ?') === true) {
       this.rolService.deleterol(key);
-      this.tostr.warning("Deleted Successfully", "Rol register");
+      this.tostr.warning('Deleted Successfully', 'Rol register');
     }
   }
 
   onSubmit(rolForm: NgForm) {
-    debugger;
-    if (rolForm.value.$key == null)
+    if (rolForm.value.$key == null) {
       this.rolService.insertrol(rolForm.value);
-    else
+    } else {
       this.rolService.updaterol(rolForm.value);
+    }
     this.resetForm(rolForm);
     this.tostr.success('Submitted Succcessfully', 'rol Register');
   }
 
   resetForm(rolForm?: NgForm) {
-    if (rolForm != null)
+    if (rolForm != null) {
       rolForm.reset();
+    }
     this.rolService.selectedRol = {
       $key: null,
       nombre: '',
       estado: ''
 
 
-    }
+    };
   }
 
 }

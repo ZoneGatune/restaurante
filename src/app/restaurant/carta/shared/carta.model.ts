@@ -3,7 +3,7 @@ export class Carta {
     dia: string;
     codigoDia: string;
     plato: string;
-    codigoPlato: string;
+    codigoMenu: number;
     categoria: string;
     precio: string;
     descripcion: string;
