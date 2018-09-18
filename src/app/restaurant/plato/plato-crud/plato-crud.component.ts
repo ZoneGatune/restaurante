@@ -1,3 +1,4 @@
+import { Menu } from './../shared/menu.model';
 import { Categoria } from "./../../categoria/shared/categoria.model";
 import { CategoriaService } from "./../../categoria/shared/categoriaservice";
 import { Component, OnInit } from "@angular/core";
@@ -54,8 +55,10 @@ export class PlatoCrudComponent implements OnInit {
   ]);
   matcher = new MyErrorStateMatcher();
   categoriaList: Categoria[];
+  menuListObj: Menu[];
   ngOnInit() {
     this.resetForm();
+
     var x = this.categoriaService.getData();
     x.snapshotChanges().subscribe(item => {
       this.categoriaList = [];
@@ -65,14 +68,67 @@ export class PlatoCrudComponent implements OnInit {
         this.categoriaList.push(y as Categoria);
       });
     });
+
+    //capturando el valor maximo de la lista
+    debugger;
+    var xMenuObj = this.menuService.getData();
+    if(xMenuObj != null){
+      debugger;
+
+      xMenuObj.snapshotChanges().subscribe(item => {
+        this.menuListObj = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.menuListObj.push(y as Menu);
+        });
+        debugger;
+        var xValues = this.menuListObj.map(function(o) { return o.codigoMenu; });
+        if(xValues.length == 0){
+          this.menuService.selectedMenu = {
+            $key: null,
+            nombre: "",
+            descripcion: "",
+            precio: "",
+            categoria: '',
+            codigoMenu: 1,
+            codigoCategoria: ''
+          };
+          debugger;
+          return;
+        }
+        xValues = Array.from(this.menuListObj, o => o.codigoMenu);
+        var xMax = Math.max.apply(null, xValues);
+        debugger;
+        this.menuService.selectedMenu = {
+          $key: null,
+          nombre: "",
+          descripcion: "",
+          precio: "",
+          categoria: '',
+          codigoMenu: +xMax + 1,
+          codigoCategoria: ''
+        };
+        debugger;
+      });
+
+    }
+
   }
+
+
+  menu: Menu = new Menu();
+  categoria: Categoria = new Categoria();
 
   onSubmit(menuForm: NgForm) {
     this.selectedValue;
 
     if (menuForm.value.$key == null) {
       debugger;
-      //menuForm.value.categoria = this.selectedValue;
+      this.menu = menuForm.value;
+
+      this.categoria = this.categoriaList.find( x => x.valor === this.menu.codigoCategoria);
+      this.menu.categoria = this.categoria.nombre;
       debugger;
       this.menuService.insertmenu(menuForm.value);
     } else {
@@ -91,7 +147,9 @@ export class PlatoCrudComponent implements OnInit {
       nombre: "",
       descripcion: "",
       precio: "",
-      categoria: ''
+      categoria: '',
+      codigoMenu: 0,
+      codigoCategoria: ''
     };
   }
 }

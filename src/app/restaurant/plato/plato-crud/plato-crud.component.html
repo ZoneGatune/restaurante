@@ -1,10 +1,17 @@
 <form class="example-form" #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)">
   <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="menuService.selectedMenu.$key">
+  <input type="hidden"name="codigoMenu" #name="ngModel" [(ngModel)]="menuService.selectedMenu.codigoMenu" placeholder="codigo Plato">
+
+
+
   <mat-form-field class="example-full-width">
     <input matInput name="nombre" #name="ngModel" [(ngModel)]="menuService.selectedMenu.nombre" placeholder="Nombre"
       required>
 
   </mat-form-field>
+
+
+
   <p>
     <mat-form-field class="example-full-width">
       <input matInput name="descripcion" #name="ngModel" [(ngModel)]="menuService.selectedMenu.descripcion" placeholder="Descripcion">
@@ -24,8 +31,8 @@
 
     <mat-divider></mat-divider>
     <mat-form-field>
-      <mat-select placeholder="Escoga la Categoria" [(ngModel)]="menuService.selectedMenu.categoria" name="categoria">
-        <mat-option *ngFor="let food of categoriaList" [value]="food.nombre">
+      <mat-select placeholder="Escoga la Categoria" [(ngModel)]="menuService.selectedMenu.codigoCategoria" name="codigoCategoria">
+        <mat-option *ngFor="let food of categoriaList" [value]="food.valor">
           {{ food.nombre }}
         </mat-option>
       </mat-select>

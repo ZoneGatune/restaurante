@@ -28,7 +28,9 @@ export class MenuService {
         nombre: menu.nombre,
         descripcion: menu.descripcion,
         precio: menu.precio,
-        categoria: menu.categoria
+        categoria: menu.categoria,
+        codigoMenu: menu.codigoMenu,
+        codigoCategoria: menu.codigoCategoria
     });
 
   }
@@ -39,7 +41,9 @@ export class MenuService {
         nombre: menu.nombre,
         descripcion: menu.descripcion,
         precio: menu.precio,
-        categoria: menu.categoria
+        categoria: menu.categoria,
+        codigoMenu: menu.codigoMenu,
+        codigoCategoria: menu.codigoCategoria
       });
   }
 

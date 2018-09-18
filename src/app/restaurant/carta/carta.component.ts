@@ -190,7 +190,7 @@ export class CartaComponent implements OnInit {
 
       });
 
-        this.menuAjaxList = this.menuList.filter( x => x.categoria === this.categorias[0].id);
+        this.menuAjaxList = this.menuList.filter( x => x.codigoCategoria === this.categorias[0].id);
         console.log(this.menuAjaxList);
 
     });
@@ -209,6 +209,8 @@ export class CartaComponent implements OnInit {
   carta: Carta = new Carta();
   diaObj: Dia = new Dia();
   categoriaObj: Categoria = new Categoria();
+
+
   onSubmit(cartaForm: NgForm) {
     if (cartaForm.value.$key == null) {
       debugger;
@@ -272,7 +274,7 @@ export class CartaComponent implements OnInit {
 
     debugger;
     console.log(obj);
-    this.menuAjaxList = this.menuList.filter( x => x.categoria === obj.categoria);
+    this.menuAjaxList = this.menuList.filter( x => x.codigoCategoria === obj.codigoCategoria);
     console.log(this.menuAjaxList);
   }
 

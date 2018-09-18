@@ -62,7 +62,9 @@ export class PlatoComponent implements OnInit {
       nombre: '',
       descripcion: '',
       precio: '',
-      categoria: ''
+      categoria: '',
+      codigoMenu: 0,
+      codigoCategoria: ''
 
 
     }
