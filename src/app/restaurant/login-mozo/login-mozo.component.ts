@@ -56,7 +56,7 @@ export class LoginMozoComponent implements OnInit {
   }
 
   onSubmit(codigo: string) {
-    debugger;
+
     const xLunes = this.empleadoService.getData();
     xLunes.snapshotChanges().subscribe(item => {
       this.empleadoList = [];
@@ -65,11 +65,13 @@ export class LoginMozoComponent implements OnInit {
         y['$key'] = element.key;
         this.empleadoList.push(y as Empleado);
       });
-      debugger;
+
       this.empleado = this.empleadoList.find( x => x.username === this.codigoMozo);
       if(this.empleado){
-        debugger;
-        this.router.navigate(['/auth/restaurant/mesa']);
+
+
+        this.router.navigate(['/auth/restaurant/mesa'], { queryParams: this.empleado });
+
         // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
         this.resetForm();
         this.tostr.success('Submitted Succcessfully', 'Bienvenido');

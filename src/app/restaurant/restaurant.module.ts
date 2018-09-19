@@ -1,3 +1,4 @@
+
 import { Menu2Component } from './contenedor-menu/menu2.component';
 import { Menu1Component } from './contenedor-menu/menu1.component';
 import { ListaMenuComponent } from './lista-menu/lista-menu.component';
@@ -44,6 +45,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { MatSnackBarModule } from '@angular/material';
+import { MozoMesaService } from './mesa/shared/mozoMesaservice';
 
 
 @NgModule({
@@ -99,7 +101,8 @@ import { MatSnackBarModule } from '@angular/material';
       RolService,
       EmpleadoService,
       MesaCrudService,
-      CartaService
+      CartaService,
+      MozoMesaService
     ]
 })
 export class RestaurantModule {
