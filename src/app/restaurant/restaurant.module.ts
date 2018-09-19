@@ -43,6 +43,7 @@ import { CategoriaListComponent } from './categoria/categoria-list/categoria-lis
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
+import { MatSnackBarModule } from '@angular/material';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { LoginMozoComponent } from './login-mozo/login-mozo.component';
         MatPaginatorModule,
         MatTooltipModule,
         MatSortModule,
-        MatSelectModule
+        MatSelectModule,
+        MatSnackBarModule
        ],
     declarations: [
         MesaComponent,
@@ -87,7 +89,7 @@ import { LoginMozoComponent } from './login-mozo/login-mozo.component';
         Menu1Component,
         Menu2Component,
         LoginMozoComponent
-        
+
     ],
     exports: [
     ],
