@@ -10,6 +10,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CartaComponent } from './carta/carta.component';
 import { Menu1Component } from './contenedor-menu/menu1.component';
 import { Menu2Component } from './contenedor-menu/menu2.component';
+import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -22,6 +23,7 @@ const pagesRoutes: Routes = [
     { path: 'listaMenu', component: ListaMenuComponent , data: { animation: 'listaMenu' } },
     { path: 'menu1', component: Menu1Component , data: { animation: 'menu1' } },
     { path: 'menu2', component: Menu2Component , data: { animation: 'menu2' } },
+    { path: 'loginMozo', component: LoginMozoComponent , data: { animation: 'loginMozo' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];

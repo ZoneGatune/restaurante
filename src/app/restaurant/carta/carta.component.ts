@@ -45,7 +45,7 @@ export class CartaComponent implements OnInit {
     this.categorias.push({'id': '03', 'name': 'Menu s/9','description': 'Incluye Entrada'});
     this.categorias.push({'id': '04', 'name': 'Pollo a la Brasa','description': 'Incluye Papas y ensalada'});
     this.categorias.push({'id': '05', 'name': 'Ceviche','description': 'Incluye Canchita'});
-      this.categorias.push({'id': '06', 'name': 'Entrada','description': 'Incluye 00'});
+      this.categorias.push({'id': '10', 'name': 'Entradas','description': 'Incluye 00'});
    }
 
   constructor(private cartaService: CartaService,

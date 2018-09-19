@@ -54,6 +54,14 @@
                 </mat-select>
               </mat-form-field>
             </div>
+            <p>
+              <mat-form-field class="example-full-width">
+                <input matInput name="username" #name="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.username"
+                  placeholder="username">
+
+              </mat-form-field>
+            </p>
+
 
             <p>
 

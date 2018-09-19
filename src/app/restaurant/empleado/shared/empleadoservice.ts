@@ -24,7 +24,8 @@ export class EmpleadoService {
       direccion: empleado.direccion,
       dni: empleado.dni,
       correo: empleado.correo,
-      rol: empleado.rol
+      rol: empleado.rol,
+      username: empleado.username
     });
   }
 
@@ -35,7 +36,8 @@ export class EmpleadoService {
       direccion: empleado.direccion,
       dni: empleado.dni,
       correo: empleado.correo,
-      rol: empleado.rol
+      rol: empleado.rol,
+      username: empleado.username
     });
   }
 

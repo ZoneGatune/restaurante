@@ -42,6 +42,7 @@ import { CategoriaCrudComponent } from './categoria/categoria-crud/categoria-cru
 import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 
 
 @NgModule({
@@ -84,7 +85,9 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
         CartaComponent,
         ListaMenuComponent,
         Menu1Component,
-        Menu2Component
+        Menu2Component,
+        LoginMozoComponent
+        
     ],
     exports: [
     ],

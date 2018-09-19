@@ -27,6 +27,7 @@ export class Menu1Component implements OnInit {
   rows: Array<any> = [];
   showResponsiveTableCode;
   cartaList: Carta[];
+  entradaList: Carta[];
   categorias = new Array<Categoria>();   // Use any array supports different kind objects
 
   selectedValue;
@@ -36,20 +37,11 @@ export class Menu1Component implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  loadCategorias() {
-    this.categorias.push({'id': '01', 'name': 'Menu s/7','description': 'Incluye Entrada'});
-    this.categorias.push({'id': '02', 'name': 'Menu s/8','description': 'Incluye Entrada'});
-    this.categorias.push({'id': '03', 'name': 'Menu s/9','description': 'Incluye Entrada'});
-    this.categorias.push({'id': '04', 'name': 'Pollo a la Brasa','description': 'Incluye Papas y ensalada'});
-    this.categorias.push({'id': '05', 'name': 'Ceviche','description': 'Incluye Canchita'});
-    this.categorias.push({'id': '06', 'name': 'A la Carta','description': 'No incluye entrada'});
- }
+ 
 
   ngOnInit() {
 
-    this.loadCategorias();
-
-
+   
     const x = this.cartaService.getData();
     x.snapshotChanges().subscribe(item => {
       this.cartaList = [];
@@ -58,10 +50,11 @@ export class Menu1Component implements OnInit {
         y['$key'] = element.key;
         this.cartaList.push(y as Carta);
       });
-
+      this.entradaList = this.cartaList;
       this.cartaList = this.cartaList.filter( x => x.codigoDia === '01');
       this.cartaList = this.cartaList.filter( x => x.codigoCategoria === '01');
-
+      this.entradaList = this.entradaList.filter( x => x.codigoCategoria === '10');
+      this.entradaList = this.entradaList.filter( x => x.codigoDia === '01');
     });
 
 

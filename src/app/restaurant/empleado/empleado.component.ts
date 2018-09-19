@@ -76,7 +76,8 @@ export class EmpleadoComponent implements OnInit {
       direccion: "",
       dni: "",
       correo: "",
-      rol: ""
+      rol: "",
+      username: ""
     };
   }
 

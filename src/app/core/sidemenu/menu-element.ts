@@ -273,6 +273,13 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+         {
+          'name': 'Login Mozo',
+          'link': 'restaurant/loginMozo',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

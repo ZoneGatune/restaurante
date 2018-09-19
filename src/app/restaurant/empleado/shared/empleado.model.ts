@@ -5,5 +5,6 @@ export class Empleado {
     dni : string;
     correo : string;
     rol : string;
+    username: string;
 
 }
