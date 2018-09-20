@@ -1,6 +1,6 @@
 export class MozoMesa {
   $key: string;
-  codigoMesa: number;
+  codigoMesa: string;
   mesa: string;
   codigoMozo: string;
   mozo: string;
