@@ -1,3 +1,4 @@
+import { Carta1 } from './../carta/shared/carta1.model';
 import { VentaSeleccionada } from './shared/venta.model';
 import { VentaSeleccionadaService } from './shared/ventaService';
 import { Component, OnInit } from '@angular/core';
@@ -27,7 +28,9 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class ListaMenuComponent implements OnInit {
 
   constructor(private cartaService: CartaService, private tostr: ToastrService, public router: Router ,
-    private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService) { }
+    private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService) {
+      this.mostrarVentaList = [];
+    }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -39,18 +42,23 @@ export class ListaMenuComponent implements OnInit {
   showMultiListCode = false;
   value = 'Clear me';
   ventaKey: string;
+  mesa: string;
+  codigoMesa: string;
+  codigoMozo: string;
+  mozo: string;
   ventaSeleccionada: VentaSeleccionada = new VentaSeleccionada();
+  mostrarVentaList = new Array<Carta1>();
 
 
   matcher = new MyErrorStateMatcher();
 
   loadCategorias() {
-    this.categorias.push({'id': '01', 'name': 'Menu s/7','description': 'Incluye Entrada'});
-    this.categorias.push({'id': '02', 'name': 'Menu s/8','description': 'Incluye Entrada'});
-    this.categorias.push({'id': '03', 'name': 'Menu s/9','description': 'Incluye Entrada'});
-    this.categorias.push({'id': '04', 'name': 'Pollo a la Brasa','description': 'Incluye Papas y ensalada'});
-    this.categorias.push({'id': '05', 'name': 'Ceviche','description': 'Incluye Canchita'});
-    this.categorias.push({'id': '06', 'name': 'A la Carta','description': 'No incluye entrada'});
+    this.categorias.push({'id': '01', 'name': 'Menu s/7', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '02', 'name': 'Menu s/8', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '03', 'name': 'Menu s/9', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '04', 'name': 'Pollo a la Brasa', 'description': 'Incluye Papas y ensalada'});
+    this.categorias.push({'id': '05', 'name': 'Ceviche', 'description': 'Incluye Canchita'});
+    this.categorias.push({'id': '06', 'name': 'A la Carta', 'description': 'No incluye entrada'});
  }
 
   ngOnInit() {
@@ -63,6 +71,10 @@ export class ListaMenuComponent implements OnInit {
       console.log(params); // {order: "popular"}
 
       this.ventaKey = params['ventaKey'];
+      this.mozo = params['mozo'];
+      this.codigoMozo = params['codigoMozo'];
+      this.codigoMesa = params['codigoMesa'];
+      this.mesa = params['mesa'];
 
     });
 
@@ -75,17 +87,27 @@ export class ListaMenuComponent implements OnInit {
           this.ventaList.push(y as VentaSeleccionada);
 
         });
-        debugger;
-        this.ventaSeleccionada = this.ventaList[0];
-        debugger;
+        // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
+        this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
+
+        const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
+
+        this.mostrarVentaList = peopleArray;
+        console.log(this.mostrarVentaList);
+        // debugger;
       });
 
   }
 
   Onclick() {
 
-    //this.router.navigate(['/auth/restaurant/menu1']);
-    this.router.navigate(['/auth/restaurant/menu1'], { queryParams: {'ventaKey': this.ventaKey } });
+    // this.router.navigate(['/auth/restaurant/menu1']);
+    this.router.navigate(['/auth/restaurant/menu1'], {
+      queryParams: {'ventaKey': this.ventaKey,
+                    'codigoMesa': this.codigoMesa,
+                    'mesa': this.mesa,
+                    'mozo': this.mozo,
+                    'codigoMozo': this.codigoMozo } });
 
     // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
   }

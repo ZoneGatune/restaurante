@@ -1,3 +1,4 @@
+import { Carta1 } from './../carta/shared/carta1.model';
 import { VentaSeleccionadaService } from './../lista-menu/shared/ventaService';
 import { VentaSeleccionada } from './../lista-menu/shared/venta.model';
 import { CartaSeleccionadaService } from './shared/cartaSeleccionadaservice';
@@ -10,7 +11,6 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
-import { Carta1 } from '../carta/shared/carta1.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -45,7 +45,7 @@ export class Menu1Component implements OnInit {
   ventaSeleccionada: VentaSeleccionada = new VentaSeleccionada();
   cartaSeleccionada: CartaSeleccionada = new CartaSeleccionada();
   carta1: Carta1 = new Carta1();
-  cartaSeleccionadas: Carta1[];
+  cartaSeleccionadas = new Array<Carta1>();
   ventasList: VentaSeleccionada[];
 
   matcher = new MyErrorStateMatcher();
@@ -97,6 +97,7 @@ export class Menu1Component implements OnInit {
     debugger;
     this.cartaSeleccionada = entrada;
     //agregando solo la carta.
+    this.carta1 = new  Carta1();
     this.carta1.key = entrada.$key;
     this.carta1.categoria = entrada.categoria;
     this.carta1.codigoCategoria = entrada.codigoCategoria;
@@ -107,9 +108,10 @@ export class Menu1Component implements OnInit {
     this.cartaSeleccionadas.push(this.carta1);
     debugger;
     if (this.ventaSeleccionada.cartaList === undefined) {
-      this.ventaSeleccionada.cartaList = [];
+      this.ventaSeleccionada.cartaList = new Array<Carta1>();
     }
     this.ventaSeleccionada.cartaList = this.cartaSeleccionadas;
+
     this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$ventaKey, this.ventaSeleccionada);
 
     debugger;

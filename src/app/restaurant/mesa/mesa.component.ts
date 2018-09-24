@@ -132,16 +132,25 @@ export class MesaComponent implements OnInit {
       this.mozoMesa.fecha = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-ES', 'UTC -5');
       this.mozoMesaService.insertMozoMesa(this.mozoMesa);
 
-
+      debugger;
       this.venta.estado = 'activado';
       this.venta.fecha = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-ES', 'UTC -5');
       this.venta.id = '001';
-      this.venta.cartaList =  [];
-      //this.venta.cartaList =  this.cartaList;
+      this.venta.cartaList = new Array<Carta1>();
+      this.venta.codigoMesa = this.mozoMesa.codigoMesa;
+      this.venta.mesa = this.mozoMesa.mesa;
+      this.venta.mozo = this.mozoMesa.mozo;
+      this.venta.codigoMozo = this.mozoMesa.codigoMozo;
+      // this.venta.cartaList =  this.cartaList;
       const keyVenta = this.ventaService.insertVenta(this.venta);
 
 
-      this.router.navigate(['/auth/restaurant/listaMenu'], { queryParams: {'ventaKey': keyVenta } });
+      this.router.navigate(['/auth/restaurant/listaMenu'], {
+        queryParams: {'ventaKey': keyVenta,
+                      'codigoMesa': this.mozoMesa.codigoMesa,
+                      'mesa': this.mozoMesa.mesa,
+                      'mozo': this.mozoMesa.mozo,
+                      'codigoMozo': this.mozoMesa.codigoMozo } });
 
     }
 

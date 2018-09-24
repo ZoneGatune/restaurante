@@ -6,5 +6,9 @@ export class VentaSeleccionada {
   id: string;
   estado: string;
   fecha: string;
-  cartaList: Carta1[];
+  mesa: string;
+  codigoMesa: string;
+  codigoMozo: string;
+  mozo: string;
+  cartaList = new Array<Carta1>();
 }

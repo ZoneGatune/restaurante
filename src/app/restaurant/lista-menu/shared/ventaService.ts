@@ -30,7 +30,11 @@ export class VentaSeleccionadaService {
         id: venta.id,
         estado: venta.estado,
         fecha: venta.fecha,
-        cartaList: venta.cartaList
+        cartaList: venta.cartaList,
+        mozo: venta.mozo,
+        codigoMozo: venta.codigoMesa,
+        mesa: venta.mesa,
+        codigoMesa: venta.codigoMesa
       });
       const newKey = objKey.key;
       return newKey;
