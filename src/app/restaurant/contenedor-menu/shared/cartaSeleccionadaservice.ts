@@ -1,12 +1,12 @@
+import { CartaSeleccionada } from './cartaSeleccionada.model';
 import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Carta } from './carta.model';
 
 @Injectable()
-export class CartaService {
+export class CartaSeleccionadaService {
   cartaList: AngularFireList<any>;
-  selectedCarta: Carta = new Carta();
+  selectedCarta: CartaSeleccionada = new CartaSeleccionada();
 
 
   constructor(private firebase: AngularFireDatabase ) {
@@ -15,11 +15,11 @@ export class CartaService {
    }
 
   getData() {
-    this.cartaList = this.firebase.list('carta');
+    this.cartaList = this.firebase.list('cartaSeleccionada');
     return this.cartaList;
   }
 
-  insertCarta(carta: Carta) {
+  insertCarta(carta: CartaSeleccionada) {
 
     if (!this.cartaList) {
       this.cartaList = this.getData();
@@ -39,7 +39,7 @@ export class CartaService {
 
   }
 
-  updateCarta(carta: Carta) {
+  updateCarta(carta: CartaSeleccionada) {
     this.cartaList.update(carta.$key,
       {
         dia: carta.dia,

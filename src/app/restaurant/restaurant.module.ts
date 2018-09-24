@@ -1,3 +1,4 @@
+import { VentaSeleccionadaService } from './lista-menu/shared/ventaService';
 
 import { Menu2Component } from './contenedor-menu/menu2.component';
 import { Menu1Component } from './contenedor-menu/menu1.component';
@@ -46,6 +47,7 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { MatSnackBarModule } from '@angular/material';
 import { MozoMesaService } from './mesa/shared/mozoMesaservice';
+import { CartaSeleccionada } from './contenedor-menu/shared/cartaSeleccionada.model';
 
 
 @NgModule({
@@ -102,7 +104,8 @@ import { MozoMesaService } from './mesa/shared/mozoMesaservice';
       EmpleadoService,
       MesaCrudService,
       CartaService,
-      MozoMesaService
+      CartaSeleccionada,
+      VentaSeleccionadaService
     ]
 })
 export class RestaurantModule {

@@ -87,12 +87,14 @@ export class PlatoCrudComponent implements OnInit {
         if(xValues.length == 0){
           this.menuService.selectedMenu = {
             $key: null,
-            nombre: "",
-            descripcion: "",
-            precio: "",
+            nombre: '',
+            descripcion: '',
+            precio: '',
             categoria: '',
             codigoMenu: 1,
-            codigoCategoria: ''
+            codigoCategoria: '',
+            contadorNegativo: 0,
+            contadorPositivo: 0
           };
           debugger;
           return;
@@ -107,7 +109,9 @@ export class PlatoCrudComponent implements OnInit {
           precio: "",
           categoria: '',
           codigoMenu: +xMax + 1,
-          codigoCategoria: ''
+          codigoCategoria: '',
+          contadorNegativo: 0,
+          contadorPositivo: 0
         };
         debugger;
       });
@@ -130,9 +134,11 @@ export class PlatoCrudComponent implements OnInit {
       this.categoria = this.categoriaList.find( x => x.valor === this.menu.codigoCategoria);
       this.menu.categoria = this.categoria.nombre;
       debugger;
-      this.menuService.insertmenu(menuForm.value);
+      this.menu.contadorPositivo = 0;
+      this.menu.contadorNegativo = 0;
+      this.menuService.insertmenu(this.menu);
     } else {
-      this.menuService.updatemenu(menuForm.value);
+      this.menuService.updatemenu(this.menu);
     }
 
     debugger;
@@ -149,7 +155,9 @@ export class PlatoCrudComponent implements OnInit {
       precio: "",
       categoria: '',
       codigoMenu: 0,
-      codigoCategoria: ''
+      codigoCategoria: '',
+      contadorNegativo: 0,
+      contadorPositivo: 0
     };
   }
 }

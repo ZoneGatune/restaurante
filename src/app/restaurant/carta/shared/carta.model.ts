@@ -8,5 +8,7 @@ export class Carta {
     precio: string;
     descripcion: string;
     codigoCategoria: string;
+    contadorPositivo: number;
+    contadorNegativo: number;
 
 }

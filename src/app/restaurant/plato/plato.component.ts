@@ -64,7 +64,9 @@ export class PlatoComponent implements OnInit {
       precio: '',
       categoria: '',
       codigoMenu: 0,
-      codigoCategoria: ''
+      codigoCategoria: '',
+      contadorNegativo: 0,
+      contadorPositivo: 0
 
 
     }

@@ -8,7 +8,7 @@ export class MenuService {
   selectedMenu: Menu = new Menu();
 
 
-  constructor(private firebase :AngularFireDatabase ) {
+  constructor(private firebase: AngularFireDatabase ) {
 
 
    }
@@ -18,10 +18,9 @@ export class MenuService {
     return this.menuList;
   }
 
-  insertmenu(menu : Menu)
-  {
+  insertmenu(menu: Menu) {
 
-    if(!this.menuList){
+    if (!this.menuList) {
       this.menuList = this.getData();
     }
       this.menuList.push({
@@ -30,12 +29,14 @@ export class MenuService {
         precio: menu.precio,
         categoria: menu.categoria,
         codigoMenu: menu.codigoMenu,
-        codigoCategoria: menu.codigoCategoria
+        codigoCategoria: menu.codigoCategoria,
+        contadorPositivo:  menu.contadorPositivo,
+        contadorNegativo: menu.contadorNegativo
     });
 
   }
 
-  updatemenu(menu : Menu){
+  updatemenu(menu: Menu) {
     this.menuList.update(menu.$key,
       {
         nombre: menu.nombre,
@@ -43,11 +44,13 @@ export class MenuService {
         precio: menu.precio,
         categoria: menu.categoria,
         codigoMenu: menu.codigoMenu,
-        codigoCategoria: menu.codigoCategoria
+        codigoCategoria: menu.codigoCategoria,
+        contadorPositivo:  menu.contadorPositivo,
+        contadorNegativo: menu.contadorNegativo
       });
   }
 
-  deletemenu($key : string){
+  deletemenu($key: string) {
     this.menuList.remove($key);
   }
 

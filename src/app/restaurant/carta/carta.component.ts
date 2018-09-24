@@ -232,13 +232,15 @@ export class CartaComponent implements OnInit {
       this.carta.descripcion = this.menuObj.descripcion;
       this.carta.precio = this.menuObj.precio;
       this.carta.plato = this.menuObj.nombre;
+      this.carta.contadorPositivo = this.menuObj.contadorPositivo;
+      this.carta.contadorNegativo = this.menuObj.contadorNegativo;
       debugger;
 
 
 
-      this.cartaService.insertCarta(cartaForm.value);
+      this.cartaService.insertCarta( this.carta);
     } else {
-      this.cartaService.updateCarta(cartaForm.value);
+      this.cartaService.updateCarta( this.carta);
     }
     this.resetForm(cartaForm);
     this.tostr.success('Submitted Succcessfully', 'carta Register');
@@ -257,7 +259,9 @@ export class CartaComponent implements OnInit {
       descripcion: '',
       codigoDia: '',
       codigoMenu: 0,
-      codigoCategoria: ''
+      codigoCategoria: '',
+      contadorPositivo: 0,
+      contadorNegativo: 0
 
 
     };
