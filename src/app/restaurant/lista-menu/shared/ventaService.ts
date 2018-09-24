@@ -32,7 +32,7 @@ export class VentaSeleccionadaService {
         fecha: venta.fecha,
         cartaList: venta.cartaList,
         mozo: venta.mozo,
-        codigoMozo: venta.codigoMesa,
+        codigoMozo: venta.codigoMozo,
         mesa: venta.mesa,
         codigoMesa: venta.codigoMesa
       });

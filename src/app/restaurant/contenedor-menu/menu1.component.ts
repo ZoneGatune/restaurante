@@ -81,12 +81,12 @@ export class Menu1Component implements OnInit {
       this.ventasList = [];
       item.forEach(element => {
         const y = element.payload.toJSON();
-        y['$ventaKey'] = element.key;
+        y['$key'] = element.key;
         this.ventasList.push(y as VentaSeleccionada);
       });
-      this.ventaSeleccionada = this.ventasList.find( x => x.$ventaKey === this.ventaKey);
-
-    });
+      debugger;
+      this.ventaSeleccionada = this.ventasList.find( x => x.$key === this.ventaKey);
+      debugger;    });
 
   }
 
@@ -112,7 +112,7 @@ export class Menu1Component implements OnInit {
     }
     this.ventaSeleccionada.cartaList = this.cartaSeleccionadas;
 
-    this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$ventaKey, this.ventaSeleccionada);
+    this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
 
     debugger;
   }

@@ -55,6 +55,7 @@ export class MesaComponent implements OnInit {
   venta: VentaSeleccionada = new VentaSeleccionada();
   mesaEncontrada: MesaCrud = new MesaCrud();
   cartaList: Carta1[];
+  ventasEnLinea:  VentaSeleccionada[];
 
   loadCartaDefecto() {
     this.cartaList = [];
@@ -114,11 +115,35 @@ export class MesaComponent implements OnInit {
   mozoMesaOcupadasList: MozoMesa[];
 
   Onclick(mesa: string) {
-
+    debugger;
     this.mozoMesaOcupadasList = this.mozoMesaList.filter( x => x.codigoMesa === mesa);
 
     if (this.mozoMesaOcupadasList.length >= 1) {
-      this.router.navigate(['/auth/restaurant/listaMenu']);
+      debugger;
+
+      const xVenta = this.ventaService.getData();
+      xVenta.snapshotChanges().subscribe(item => {
+        this.ventasEnLinea = [];
+        item.forEach(element => {
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
+          this.ventasEnLinea.push(y as VentaSeleccionada);
+        });
+        debugger;
+        this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa);
+        debugger;
+        this.router.navigate(['/auth/restaurant/listaMenu'], {
+          queryParams: {'ventaKey': this.venta.$key,
+                        'codigoMesa': this.venta.codigoMesa,
+                        'mesa': this.venta.mesa,
+                        'mozo': this.venta.mozo,
+                        'codigoMozo': this.venta.codigoMozo } });
+
+      });
+
+
+
+
     } else {
       this.mesaEncontrada = this.mesaCrudList.find( x => x.numero === mesa);
       this.mesaEncontrada.estado = 'ocupado';
