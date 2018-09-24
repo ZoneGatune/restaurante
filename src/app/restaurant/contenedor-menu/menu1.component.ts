@@ -47,6 +47,11 @@ export class Menu1Component implements OnInit {
   carta1: Carta1 = new Carta1();
   cartaSeleccionadas = new Array<Carta1>();
   ventasList: VentaSeleccionada[];
+  ventaList: VentaSeleccionada[];
+  mesa: string;
+  codigoMesa: string;
+  codigoMozo: string;
+  mozo: string;
 
   matcher = new MyErrorStateMatcher();
 
@@ -74,8 +79,15 @@ export class Menu1Component implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       console.log(params); // {order: "popular"}
+
       this.ventaKey = params['ventaKey'];
+      this.mozo = params['mozo'];
+      this.codigoMozo = params['codigoMozo'];
+      this.codigoMesa = params['codigoMesa'];
+      this.mesa = params['mesa'];
+
     });
+
     const xVentaSeleccionada = this.ventaSeleccionadaService.getData();
     xVentaSeleccionada.snapshotChanges().subscribe(item => {
       this.ventasList = [];
@@ -84,17 +96,31 @@ export class Menu1Component implements OnInit {
         y['$key'] = element.key;
         this.ventasList.push(y as VentaSeleccionada);
       });
-      debugger;
+
       this.ventaSeleccionada = this.ventasList.find( x => x.$key === this.ventaKey);
-      debugger;    });
+
+    });
 
   }
 
 
 
-  agregarEntrada(entrada: Carta){
+  agregarEntrada(entrada: Carta) {
 
-    debugger;
+    const x = this.ventaSeleccionadaService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.ventasList = [];
+      item.map(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.ventasList.push(y as VentaSeleccionada);
+
+      });
+
+      this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
+
+    });
+
     this.cartaSeleccionada = entrada;
     //agregando solo la carta.
     this.carta1 = new  Carta1();
@@ -110,7 +136,9 @@ export class Menu1Component implements OnInit {
     if (this.ventaSeleccionada.cartaList === undefined) {
       this.ventaSeleccionada.cartaList = new Array<Carta1>();
     }
-    this.ventaSeleccionada.cartaList = this.cartaSeleccionadas;
+    const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
+    peopleArray.push(this.carta1);
+    this.ventaSeleccionada.cartaList = peopleArray;
 
     this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
 

@@ -33,10 +33,8 @@
 						<tr *ngFor="let menu of mostrarVentaList">
               <td>{{menu.categoria}}</td>
               <td>{{menu.plato}}</td>
-              <td>
-                <a (click)="onEdit(menu)" class="modal-trigger waves-effect btn-flat nopadding">
-                  <i class="material-icons">edit</i></a>
-              </td>
+              <td>{{menu.precio}}</td>
+
               <td>
                   <a (click)="onDelete(menu.$key)" class="modal-trigger waves-effect btn-flat nopadding">
                     <i class="material-icons">delete</i></a>
