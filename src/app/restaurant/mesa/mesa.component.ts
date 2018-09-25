@@ -116,21 +116,23 @@ export class MesaComponent implements OnInit {
 
   Onclick(mesa: string) {
     debugger;
-    this.mozoMesaOcupadasList = this.mozoMesaList.filter( x => x.codigoMesa === mesa);
-
-    if (this.mozoMesaOcupadasList.length >= 1) {
-      debugger;
-
-      const xVenta = this.ventaService.getData();
-      xVenta.snapshotChanges().subscribe(item => {
+    const x = this.ventaService.getData();
+      x.snapshotChanges().subscribe(item => {
         this.ventasEnLinea = [];
         item.forEach(element => {
           const y = element.payload.toJSON();
           y['$key'] = element.key;
           this.ventasEnLinea.push(y as VentaSeleccionada);
+
         });
+        // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
         debugger;
         this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa);
+        debugger;
+
+    if (this.venta) {
+
+
         debugger;
         this.router.navigate(['/auth/restaurant/listaMenu'], {
           queryParams: {'ventaKey': this.venta.$key,
@@ -139,12 +141,7 @@ export class MesaComponent implements OnInit {
                         'mozo': this.venta.mozo,
                         'codigoMozo': this.venta.codigoMozo } });
 
-      });
-
-
-
-
-    } else {
+      } else {
       this.mesaEncontrada = this.mesaCrudList.find( x => x.numero === mesa);
       this.mesaEncontrada.estado = 'ocupado';
       this.mozoMesa.codigoMesa = this.mesaEncontrada.numero;

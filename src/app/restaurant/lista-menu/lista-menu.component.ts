@@ -53,12 +53,11 @@ export class ListaMenuComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   loadCategorias() {
-    this.categorias.push({'id': '01', 'name': 'Menu s/7', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '02', 'name': 'Menu s/8', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '03', 'name': 'Menu s/9', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '04', 'name': 'Pollo a la Brasa', 'description': 'Incluye Papas y ensalada'});
-    this.categorias.push({'id': '05', 'name': 'Ceviche', 'description': 'Incluye Canchita'});
-    this.categorias.push({'id': '06', 'name': 'A la Carta', 'description': 'No incluye entrada'});
+    this.categorias.push({'id': '01', 'name': 'Menu s/9', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '04', 'name': 'Menu s/12', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '05', 'name': 'Pollo a la Brasa', 'description': 'Incluye Papas y ensalada'});
+    this.categorias.push({'id': '06', 'name': 'Ceviche', 'description': 'Incluye Canchita'});
+    this.categorias.push({'id': '07', 'name': 'A la Carta', 'description': 'No incluye entrada'});
  }
 
   ngOnInit() {
