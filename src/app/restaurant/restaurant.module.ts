@@ -46,7 +46,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { MatSnackBarModule } from '@angular/material';
-import { MozoMesaService } from './mesa/shared/mozoMesaservice';
 import { CartaSeleccionada } from './contenedor-menu/shared/cartaSeleccionada.model';
 
 
