@@ -37,6 +37,7 @@ export class MenuService {
   }
 
   updatemenu(menu: Menu) {
+    debugger;
     this.menuList.update(menu.$key,
       {
         nombre: menu.nombre,

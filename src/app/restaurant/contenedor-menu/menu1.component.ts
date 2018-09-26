@@ -12,6 +12,8 @@ import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
 
+import { Router } from '@angular/router';
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -31,7 +33,8 @@ export class Menu1Component implements OnInit {
 
   constructor(private cartaService: CartaService, private tostr: ToastrService,
     private route: ActivatedRoute,
-    private ventaSeleccionadaService: VentaSeleccionadaService) { }
+    private ventaSeleccionadaService: VentaSeleccionadaService,
+    public router: Router) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -133,6 +136,13 @@ export class Menu1Component implements OnInit {
       this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
 
       debugger;
+      //this.router.navigate(['/auth/restaurant/menu1']);
+      this.router.navigate(['/auth/restaurant/menu1'], {
+        queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                      'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                      'mesa': this.ventaSeleccionada.mesa,
+                      'mozo': this.ventaSeleccionada.mozo,
+                      'codigoMozo': this.ventaSeleccionada.codigoMozo } });
     }
 
 

@@ -58,6 +58,7 @@ constructor(private menuService: MenuService, private tostr: ToastrService) { }
   onEdit(emp: Menu) {
     debugger;
     this.menuService.selectedMenu = Object.assign({}, emp);
+    debugger;
   }
 
   onDelete(key: string) {

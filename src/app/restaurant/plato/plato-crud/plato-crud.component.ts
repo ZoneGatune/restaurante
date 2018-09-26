@@ -138,6 +138,12 @@ export class PlatoCrudComponent implements OnInit {
       this.menu.contadorNegativo = 0;
       this.menuService.insertmenu(this.menu);
     } else {
+      this.menu = menuForm.value;
+      this.categoria = this.categoriaList.find( x => x.valor === this.menu.codigoCategoria);
+      this.menu.categoria = this.categoria.nombre;
+      debugger;
+      this.menu.contadorPositivo = 0;
+      this.menu.contadorNegativo = 0;
       this.menuService.updatemenu(this.menu);
     }
 
