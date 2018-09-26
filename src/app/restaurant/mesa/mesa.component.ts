@@ -125,8 +125,7 @@ export class MesaComponent implements OnInit {
           this.ventasEnLinea.push(y as VentaSeleccionada);
 
         });
-      });
-        // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
+
         debugger;
         this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa);
         debugger;
@@ -179,10 +178,11 @@ export class MesaComponent implements OnInit {
 
     }
 
-
+      });
+        // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
 
     // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
   }
 
 }
-}
+

@@ -106,43 +106,37 @@ export class Menu1Component implements OnInit {
 
 
   agregarEntrada(entrada: Carta) {
-
-    const x = this.ventaSeleccionadaService.getData();
-    x.snapshotChanges().subscribe(item => {
-      this.ventasList = [];
-      item.map(element => {
-        const y = element.payload.toJSON();
-        y['$key'] = element.key;
-        this.ventasList.push(y as VentaSeleccionada);
-
-      });
-
-      this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
-
-    });
-
-    this.cartaSeleccionada = entrada;
-    //agregando solo la carta.
-    this.carta1 = new  Carta1();
-    this.carta1.key = entrada.$key;
-    this.carta1.categoria = entrada.categoria;
-    this.carta1.codigoCategoria = entrada.codigoCategoria;
-    this.carta1.codigoMenu = entrada.codigoMenu;
-    this.carta1.descripcion = entrada.descripcion;
-    this.carta1.plato = entrada.plato;
-    this.carta1.precio = entrada.precio;
-    this.cartaSeleccionadas.push(this.carta1);
     debugger;
-    if (this.ventaSeleccionada.cartaList === undefined) {
-      this.ventaSeleccionada.cartaList = new Array<Carta1>();
+
+    //this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
+    debugger;
+    if(this.ventaSeleccionada) {
+      this.cartaSeleccionada = entrada;
+      //agregando solo la carta.
+      this.carta1 = new  Carta1();
+      this.carta1.key = entrada.$key;
+      this.carta1.categoria = entrada.categoria;
+      this.carta1.codigoCategoria = entrada.codigoCategoria;
+      this.carta1.codigoMenu = entrada.codigoMenu;
+      this.carta1.descripcion = entrada.descripcion;
+      this.carta1.plato = entrada.plato;
+      this.carta1.precio = entrada.precio;
+      this.cartaSeleccionadas.push(this.carta1);
+      debugger;
+      if (this.ventaSeleccionada.cartaList === undefined) {
+        this.ventaSeleccionada.cartaList = new Array<Carta1>();
+      }
+      const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
+      peopleArray.push(this.carta1);
+      this.ventaSeleccionada.cartaList = peopleArray;
+
+      this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+
+      debugger;
     }
-    const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
-    peopleArray.push(this.carta1);
-    this.ventaSeleccionada.cartaList = peopleArray;
 
-    this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
 
-    debugger;
+
   }
   eliminarEntrada(entrada: Carta) {
     debugger;

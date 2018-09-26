@@ -53,13 +53,6 @@ export class ListaMenuComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   loadCategorias() {
-<<<<<<< HEAD
-    this.categorias.push({'id': '01', 'name': 'Menu s/9', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '04', 'name': 'Menu s/12', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '05', 'name': 'Pollo a la Brasa', 'description': 'Incluye Papas y ensalada'});
-    this.categorias.push({'id': '06', 'name': 'Ceviche', 'description': 'Incluye Canchita'});
-    this.categorias.push({'id': '07', 'name': 'A la Carta', 'description': 'No incluye entrada'});
-=======
     this.categorias.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '02', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '03', 'name': 'Carta Criolla', 'description': ''});
@@ -69,7 +62,6 @@ export class ListaMenuComponent implements OnInit {
     this.categorias.push({'id': '07', 'name': 'Pollos a la Brasa', 'description': ''});
     this.categorias.push({'id': '08', 'name': 'Parrilas', 'description': ''});
     this.categorias.push({'id': '09', 'name': 'Bebidas', 'description': ''});
->>>>>>> 8d21140b19bf6be3ecd62dfad28ed1eaee92140b
  }
 
   ngOnInit() {
