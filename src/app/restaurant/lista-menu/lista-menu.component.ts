@@ -37,7 +37,6 @@ export class ListaMenuComponent implements OnInit {
   CartaList: Carta[];
   ventaList: VentaSeleccionada[];
   categorias = new Array<Categoria>();   // Use any array supports different kind objects
-
   selectedValue;
   showMultiListCode = false;
   value = 'Clear me';
@@ -53,11 +52,15 @@ export class ListaMenuComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   loadCategorias() {
-    this.categorias.push({'id': '01', 'name': 'Menu s/9', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '04', 'name': 'Menu s/12', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '05', 'name': 'Pollo a la Brasa', 'description': 'Incluye Papas y ensalada'});
-    this.categorias.push({'id': '06', 'name': 'Ceviche', 'description': 'Incluye Canchita'});
-    this.categorias.push({'id': '07', 'name': 'A la Carta', 'description': 'No incluye entrada'});
+    this.categorias.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '02', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '03', 'name': 'Carta Criolla', 'description': ''});
+    this.categorias.push({'id': '04', 'name': 'Menú Marino', 'description': ''});
+    this.categorias.push({'id': '05', 'name': 'Carta Marina', 'description': ''});
+    this.categorias.push({'id': '06', 'name': 'Entradas o Adicionales', 'description': ''});
+    this.categorias.push({'id': '07', 'name': 'Pollos a la Brasa', 'description': ''});
+    this.categorias.push({'id': '08', 'name': 'Parrilas', 'description': ''});
+    this.categorias.push({'id': '09', 'name': 'Bebidas', 'description': ''});
  }
 
   ngOnInit() {
@@ -68,7 +71,6 @@ export class ListaMenuComponent implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       console.log(params); // {order: "popular"}
-
       this.ventaKey = params['ventaKey'];
       this.mozo = params['mozo'];
       this.codigoMozo = params['codigoMozo'];
