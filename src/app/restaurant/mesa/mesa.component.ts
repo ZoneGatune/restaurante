@@ -125,6 +125,7 @@ export class MesaComponent implements OnInit {
           this.ventasEnLinea.push(y as VentaSeleccionada);
 
         });
+      });
         // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
         debugger;
         this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa);
@@ -153,6 +154,8 @@ export class MesaComponent implements OnInit {
       this.mesaCrudService.updateMesaCrud(this.mesaEncontrada);
       this.mozoMesa.fecha = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-ES', 'UTC -5');
       this.mozoMesaService.insertMozoMesa(this.mozoMesa);
+      debugger;
+      this.venta  = new VentaSeleccionada();
 
       debugger;
       this.venta.estado = 'activado';
@@ -181,4 +184,5 @@ export class MesaComponent implements OnInit {
     // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
   }
 
+}
 }
