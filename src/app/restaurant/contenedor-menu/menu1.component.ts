@@ -11,6 +11,7 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 import { Router } from '@angular/router';
 
@@ -34,7 +35,7 @@ export class Menu1Component implements OnInit {
   constructor(private cartaService: CartaService, private tostr: ToastrService,
     private route: ActivatedRoute,
     private ventaSeleccionadaService: VentaSeleccionadaService,
-    public router: Router) { }
+    public router: Router, private firebase: AngularFireDatabase) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -57,7 +58,27 @@ export class Menu1Component implements OnInit {
   mozo: string;
 
   matcher = new MyErrorStateMatcher();
+  ventaListAngular: AngularFireList<any>;
 
+  getData() {
+    this.ventaListAngular = this.firebase.list('ventas');
+    return this.ventaListAngular;
+  }
+
+  updateVentaAngular(ventaKey: string, venta: VentaSeleccionada) {
+    debugger;
+    this.ventaListAngular = this.firebase.list('ventas');
+    debugger;
+    //const list = this.firebase.object(`https://restaurante1-6523c.firebaseio.com/ventas/` + ventaKey).set(venta);
+
+    this.ventaListAngular.update(ventaKey,
+      {
+        id: venta.id,
+        estado: venta.estado,
+        fecha: venta.fecha,
+        cartaList: venta.cartaList
+      });
+  }
 
 
   ngOnInit() {
@@ -133,11 +154,17 @@ export class Menu1Component implements OnInit {
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
 
-      this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+      
+
+    }
+  }
+
+  grabarMenu(){
+
+      this.updateVentaAngular(this.ventaSeleccionada.$key, this.ventaSeleccionada);
 
       debugger;
-      //this.router.navigate(['/auth/restaurant/menu1']);
-      this.router.navigate(['/auth/restaurant/menu1'], {
+      this.router.navigate(['/auth/restaurant/listaMenu'], {
         queryParams: {'ventaKey': this.ventaSeleccionada.$key,
                       'codigoMesa': this.ventaSeleccionada.codigoMesa,
                       'mesa': this.ventaSeleccionada.mesa,
@@ -147,7 +174,6 @@ export class Menu1Component implements OnInit {
 
 
 
-  }
   eliminarEntrada(entrada: Carta) {
     debugger;
     this.cartaSeleccionada = entrada;
