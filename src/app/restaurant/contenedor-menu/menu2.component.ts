@@ -11,6 +11,9 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -31,7 +34,8 @@ export class Menu2Component implements OnInit {
 
   constructor(private cartaService: CartaService, private tostr: ToastrService,
     private route: ActivatedRoute,
-    private ventaSeleccionadaService: VentaSeleccionadaService) { }
+    private ventaSeleccionadaService: VentaSeleccionadaService,
+    public router: Router, private firebase: AngularFireDatabase) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -54,6 +58,13 @@ export class Menu2Component implements OnInit {
   mozo: string;
 
   matcher = new MyErrorStateMatcher();
+  ventaListAngular: AngularFireList<any>;
+
+  getData() {
+    this.ventaListAngular = this.firebase.list('ventas');
+    return this.ventaListAngular;
+  }
+
 
 
 
@@ -70,7 +81,7 @@ export class Menu2Component implements OnInit {
       });
       this.entradaList = this.cartaList;
       this.cartaList = this.cartaList.filter( x => x.codigoDia === '01');
-      this.cartaList = this.cartaList.filter( x => x.codigoCategoria === '04');
+      this.cartaList = this.cartaList.filter( x => x.codigoCategoria === '02');
       this.entradaList = this.entradaList.filter( x => x.codigoCategoria === '10');
       this.entradaList = this.entradaList.filter( x => x.codigoDia === '01');
     });
@@ -105,45 +116,51 @@ export class Menu2Component implements OnInit {
 
 
 
-  agregarEntrada(entrada: Carta) {
-
-    const x = this.ventaSeleccionadaService.getData();
-    x.snapshotChanges().subscribe(item => {
-      this.ventasList = [];
-      item.map(element => {
-        const y = element.payload.toJSON();
-        y['$key'] = element.key;
-        this.ventasList.push(y as VentaSeleccionada);
-
-      });
-
-      this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
-
-    });
-
-    this.cartaSeleccionada = entrada;
-    //agregando solo la carta.
-    this.carta1 = new  Carta1();
-    this.carta1.key = entrada.$key;
-    this.carta1.categoria = entrada.categoria;
-    this.carta1.codigoCategoria = entrada.codigoCategoria;
-    this.carta1.codigoMenu = entrada.codigoMenu;
-    this.carta1.descripcion = entrada.descripcion;
-    this.carta1.plato = entrada.plato;
-    this.carta1.precio = entrada.precio;
-    this.cartaSeleccionadas.push(this.carta1);
+  agregarEntrada2(entrada: Carta) {
     debugger;
-    if (this.ventaSeleccionada.cartaList === undefined) {
-      this.ventaSeleccionada.cartaList = new Array<Carta1>();
+
+    //this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
+    debugger;
+    if(this.ventaSeleccionada) {
+      this.cartaSeleccionada = entrada;
+      //agregando solo la carta.
+      this.carta1 = new  Carta1();
+      this.carta1.key = entrada.$key;
+      this.carta1.categoria = entrada.categoria;
+      this.carta1.codigoCategoria = entrada.codigoCategoria;
+      this.carta1.codigoMenu = entrada.codigoMenu;
+      this.carta1.descripcion = entrada.descripcion;
+      this.carta1.plato = entrada.plato;
+      this.carta1.precio = entrada.precio;
+      this.cartaSeleccionadas.push(this.carta1);
+      debugger;
+      if (this.ventaSeleccionada.cartaList === undefined) {
+        this.ventaSeleccionada.cartaList = new Array<Carta1>();
+      }
+      const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
+      peopleArray.push(this.carta1);
+      this.ventaSeleccionada.cartaList = peopleArray;
+
+      
+
     }
-    const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
-    peopleArray.push(this.carta1);
-    this.ventaSeleccionada.cartaList = peopleArray;
-
-    this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
-
-    debugger;
   }
+
+  grabarMenu2(){
+
+      this.ventaSeleccionadaService.update(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+
+      debugger;
+      this.router.navigate(['/auth/restaurant/listaMenu'], {
+        queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                      'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                      'mesa': this.ventaSeleccionada.mesa,
+                      'mozo': this.ventaSeleccionada.mozo,
+                      'codigoMozo': this.ventaSeleccionada.codigoMozo } });
+    }
+
+
+
   eliminarEntrada(entrada: Carta) {
     debugger;
     this.cartaSeleccionada = entrada;
