@@ -54,14 +54,14 @@ export class ListaMenuComponent implements OnInit {
 
   loadCategorias() {
     this.categorias.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '02', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '03', 'name': 'Carta Criolla', 'description': ''});
-    this.categorias.push({'id': '04', 'name': 'Menú Marino', 'description': ''});
-    this.categorias.push({'id': '05', 'name': 'Carta Marina', 'description': ''});
-    this.categorias.push({'id': '06', 'name': 'Entradas o Adicionales', 'description': ''});
-    this.categorias.push({'id': '07', 'name': 'Pollos a la Brasa', 'description': ''});
-    this.categorias.push({'id': '08', 'name': 'Parrilas', 'description': ''});
-    this.categorias.push({'id': '09', 'name': 'Bebidas', 'description': ''});
+    this.categorias.push({'id': '04', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
+    this.categorias.push({'id': '20', 'name': 'Carta Criolla', 'description': ''});
+    this.categorias.push({'id': '06', 'name': 'Menú Marino', 'description': ''});
+    this.categorias.push({'id': '07', 'name': 'Carta Marina', 'description': ''});
+    this.categorias.push({'id': '08', 'name': 'Entradas o Adicionales', 'description': ''});
+    this.categorias.push({'id': '09', 'name': 'Pollos a la Brasa', 'description': ''});
+    this.categorias.push({'id': '10', 'name': 'Parrilas', 'description': ''});
+    this.categorias.push({'id': '11', 'name': 'Bebidas', 'description': ''});
  }
 
   ngOnInit() {
@@ -108,17 +108,32 @@ export class ListaMenuComponent implements OnInit {
 
   }
 
-  Onclick() {
-
-    // this.router.navigate(['/auth/restaurant/menu1']);
-    this.router.navigate(['/auth/restaurant/menu1'], {
-      queryParams: {'ventaKey': this.ventaKey,
-                    'codigoMesa': this.codigoMesa,
-                    'mesa': this.mesa,
-                    'mozo': this.mozo,
-                    'codigoMozo': this.codigoMozo } });
-
-    // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
+  Onclick(categoria: Categoria) {
+    debugger;
+    if (categoria.id === '01') {
+      this.router.navigate(['/auth/restaurant/menu1'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '04') {
+      this.router.navigate(['/auth/restaurant/menu2'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '20') {
+      this.router.navigate(['/auth/restaurant/menuCartaCriolla'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
   }
 
 }

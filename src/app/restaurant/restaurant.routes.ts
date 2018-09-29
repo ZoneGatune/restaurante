@@ -1,3 +1,5 @@
+import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
+import { CartaCriollaComponent } from './carta-criolla/carta-criolla.component';
 import { ListaMenuComponent } from './lista-menu/lista-menu.component';
 import { MesaCrudComponent } from './mesa-crud/mesa-crud.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
@@ -24,6 +26,8 @@ const pagesRoutes: Routes = [
     { path: 'menu1', component: Menu1Component , data: { animation: 'menu1' } },
     { path: 'menu2', component: Menu2Component , data: { animation: 'menu2' } },
     { path: 'loginMozo', component: LoginMozoComponent , data: { animation: 'loginMozo' } },
+    { path: 'cartaCriolla', component: CartaCriollaComponent , data: { animation: 'cartaCriolla' } },
+    { path: 'menuCartaCriolla', component: MenuCartaCriollaComponent , data: { animation: 'menuCartaCriolla' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];

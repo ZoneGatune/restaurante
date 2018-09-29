@@ -280,6 +280,13 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+        {
+          'name': 'Carta Criolla',
+          'link': 'restaurant/cartaCriolla',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

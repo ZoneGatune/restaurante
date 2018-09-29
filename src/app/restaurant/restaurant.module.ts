@@ -1,3 +1,5 @@
+import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
+import { CartaCriollaComponent } from './carta-criolla/carta-criolla.component';
 import { VentaSeleccionadaService } from './lista-menu/shared/ventaService';
 
 import { Menu2Component } from './contenedor-menu/menu2.component';
@@ -91,7 +93,9 @@ import { CartaSeleccionada } from './contenedor-menu/shared/cartaSeleccionada.mo
         ListaMenuComponent,
         Menu1Component,
         Menu2Component,
-        LoginMozoComponent
+        LoginMozoComponent,
+        CartaCriollaComponent,
+        MenuCartaCriollaComponent
 
     ],
     exports: [
