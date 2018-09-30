@@ -134,7 +134,7 @@ export class Menu1Component implements OnInit {
 
     //this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
     debugger;
-    if(this.ventaSeleccionada) {
+    if (this.ventaSeleccionada) {
       this.cartaSeleccionada = entrada;
       //agregando solo la carta.
       this.carta1 = new  Carta1();
@@ -153,10 +153,12 @@ export class Menu1Component implements OnInit {
       const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
-
-      
-
     }
+    debugger;
+
+    this.tostr.success('Submitted Succcessfully', 'Usted añadio platos');
+    debugger;
+
   }
 
   grabarMenu(){

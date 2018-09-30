@@ -82,38 +82,6 @@ export class PlatoCrudComponent implements OnInit {
           y["$key"] = element.key;
           this.menuListObj.push(y as Menu);
         });
-        debugger;
-        var xValues = this.menuListObj.map(function(o) { return o.codigoMenu; });
-        if(xValues.length == 0){
-          this.menuService.selectedMenu = {
-            $key: null,
-            nombre: '',
-            descripcion: '',
-            precio: '',
-            categoria: '',
-            codigoMenu: 1,
-            codigoCategoria: '',
-            contadorNegativo: 0,
-            contadorPositivo: 0
-          };
-          debugger;
-          return;
-        }
-        xValues = Array.from(this.menuListObj, o => o.codigoMenu);
-        var xMax = Math.max.apply(null, xValues);
-        debugger;
-        this.menuService.selectedMenu = {
-          $key: null,
-          nombre: "",
-          descripcion: "",
-          precio: "",
-          categoria: '',
-          codigoMenu: +xMax + 1,
-          codigoCategoria: '',
-          contadorNegativo: 0,
-          contadorPositivo: 0
-        };
-        debugger;
       });
 
     }
@@ -129,13 +97,21 @@ export class PlatoCrudComponent implements OnInit {
 
     if (menuForm.value.$key == null) {
       debugger;
+
+
       this.menu = menuForm.value;
+      debugger;
+      let xValues = this.menuListObj.map(function(o) { return o.codigoMenu; });
+
+      xValues = Array.from(this.menuListObj, o => o.codigoMenu);
+      const xMax = Math.max.apply(null, xValues);
 
       this.categoria = this.categoriaList.find( x => x.valor === this.menu.codigoCategoria);
       this.menu.categoria = this.categoria.nombre;
       debugger;
       this.menu.contadorPositivo = 0;
       this.menu.contadorNegativo = 0;
+      this.menu.codigoMenu = xMax + 1;
       this.menuService.insertmenu(this.menu);
     } else {
       this.menu = menuForm.value;
@@ -144,6 +120,7 @@ export class PlatoCrudComponent implements OnInit {
       debugger;
       this.menu.contadorPositivo = 0;
       this.menu.contadorNegativo = 0;
+      this.menu.codigoMenu = 1;
       this.menuService.updatemenu(this.menu);
     }
 
