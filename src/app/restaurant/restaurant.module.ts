@@ -1,3 +1,5 @@
+import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
+import { BebidaComponent } from './bebida/bebida.component';
 import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
 import { CartaCriollaComponent } from './carta-criolla/carta-criolla.component';
 import { VentaSeleccionadaService } from './lista-menu/shared/ventaService';
@@ -49,6 +51,7 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { MatSnackBarModule } from '@angular/material';
 import { CartaSeleccionada } from './contenedor-menu/shared/cartaSeleccionada.model';
+import { MenuBebidaComponent } from './contenedor-menu/menu-bebida.component';
 
 
 @NgModule({
@@ -95,7 +98,10 @@ import { CartaSeleccionada } from './contenedor-menu/shared/cartaSeleccionada.mo
         Menu2Component,
         LoginMozoComponent,
         CartaCriollaComponent,
-        MenuCartaCriollaComponent
+        MenuCartaCriollaComponent,
+        BebidaComponent,
+        MenuBebidaComponent,
+        MenuMarinoComponent
 
     ],
     exports: [

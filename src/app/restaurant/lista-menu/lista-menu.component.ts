@@ -56,12 +56,12 @@ export class ListaMenuComponent implements OnInit {
     this.categorias.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '04', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '20', 'name': 'Carta Criolla', 'description': ''});
-    this.categorias.push({'id': '06', 'name': 'Menú Marino', 'description': ''});
-    this.categorias.push({'id': '07', 'name': 'Carta Marina', 'description': ''});
-    this.categorias.push({'id': '08', 'name': 'Entradas o Adicionales', 'description': ''});
-    this.categorias.push({'id': '09', 'name': 'Pollos a la Brasa', 'description': ''});
+    this.categorias.push({'id': '07', 'name': 'Menú Marino', 'description': ''});
+    this.categorias.push({'id': '08', 'name': 'Carta Marina', 'description': ''});
+    this.categorias.push({'id': '09', 'name': 'Entradas o Adicionales', 'description': ''});
+    this.categorias.push({'id': '30', 'name': 'Pollos a la Brasa', 'description': ''});
     this.categorias.push({'id': '10', 'name': 'Parrilas', 'description': ''});
-    this.categorias.push({'id': '11', 'name': 'Bebidas', 'description': ''});
+    this.categorias.push({'id': '25', 'name': 'Bebidas', 'description': ''});
  }
 
   ngOnInit() {
@@ -134,6 +134,23 @@ export class ListaMenuComponent implements OnInit {
                       'mozo': this.mozo,
                       'codigoMozo': this.codigoMozo } });
     }
+    if (categoria.id === '25') {
+      this.router.navigate(['/auth/restaurant/menuBebida'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '07') {
+      this.router.navigate(['/auth/restaurant/menuMarino'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+
   }
 
 }

@@ -104,6 +104,7 @@ export class PlatoCrudComponent implements OnInit {
       let xValues = this.menuListObj.map(function(o) { return o.codigoMenu; });
 
       xValues = Array.from(this.menuListObj, o => o.codigoMenu);
+      xValues = xValues.filter(element => element !== undefined);
       const xMax = Math.max.apply(null, xValues);
 
       this.categoria = this.categoriaList.find( x => x.valor === this.menu.codigoCategoria);

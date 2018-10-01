@@ -1,3 +1,5 @@
+import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
+import { MenuBebidaComponent } from './contenedor-menu/menu-bebida.component';
 import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
 import { CartaCriollaComponent } from './carta-criolla/carta-criolla.component';
 import { ListaMenuComponent } from './lista-menu/lista-menu.component';
@@ -13,6 +15,7 @@ import { CartaComponent } from './carta/carta.component';
 import { Menu1Component } from './contenedor-menu/menu1.component';
 import { Menu2Component } from './contenedor-menu/menu2.component';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
+import { BebidaComponent } from './bebida/bebida.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -28,6 +31,9 @@ const pagesRoutes: Routes = [
     { path: 'loginMozo', component: LoginMozoComponent , data: { animation: 'loginMozo' } },
     { path: 'cartaCriolla', component: CartaCriollaComponent , data: { animation: 'cartaCriolla' } },
     { path: 'menuCartaCriolla', component: MenuCartaCriollaComponent , data: { animation: 'menuCartaCriolla' } },
+    { path: 'bebida', component: BebidaComponent , data: { animation: 'bebida' } },
+    { path: 'menuBebida', component: MenuBebidaComponent , data: { animation: 'menuBebida' } },
+    { path: 'menuMarino', component: MenuMarinoComponent , data: { animation: 'menuMarino' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];
