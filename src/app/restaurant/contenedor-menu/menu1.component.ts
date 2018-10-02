@@ -136,9 +136,21 @@ export class Menu1Component implements OnInit {
     debugger;
     if (this.ventaSeleccionada) {
       this.cartaSeleccionada = entrada;
+
       //agregando solo la carta.
+
+      const currentTime = new Date();
+      const year = currentTime.getFullYear();
+      const month = currentTime.getMonth();
+      const day = currentTime.getDate();
+
+      const hours = currentTime.getHours();
+      const minutes = currentTime.getMinutes();
+      const seconds = currentTime.getSeconds();
+      const miliseconds = currentTime.getMilliseconds();
+
       this.carta1 = new  Carta1();
-      this.carta1.key = entrada.$key;
+      this.carta1.key = entrada.$key + year + month + day + hours + minutes + seconds + miliseconds;
       this.carta1.categoria = entrada.categoria;
       this.carta1.codigoCategoria = entrada.codigoCategoria;
       this.carta1.codigoMenu = entrada.codigoMenu;
