@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class VentaSeleccionadaService {
   ventaList: AngularFireList<any>;
+  ventaArrayList: AngularFireList<VentaSeleccionada>;
   selectedVenta: VentaSeleccionada = new VentaSeleccionada();
 
 
@@ -57,5 +58,4 @@ export class VentaSeleccionadaService {
   deleteVenta($key: string) {
     this.ventaList.remove($key);
   }
-
 }

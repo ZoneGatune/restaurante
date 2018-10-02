@@ -48,7 +48,7 @@ export class ListaMenuComponent implements OnInit {
   mozo: string;
   ventaSeleccionada: VentaSeleccionada = new VentaSeleccionada();
   mostrarVentaList = new Array<Carta1>();
-
+  listaVentaActualizada = new Array<Carta1>();
 
   matcher = new MyErrorStateMatcher();
 
@@ -96,7 +96,7 @@ export class ListaMenuComponent implements OnInit {
         debugger;
         this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
         debugger;
-        if(this.ventaSeleccionada.cartaList){
+        if (this.ventaSeleccionada.cartaList) {
           const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
           debugger;
           this.mostrarVentaList = peopleArray;
@@ -150,6 +150,15 @@ export class ListaMenuComponent implements OnInit {
                       'mozo': this.mozo,
                       'codigoMozo': this.codigoMozo } });
     }
+
+  }
+
+  onDelete(carta1: Carta1) {
+    debugger;
+    this.mostrarVentaList = this.mostrarVentaList.filter(obj => obj.key !== carta1.key);
+    this.ventaSeleccionada.cartaList = this.mostrarVentaList;
+    this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+    debugger;
 
   }
 
