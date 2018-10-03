@@ -1,3 +1,4 @@
+import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { MenuBebidaComponent } from './contenedor-menu/menu-bebida.component';
 import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
@@ -16,6 +17,7 @@ import { Menu1Component } from './contenedor-menu/menu1.component';
 import { Menu2Component } from './contenedor-menu/menu2.component';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { BebidaComponent } from './bebida/bebida.component';
+import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -34,6 +36,8 @@ const pagesRoutes: Routes = [
     { path: 'bebida', component: BebidaComponent , data: { animation: 'bebida' } },
     { path: 'menuBebida', component: MenuBebidaComponent , data: { animation: 'menuBebida' } },
     { path: 'menuMarino', component: MenuMarinoComponent , data: { animation: 'menuMarino' } },
+    { path: 'polloBrasa', component: PolloBrasaComponent , data: { animation: 'polloBrasa' } },
+    { path: 'menuPolloBrasa', component: MenuPolloBrasaComponent , data: { animation: 'menuPolloBrasa' } },
   //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];

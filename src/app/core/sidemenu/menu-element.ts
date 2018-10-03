@@ -97,6 +97,13 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+        {
+          'name': 'Pollo A la Brasa',
+          'link': 'restaurant/polloBrasa',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

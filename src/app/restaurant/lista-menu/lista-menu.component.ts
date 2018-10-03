@@ -150,7 +150,14 @@ export class ListaMenuComponent implements OnInit {
                       'mozo': this.mozo,
                       'codigoMozo': this.codigoMozo } });
     }
-
+    if (categoria.id === '30') {
+      this.router.navigate(['/auth/restaurant/menuPolloBrasa'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
   }
 
   onDelete(carta1: Carta1) {
