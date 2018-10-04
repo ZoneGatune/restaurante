@@ -21,14 +21,14 @@
 }
 .service-card-content{
   .service-card-container {
-      padding: 20px;
+      padding: 10px;
       .service-card {
           transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
           cursor: default;
           background-color: white;
-          padding: 20px;
+          padding: 10px;
           img {
-              height: 200px;
+              height: 100px;
           }
           h3 {
               margin: 0;

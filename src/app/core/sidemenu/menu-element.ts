@@ -63,7 +63,7 @@ export const menus = [
         },
 
         {
-          'name': 'Menu s/ 7',
+          'name': 'Menu s/ 9',
           'link': 'restaurant/menu1',
           'icon': 'indeterminate_check_box',
           'chip': false,
@@ -71,7 +71,7 @@ export const menus = [
         },
 
         {
-          'name': 'Menu s/ 8',
+          'name': 'Menu s/ 12',
           'link': 'restaurant/menu2',
           'icon': 'indeterminate_check_box',
           'chip': false,
@@ -101,6 +101,13 @@ export const menus = [
         {
           'name': 'Pollo A la Brasa',
           'link': 'restaurant/polloBrasa',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
+        },
+        {
+          'name': 'Postre',
+          'link': 'restaurant/postre',
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,

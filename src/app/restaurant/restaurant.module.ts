@@ -1,3 +1,4 @@
+import { MenuPostreComponent } from './contenedor-menu/menu-postre.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { BebidaComponent } from './bebida/bebida.component';
 import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
@@ -54,6 +55,7 @@ import { CartaSeleccionada } from './contenedor-menu/shared/cartaSeleccionada.mo
 import { MenuBebidaComponent } from './contenedor-menu/menu-bebida.component';
 import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
 import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.component';
+import { PostreComponent } from './postre/postre.component';
 
 
 @NgModule({
@@ -105,7 +107,9 @@ import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.comp
         MenuBebidaComponent,
         MenuMarinoComponent,
         PolloBrasaComponent,
-        MenuPolloBrasaComponent
+        MenuPolloBrasaComponent,
+        PostreComponent,
+        MenuPostreComponent
 
     ],
     exports: [

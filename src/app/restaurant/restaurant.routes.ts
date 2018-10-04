@@ -1,3 +1,5 @@
+import { MenuPostreComponent } from './contenedor-menu/menu-postre.component';
+import { PostreComponent } from './postre/postre.component';
 import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { MenuBebidaComponent } from './contenedor-menu/menu-bebida.component';
@@ -38,7 +40,10 @@ const pagesRoutes: Routes = [
     { path: 'menuMarino', component: MenuMarinoComponent , data: { animation: 'menuMarino' } },
     { path: 'polloBrasa', component: PolloBrasaComponent , data: { animation: 'polloBrasa' } },
     { path: 'menuPolloBrasa', component: MenuPolloBrasaComponent , data: { animation: 'menuPolloBrasa' } },
-  //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
+    { path: 'postre', component: PostreComponent , data: { animation: 'postre' } },
+    { path: 'menuPostre', component: MenuPostreComponent , data: { animation: 'menuPostre' } },
+
+    //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
 ];
 
