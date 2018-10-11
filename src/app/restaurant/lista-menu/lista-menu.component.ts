@@ -1,3 +1,5 @@
+import { debug } from 'util';
+import { Boleta } from './../boleta/shared/boleta.model';
 import { Carta1 } from './../carta/shared/carta1.model';
 import { VentaSeleccionada } from './shared/venta.model';
 import { VentaSeleccionadaService } from './shared/ventaService';
@@ -47,7 +49,9 @@ export class ListaMenuComponent implements OnInit {
   codigoMozo: string;
   mozo: string;
   ventaSeleccionada: VentaSeleccionada = new VentaSeleccionada();
+  boleta: Boleta = new Boleta();
   mostrarVentaList = new Array<Carta1>();
+  boletaCartaList = new Array<Carta1>();
   listaVentaActualizada = new Array<Carta1>();
 
   matcher = new MyErrorStateMatcher();
@@ -83,7 +87,7 @@ export class ListaMenuComponent implements OnInit {
 
     });
 
-    debugger;
+
 
     const x = this.ventaSeleccionadaService.getData();
       x.snapshotChanges().subscribe(item => {
@@ -94,24 +98,24 @@ export class ListaMenuComponent implements OnInit {
           this.ventaList.push(y as VentaSeleccionada);
 
         });
-        // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
-        debugger;
+        //  this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
+
         this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
-        debugger;
+
         if (this.ventaSeleccionada.cartaList) {
           const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
-          debugger;
+
           this.mostrarVentaList = peopleArray;
           console.log(this.mostrarVentaList);
         }
 
-        // debugger;
+        //
       });
 
   }
 
   Onclick(categoria: Categoria) {
-    debugger;
+
     if (categoria.id === '01') {
       this.router.navigate(['/auth/restaurant/menu1'], {
         queryParams: {'ventaKey': this.ventaKey,
@@ -171,10 +175,29 @@ export class ListaMenuComponent implements OnInit {
   }
 
   onDelete(carta1: Carta1) {
-    debugger;
+
     this.mostrarVentaList = this.mostrarVentaList.filter(obj => obj.key !== carta1.key);
     this.ventaSeleccionada.cartaList = this.mostrarVentaList;
     this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+
+
+  }
+
+  cobrarMesa(venta: VentaSeleccionada) {
+    this.boleta.total = 0;
+    if (this.ventaSeleccionada.cartaList) {
+      const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).
+            map(i => this.ventaSeleccionada.cartaList[i]);
+      this.boletaCartaList = peopleArray;
+    }
+
+      this.boletaCartaList.forEach(element => {
+      console.log("wenasass");
+      console.log(element);
+      const precioNumber = +element.precio;
+      this.boleta.total = this.boleta.total + precioNumber;
+
+    });
     debugger;
 
   }
