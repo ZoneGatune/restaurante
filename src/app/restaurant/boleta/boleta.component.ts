@@ -1,9 +1,16 @@
+import { VentaSeleccionada } from './../lista-menu/shared/venta.model';
+import { debug } from 'util';
+import { Boleta } from './shared/boleta.model';
 import { MenuService } from './../plato/shared/menuservice';
 import { Menu } from './../plato/shared/menu.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { VentaSeleccionadaService } from '../lista-menu/shared/ventaService';
+import { Carta1 } from '../carta/shared/carta1.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -15,33 +22,73 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 
 @Component({
-  selector: 'app-bebida',
-  templateUrl: './bebida.component.html',
-  styleUrls: ['./bebida.component.scss']
+  selector: 'app-boleta',
+  templateUrl: './boleta.component.html',
+  styleUrls: ['./boleta.component.scss']
 })
 export class BoletaComponent implements OnInit {
 
-  constructor(private menuService: MenuService, private tostr: ToastrService) { }
+  constructor(private menuService: MenuService, private tostr: ToastrService,
+    private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService ) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
   menuList: Menu[];
   matcher = new MyErrorStateMatcher();
   menu: Menu = new Menu();
-
+  boleta: Boleta = new Boleta();
+  venta: VentaSeleccionada = new VentaSeleccionada();
+  ventaSeleccionada: VentaSeleccionada = new VentaSeleccionada();
+  ventaList: VentaSeleccionada[];
+  arrayVentaList = new Array<Carta1>();
   ngOnInit() {
 
     this.resetForm();
-    const x = this.menuService.getData();
-    x.snapshotChanges().subscribe(item => {
-      this.menuList = [];
-      item.forEach(element => {
-        const y = element.payload.toJSON();
-        y['$key'] = element.key;
-        this.menuList.push(y as Menu);
-      });
-      this.menuList = this.menuList.filter( x => x.codigoCategoria === '25');
+
+    this.route.queryParams
+    .subscribe(params => {
+      console.log(params); // {order: "popular"}
+      // const e = new Boleta();
+      // Object.assign(e, params);
+      // this.boleta = e;
+      const ventaS = new VentaSeleccionada();
+      Object.assign(ventaS, params);
+      this.venta = ventaS;
+      debugger;
+      console.log(this.venta); // popular
     });
+
+    const x = this.ventaSeleccionadaService.getData();
+      x.snapshotChanges().subscribe(item => {
+        this.ventaList = [];
+        item.forEach(element => {
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
+          this.ventaList.push(y as VentaSeleccionada);
+
+        });
+        //  this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
+        debugger;
+        this.ventaSeleccionada = this.ventaList.find( x => x.$key === this.venta.$key);
+
+        if (this.ventaSeleccionada.cartaList) {
+          const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).
+                  map(i => this.ventaSeleccionada.cartaList[i]);
+            this.arrayVentaList = peopleArray;
+          }
+          this.boleta.total = 0;
+          this.arrayVentaList.forEach(element => {
+              debugger;
+              const precioNumber = +element.precio;
+              this.boleta.total = this.boleta.total + precioNumber;
+              debugger;
+            });
+
+        this.boleta.codigoMesa = this.ventaSeleccionada.codigoMesa;
+        this.boleta.mesa = this.ventaSeleccionada.mesa;
+
+      });
+
 
   }
 
@@ -57,34 +104,11 @@ export class BoletaComponent implements OnInit {
   }
 
   onSubmit(menuForm: NgForm) {
-    this.menu = menuForm.value;
-    this.menu.codigoCategoria = '25';
-    this.menu.categoria = 'Bebidas';
-    this.menu.descripcion = 'bebida';
-    this.menu.contadorNegativo = 0;
-    this.menu.contadorPositivo = 0;
-    if (menuForm.value.$key == null) {
-      this.menuService.insertmenu(this.menu);
-    } else {
-      this.menuService.updatemenu(this.menu);
-    }
-    this.resetForm(menuForm);
-    this.tostr.success('Submitted Succcessfully', 'bebida Register');
+
   }
 
   resetForm(menuForm?: NgForm) {
-    if (menuForm != null) { menuForm.reset(); }
-    this.menuService.selectedMenu = {
-      $key: null,
-      nombre: '',
-      descripcion: '',
-      precio: '',
-      categoria: '',
-      codigoMenu: 0,
-      codigoCategoria: '',
-      contadorNegativo: 0,
-      contadorPositivo: 0
-    };
+
   }
 
 }

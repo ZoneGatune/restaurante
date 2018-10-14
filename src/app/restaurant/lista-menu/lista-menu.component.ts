@@ -184,22 +184,26 @@ export class ListaMenuComponent implements OnInit {
   }
 
   cobrarMesa(venta: VentaSeleccionada) {
-    this.boleta.total = 0;
-    if (this.ventaSeleccionada.cartaList) {
-      const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).
-            map(i => this.ventaSeleccionada.cartaList[i]);
-      this.boletaCartaList = peopleArray;
-    }
-
-      this.boletaCartaList.forEach(element => {
-      console.log("wenasass");
-      console.log(element);
-      const precioNumber = +element.precio;
-      this.boleta.total = this.boleta.total + precioNumber;
-
-    });
     debugger;
+    // this.boleta.total = 0;
+    // if (this.ventaSeleccionada.cartaList) {
+    //   const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).
+    //         map(i => this.ventaSeleccionada.cartaList[i]);
+    //   this.boletaCartaList = peopleArray;
+    // }
 
+    //   this.boletaCartaList.forEach(element => {
+    //   console.log("wenasass");
+    //   console.log(element);
+    //   const precioNumber = +element.precio;
+    //   this.boleta.total = this.boleta.total + precioNumber;
+
+    // });
+    // debugger;
+    // this.boleta.codigoMesa = venta.codigoMesa;
+    // this.boleta.mesa = venta.mesa;
+    // this.boleta.venta = venta;
+    this.router.navigate(['/auth/restaurant/boleta'], { queryParams: venta });
   }
 
 }

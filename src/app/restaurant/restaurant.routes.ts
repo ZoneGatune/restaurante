@@ -20,6 +20,7 @@ import { Menu2Component } from './contenedor-menu/menu2.component';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { BebidaComponent } from './bebida/bebida.component';
 import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
+import { BoletaComponent } from './boleta/boleta.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -42,6 +43,7 @@ const pagesRoutes: Routes = [
     { path: 'menuPolloBrasa', component: MenuPolloBrasaComponent , data: { animation: 'menuPolloBrasa' } },
     { path: 'postre', component: PostreComponent , data: { animation: 'postre' } },
     { path: 'menuPostre', component: MenuPostreComponent , data: { animation: 'menuPostre' } },
+    { path: 'boleta', component: BoletaComponent , data: { animation: 'boleta' } },
 
     //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},

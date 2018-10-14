@@ -1,3 +1,4 @@
+import { BoletaComponent } from './boleta/boleta.component';
 import { MenuPostreComponent } from './contenedor-menu/menu-postre.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { BebidaComponent } from './bebida/bebida.component';
@@ -109,7 +110,8 @@ import { PostreComponent } from './postre/postre.component';
         PolloBrasaComponent,
         MenuPolloBrasaComponent,
         PostreComponent,
-        MenuPostreComponent
+        MenuPostreComponent,
+        BoletaComponent
 
     ],
     exports: [
