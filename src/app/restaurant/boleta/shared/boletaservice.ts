@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Carta } from '../../carta/shared/carta.model';
+import { Boleta } from './boleta.model';
+
 
 @Injectable()
 export class BoletaService {
-  cartaList: AngularFireList<any>;
-  selectedCarta: Carta = new Carta();
+  boletaList: AngularFireList<any>;
+  selectedBoleta: Boleta = new Boleta();
 
 
   constructor(private firebase: AngularFireDatabase ) {
@@ -15,48 +16,40 @@ export class BoletaService {
    }
 
   getData() {
-    this.cartaList = this.firebase.list('carta');
-    return this.cartaList;
+    this.boletaList = this.firebase.list('boleta');
+    return this.boletaList;
   }
 
-  insertCarta(carta: Carta) {
-
-    if (!this.cartaList) {
-      this.cartaList = this.getData();
+  insertBoleta(boleta: Boleta) {
+    debugger;
+    if (!this.boletaList) {
+      this.boletaList = this.getData();
     }
-      this.cartaList.push({
-        dia: carta.dia,
-        plato: carta.plato,
-        categoria: carta.categoria,
-        precio: carta.precio,
-        descripcion: carta.categoria,
-        codigoDia: carta.codigoDia,
-        codigoMenu: carta.codigoMenu,
-        codigoCategoria: carta.codigoCategoria,
-        contadorPositivo:  carta.contadorPositivo,
-        contadorNegativo: carta.contadorNegativo
+      this.boletaList.push({
+        venta: boleta.venta,
+        total: boleta.total,
+        totalPlatos: boleta.totalPlatos,
+        estado: boleta.estado,
+        mesa: boleta.mesa,
+        codigoMesa: boleta.codigoMesa
       });
 
   }
 
-  updateCarta(carta: Carta) {
-    this.cartaList.update(carta.$key,
+  updateCarta(boleta: Boleta) {
+    this.boletaList.update(boleta.$key,
       {
-        dia: carta.dia,
-        plato: carta.plato,
-        categoria: carta.categoria,
-        precio: carta.precio,
-        descripcion: carta.categoria,
-        codigoDia: carta.codigoDia,
-        codigoMenu: carta.codigoMenu,
-        codigoCategoria: carta.codigoCategoria,
-        contadorPositivo:  carta.contadorPositivo,
-        contadorNegativo: carta.contadorNegativo
+        venta: boleta.venta,
+        total: boleta.total,
+        totalPlatos: boleta.totalPlatos,
+        estado: boleta.estado,
+        mesa: boleta.mesa,
+        codigoMesa: boleta.codigoMesa
       });
   }
 
   deleteCarta($key: string) {
-    this.cartaList.remove($key);
+    this.boletaList.remove($key);
   }
 
 }

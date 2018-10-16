@@ -57,6 +57,7 @@ import { MenuBebidaComponent } from './contenedor-menu/menu-bebida.component';
 import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
 import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.component';
 import { PostreComponent } from './postre/postre.component';
+import { BoletaService } from './boleta/shared/boletaservice';
 
 
 @NgModule({
@@ -124,7 +125,8 @@ import { PostreComponent } from './postre/postre.component';
       MesaCrudService,
       CartaService,
       CartaSeleccionada,
-      VentaSeleccionadaService
+      VentaSeleccionadaService,
+      BoletaService
     ]
 })
 export class RestaurantModule {

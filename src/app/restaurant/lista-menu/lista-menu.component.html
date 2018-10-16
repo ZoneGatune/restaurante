@@ -56,15 +56,15 @@
     <mat-divider></mat-divider>
 
     <mat-list>
-      <mat-list-item >
+      <mat-list-item  (click)="print()" >
         <mat-icon matListIcon>print</mat-icon>
         <h3 matLine> Imprimir Ticket al Cocinero</h3>
       </mat-list-item>
-      <mat-list-item >
+      <mat-list-item (click)="print()">
         <mat-icon matListIcon>print</mat-icon>
         <h3 matLine> Imprimir Ticket Marino</h3>
       </mat-list-item>
-      <mat-list-item >
+      <mat-list-item (click)="print()">
         <mat-icon matListIcon>print</mat-icon>
         <h3 matLine> Imprimir Ticket al Mozo</h3>
       </mat-list-item>
@@ -78,6 +78,17 @@
 
   </div>
 
+</div>
+
+<div id="print-section" hidden>
+  // your html stuff that you want to print
+  <table >
+
+    <tr *ngFor="let menu of mostrarVentaList">
+      <td>{{menu.plato}}</td>
+    </tr>
+
+</table>
 </div>
 
 

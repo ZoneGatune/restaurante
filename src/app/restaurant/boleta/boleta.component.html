@@ -18,8 +18,7 @@
 
 
             <mat-form-field class="example-full-width">
-              <input matInput name="nombre" #name="ngModel" [(ngModel)]="boleta.mesa"
-                required>
+              <input matInput name="nombre" #name="ngModel"  [(ngModel)]="boleta.mesa">
 
             </mat-form-field>
 
@@ -73,4 +72,21 @@
 
 
   </div>
+</div>
+
+
+
+<div id="print-section" hidden>
+
+  <table >
+
+    <tr *ngFor="let menu of arrayVentaList">
+      <td>{{menu.plato}}</td>
+      <td>{{menu.precio}}</td>
+    </tr>
+
+</table>
+
+<label> El total es :     S/ {{boleta.total}}</label>
+
 </div>

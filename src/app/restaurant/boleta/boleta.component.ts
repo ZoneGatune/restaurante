@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { VentaSeleccionadaService } from '../lista-menu/shared/ventaService';
 import { Carta1 } from '../carta/shared/carta1.model';
+import { BoletaService } from './shared/boletaservice';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,7 +30,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class BoletaComponent implements OnInit {
 
   constructor(private menuService: MenuService, private tostr: ToastrService,
-    private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService ) { }
+    private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService,
+    private boletaService: BoletaService ) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -104,11 +106,32 @@ export class BoletaComponent implements OnInit {
   }
 
   onSubmit(menuForm: NgForm) {
+debugger;
+    //this.boletaService.insertBoleta(this.boleta);
+    debugger;
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print tab</title>
+          <style>
+          //........Customized style.......
+          </style>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
 
   }
 
   resetForm(menuForm?: NgForm) {
 
   }
+
+
 
 }
