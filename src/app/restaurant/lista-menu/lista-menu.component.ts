@@ -65,7 +65,7 @@ export class ListaMenuComponent implements OnInit {
     this.categorias.push({'id': '08', 'name': 'Carta Marina', 'description': ''});
 
     this.categorias.push({'id': '30', 'name': 'Pollos a la Brasa', 'description': ''});
-    this.categorias.push({'id': '10', 'name': 'Parrillas', 'description': ''});
+    this.categorias.push({'id': '80', 'name': 'Parrillas', 'description': ''});
     this.categorias.push({'id': '25', 'name': 'Bebidas', 'description': ''});
     this.categorias.push({'id': '50', 'name': 'Postres', 'description': ''});
  }
@@ -166,6 +166,14 @@ export class ListaMenuComponent implements OnInit {
     }
     if (categoria.id === '50') {
       this.router.navigate(['/auth/restaurant/menuPostre'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '80') {
+      this.router.navigate(['/auth/restaurant/menuParrilla'], {
         queryParams: {'ventaKey': this.ventaKey,
                       'codigoMesa': this.codigoMesa,
                       'mesa': this.mesa,

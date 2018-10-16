@@ -88,6 +88,7 @@ export class BoletaComponent implements OnInit {
 
         this.boleta.codigoMesa = this.ventaSeleccionada.codigoMesa;
         this.boleta.mesa = this.ventaSeleccionada.mesa;
+        this.boleta.venta = this.ventaSeleccionada;
 
       });
 

@@ -1,3 +1,4 @@
+import { MenuParillaComponent } from './contenedor-menu/menu-parrilla.component';
 import { BoletaComponent } from './boleta/boleta.component';
 import { MenuPostreComponent } from './contenedor-menu/menu-postre.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
@@ -58,6 +59,7 @@ import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
 import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.component';
 import { PostreComponent } from './postre/postre.component';
 import { BoletaService } from './boleta/shared/boletaservice';
+import { ParrillaComponent } from './parrillas/parrilla.component';
 
 
 @NgModule({
@@ -112,7 +114,9 @@ import { BoletaService } from './boleta/shared/boletaservice';
         MenuPolloBrasaComponent,
         PostreComponent,
         MenuPostreComponent,
-        BoletaComponent
+        BoletaComponent,
+        ParrillaComponent,
+        MenuParillaComponent
 
     ],
     exports: [
