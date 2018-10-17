@@ -1,6 +1,6 @@
 import { VentaSeleccionada } from './../../lista-menu/shared/venta.model';
 
-export class Boleta {
+export class BoletaFinal {
     $key: string;
     venta: VentaSeleccionada;
     total: number;

@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { VentaSeleccionadaService } from '../lista-menu/shared/ventaService';
 import { Carta1 } from '../carta/shared/carta1.model';
 import { BoletaService } from './shared/boletaservice';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,9 +29,9 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 })
 export class BoletaComponent implements OnInit {
 
-  constructor(private menuService: MenuService, private tostr: ToastrService,
+  constructor(private menuService: MenuService, private tostr: ToastrService, private ventaService: VentaSeleccionadaService,
     private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService,
-    private boletaService: BoletaService ) { }
+    private boletaService: BoletaService, public router: Router ) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -79,9 +79,11 @@ export class BoletaComponent implements OnInit {
             this.arrayVentaList = peopleArray;
           }
           this.boleta.total = 0;
+          let i = 0;
           this.arrayVentaList.forEach(element => {
               debugger;
               const precioNumber = +element.precio;
+              i++;
               this.boleta.total = this.boleta.total + precioNumber;
               debugger;
             });
@@ -89,6 +91,8 @@ export class BoletaComponent implements OnInit {
         this.boleta.codigoMesa = this.ventaSeleccionada.codigoMesa;
         this.boleta.mesa = this.ventaSeleccionada.mesa;
         this.boleta.venta = this.ventaSeleccionada;
+        this.boleta.totalPlatos = i;
+        this.boleta.estado = 'activo';
 
       });
 
@@ -108,8 +112,20 @@ export class BoletaComponent implements OnInit {
 
   onSubmit(menuForm: NgForm) {
 debugger;
-    //this.boletaService.insertBoleta(this.boleta);
+    this.boletaService.insertBoleta(this.boleta);
     debugger;
+    this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
+
+    this.router.navigate(['/auth/restaurant/mesa'], {
+        queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                      'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                      'mesa': this.ventaSeleccionada.mesa,
+                      'mozo': this.ventaSeleccionada.mozo,
+                      'codigoMozo': this.ventaSeleccionada.codigoMozo } });
+
+
+
+
     let printContents, popupWin;
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
