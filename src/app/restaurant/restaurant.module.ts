@@ -1,7 +1,7 @@
+import { CartaMarinaComponent } from './carta-marina/carta-marina.component';
 import { MenuParillaComponent } from './contenedor-menu/menu-parrilla.component';
 import { BoletaComponent } from './boleta/boleta.component';
 import { MenuPostreComponent } from './contenedor-menu/menu-postre.component';
-import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { BebidaComponent } from './bebida/bebida.component';
 import { MenuCartaCriollaComponent } from './contenedor-menu/menu-carta-criolla.component';
 import { CartaCriollaComponent } from './carta-criolla/carta-criolla.component';
@@ -60,6 +60,9 @@ import { MenuPolloBrasaComponent } from './contenedor-menu/menu-pollo-brasa.comp
 import { PostreComponent } from './postre/postre.component';
 import { BoletaService } from './boleta/shared/boletaservice';
 import { ParrillaComponent } from './parrillas/parrilla.component';
+import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
+import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
+
 
 
 @NgModule({
@@ -116,7 +119,9 @@ import { ParrillaComponent } from './parrillas/parrilla.component';
         MenuPostreComponent,
         BoletaComponent,
         ParrillaComponent,
-        MenuParillaComponent
+        MenuParillaComponent,
+        CartaMarinaComponent,
+        MenuCartaMarinoComponent
 
     ],
     exports: [

@@ -118,6 +118,13 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+        {
+          'name': 'Carta Marina',
+          'link': 'restaurant/cartaMarina',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

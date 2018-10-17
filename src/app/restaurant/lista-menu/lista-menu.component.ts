@@ -62,7 +62,7 @@ export class ListaMenuComponent implements OnInit {
     this.categorias.push({'id': '04', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '07', 'name': 'Menú Marino', 'description': ''});
     this.categorias.push({'id': '20', 'name': 'Carta Criolla', 'description': ''});
-    this.categorias.push({'id': '08', 'name': 'Carta Marina', 'description': ''});
+    this.categorias.push({'id': '60', 'name': 'Carta Marina', 'description': ''});
 
     this.categorias.push({'id': '30', 'name': 'Pollos a la Brasa', 'description': ''});
     this.categorias.push({'id': '80', 'name': 'Parrillas', 'description': ''});
@@ -174,6 +174,14 @@ export class ListaMenuComponent implements OnInit {
     }
     if (categoria.id === '80') {
       this.router.navigate(['/auth/restaurant/menuParrilla'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '60') {
+      this.router.navigate(['/auth/restaurant/menuCartaMarina'], {
         queryParams: {'ventaKey': this.ventaKey,
                       'codigoMesa': this.codigoMesa,
                       'mesa': this.mesa,

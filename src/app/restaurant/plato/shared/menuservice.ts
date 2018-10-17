@@ -37,7 +37,13 @@ export class MenuService {
   }
 
   updatemenu(menu: Menu) {
-    debugger;
+    if (menu.descripcion === undefined) {
+      menu.descripcion = '';
+    }
+    if (menu.codigoMenu === undefined) {
+      menu.codigoMenu = 0;
+    }
+
     this.menuList.update(menu.$key,
       {
         nombre: menu.nombre,
