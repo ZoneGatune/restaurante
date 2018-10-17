@@ -94,6 +94,15 @@ export class MenuBebidaComponent implements OnInit {
     });
   }
 
+  retroceder() {
+    this.router.navigate(['/auth/restaurant/listaMenu'], {
+      queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                    'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                    'mesa': this.ventaSeleccionada.mesa,
+                    'mozo': this.ventaSeleccionada.mozo,
+                    'codigoMozo': this.ventaSeleccionada.codigoMozo } });
+  }
+
   agregarEntrada(entrada: Menu) {
     debugger;
     if (this.ventaSeleccionada) {

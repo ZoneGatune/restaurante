@@ -25,12 +25,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 @Component({
-  selector: 'app-menu-postre',
-  templateUrl: './menu-postre.component.html',
-  styleUrls: ['./menu-postre.component.scss'],
+  selector: 'app-menu-carta-marino',
+  templateUrl: './menu-carta-marino.component.html',
+  styleUrls: ['./menu-carta-marino.component.scss'],
   providers: [VentaSeleccionadaService]
 })
-export class MenuPostreComponent implements OnInit {
+export class MenuCartaMarinoComponent implements OnInit {
 
   constructor(private menuService: MenuService, private tostr: ToastrService,
     private route: ActivatedRoute,
@@ -70,7 +70,9 @@ export class MenuPostreComponent implements OnInit {
         y['$key'] = element.key;
         this.menuList.push(y as Menu);
       });
-      this.menuList = this.menuList.filter( x => x.codigoCategoria === '50');
+      debugger;
+      this.menuList = this.menuList.filter( x => x.codigoCategoria === '60');
+      debugger;
     });
 
     this.route.queryParams
@@ -92,6 +94,15 @@ export class MenuPostreComponent implements OnInit {
       });
       this.ventaSeleccionada = this.ventasList.find( x => x.$key === this.ventaKey);
     });
+  }
+
+  retroceder() {
+    this.router.navigate(['/auth/restaurant/listaMenu'], {
+      queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                    'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                    'mesa': this.ventaSeleccionada.mesa,
+                    'mozo': this.ventaSeleccionada.mozo,
+                    'codigoMozo': this.ventaSeleccionada.codigoMozo } });
   }
 
   agregarEntrada(entrada: Menu) {
@@ -120,15 +131,6 @@ export class MenuPostreComponent implements OnInit {
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
     }
-  }
-
-  retroceder() {
-    this.router.navigate(['/auth/restaurant/listaMenu'], {
-      queryParams: {'ventaKey': this.ventaSeleccionada.$key,
-                    'codigoMesa': this.ventaSeleccionada.codigoMesa,
-                    'mesa': this.ventaSeleccionada.mesa,
-                    'mozo': this.ventaSeleccionada.mozo,
-                    'codigoMozo': this.ventaSeleccionada.codigoMozo } });
   }
 
   grabarMenu() {
