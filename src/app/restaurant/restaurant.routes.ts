@@ -1,3 +1,4 @@
+import { EntradaComponent } from './entradas/entrada.component';
 import { MenuParillaComponent } from './contenedor-menu/menu-parrilla.component';
 import { ParrillaComponent } from './parrillas/parrilla.component';
 import { MenuPostreComponent } from './contenedor-menu/menu-postre.component';
@@ -25,6 +26,7 @@ import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
 import { BoletaComponent } from './boleta/boleta.component';
 import { CartaMarinaComponent } from './carta-marina/carta-marina.component';
 import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
+import { MenuEntradaComponent } from './contenedor-menu/menu-entrada.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -52,7 +54,8 @@ const pagesRoutes: Routes = [
     { path: 'menuParrilla', component: MenuParillaComponent , data: { animation: 'menuParrilla' } },
     { path: 'cartaMarina', component: CartaMarinaComponent , data: { animation: 'cartaMarina' } },
     { path: 'menuCartaMarina', component: MenuCartaMarinoComponent , data: { animation: 'menuCartaMarina' } },
-
+    { path: 'entradas', component: EntradaComponent , data: { animation: 'entrada' } },
+    { path: 'menuEntrada', component: MenuEntradaComponent , data: { animation: 'menuEntrada' } },
 
     //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},

@@ -1,3 +1,5 @@
+import { MenuEntradaComponent } from './contenedor-menu/menu-entrada.component';
+import { EntradaComponent } from './entradas/entrada.component';
 import { CartaMarinaComponent } from './carta-marina/carta-marina.component';
 import { MenuParillaComponent } from './contenedor-menu/menu-parrilla.component';
 import { BoletaComponent } from './boleta/boleta.component';
@@ -121,7 +123,9 @@ import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.co
         ParrillaComponent,
         MenuParillaComponent,
         CartaMarinaComponent,
-        MenuCartaMarinoComponent
+        MenuCartaMarinoComponent,
+        EntradaComponent,
+        MenuEntradaComponent
 
     ],
     exports: [

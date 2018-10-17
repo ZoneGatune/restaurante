@@ -57,7 +57,7 @@ export class ListaMenuComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   loadCategorias() {
-    this.categorias.push({'id': '09', 'name': 'Entradas o Adicionales', 'description': ''});
+    this.categorias.push({'id': '100', 'name': 'Entradas o Adicionales', 'description': ''});
     this.categorias.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '04', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
     this.categorias.push({'id': '07', 'name': 'Menú Marino', 'description': ''});
@@ -172,7 +172,7 @@ export class ListaMenuComponent implements OnInit {
                       'mozo': this.mozo,
                       'codigoMozo': this.codigoMozo } });
     }
-    if (categoria.id === '80') {
+    if (categoria.id === '90') {
       this.router.navigate(['/auth/restaurant/menuParrilla'], {
         queryParams: {'ventaKey': this.ventaKey,
                       'codigoMesa': this.codigoMesa,
@@ -182,6 +182,14 @@ export class ListaMenuComponent implements OnInit {
     }
     if (categoria.id === '60') {
       this.router.navigate(['/auth/restaurant/menuCartaMarina'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '100') {
+      this.router.navigate(['/auth/restaurant/menuEntrada'], {
         queryParams: {'ventaKey': this.ventaKey,
                       'codigoMesa': this.codigoMesa,
                       'mesa': this.mesa,
