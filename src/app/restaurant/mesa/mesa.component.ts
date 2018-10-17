@@ -70,6 +70,7 @@ export class MesaComponent implements OnInit {
     private ventaService: VentaSeleccionadaService) { }
 
   ngOnInit() {
+    debugger;
     this.loadCartaDefecto();
     console.log(this.route.queryParams);
     this.route.queryParams
@@ -114,7 +115,7 @@ export class MesaComponent implements OnInit {
 
   mozoMesaOcupadasList: MozoMesa[];
 
-  Onclick(mesa: string) {
+  private Onclick(mesa: string) {
     debugger;
     const x = this.ventaService.getData();
       x.snapshotChanges().subscribe(item => {

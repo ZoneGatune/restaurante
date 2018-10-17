@@ -115,13 +115,8 @@ debugger;
     this.boletaService.insertBoleta(this.boleta);
     debugger;
     this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
-
-    this.router.navigate(['/auth/restaurant/mesa'], {
-        queryParams: {'ventaKey': this.ventaSeleccionada.$key,
-                      'codigoMesa': this.ventaSeleccionada.codigoMesa,
-                      'mesa': this.ventaSeleccionada.mesa,
-                      'mozo': this.ventaSeleccionada.mozo,
-                      'codigoMozo': this.ventaSeleccionada.codigoMozo } });
+debugger;
+    this.router.navigate(['']);
 
 
 

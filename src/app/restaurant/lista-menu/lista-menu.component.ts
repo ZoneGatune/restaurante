@@ -71,7 +71,7 @@ export class ListaMenuComponent implements OnInit {
  }
 
   ngOnInit() {
-
+    debugger;
     this.loadCategorias();
 
 
