@@ -116,7 +116,7 @@ export class BoletaComponent implements OnInit {
       debugger;
           this.boletaService.insertBoleta(this.boleta);
           debugger;
-          this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
+          //this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
       debugger;
           //this.router.navigate(['']);
 
@@ -140,7 +140,15 @@ export class BoletaComponent implements OnInit {
           );
           popupWin.document.close();
 
-          this.router.navigate([''], {  });
+  }
+
+  retroceder() {
+    this.router.navigate(['/auth/restaurant/listaMenu'], {
+      queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                    'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                    'mesa': this.ventaSeleccionada.mesa,
+                    'mozo': this.ventaSeleccionada.mozo,
+                    'codigoMozo': this.ventaSeleccionada.codigoMozo } });
   }
 
 

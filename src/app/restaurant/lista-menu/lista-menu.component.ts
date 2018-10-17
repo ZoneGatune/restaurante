@@ -12,6 +12,7 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -30,9 +31,30 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class ListaMenuComponent implements OnInit {
 
   constructor(private cartaService: CartaService, private tostr: ToastrService, public router: Router ,
-    private route: ActivatedRoute, private ventaSeleccionadaService: VentaSeleccionadaService) {
+    private route: ActivatedRoute, private firebase: AngularFireDatabase,  private ventaSeleccionadaService: VentaSeleccionadaService) {
       this.mostrarVentaList = [];
+      this.getData();
     }
+
+  ventaListFire: AngularFireList<any>;
+
+  getData() {
+    this.ventaListFire = this.firebase.list('ventas');
+    return this.ventaListFire;
+  }
+
+  deleteVenta($key: string) {
+    debugger;
+    this.ventaListFire.remove($key);
+  }
+
+  liberarMesa() {
+    debugger;
+    this.deleteVenta(this.ventaSeleccionada.$key);
+    debugger;
+    this.router.navigate([''], { queryParams: {} });
+  }
+
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -225,6 +247,7 @@ export class ListaMenuComponent implements OnInit {
     );
     popupWin.document.close();
 }
+
 
 
   cobrarMesa(venta: VentaSeleccionada) {
