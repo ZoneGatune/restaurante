@@ -116,12 +116,8 @@ export class BoletaComponent implements OnInit {
       debugger;
           this.boletaService.insertBoleta(this.boleta);
           debugger;
-          //this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
+          this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
       debugger;
-          //this.router.navigate(['']);
-
-
-
 
           let printContents, popupWin;
           printContents = document.getElementById('print-section').innerHTML;
@@ -139,6 +135,7 @@ export class BoletaComponent implements OnInit {
             </html>`
           );
           popupWin.document.close();
+          this.retroceder();
 
   }
 

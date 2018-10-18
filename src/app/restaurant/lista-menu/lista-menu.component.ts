@@ -50,9 +50,22 @@ export class ListaMenuComponent implements OnInit {
 
   liberarMesa() {
     debugger;
-    this.deleteVenta(this.ventaSeleccionada.$key);
+    //this.deleteVenta(this.ventaSeleccionada.$key);
     debugger;
-    this.router.navigate([''], { queryParams: {} });
+    this.router.navigate(['/auth/restaurant/mesa'], {
+      queryParams: {'mozo': this.mozo,
+                    'codigoMozo': this.codigoMozo } });
+   // this.irAMesa();
+  }
+
+  irAMesa(){
+    this.router.navigate(['/auth/restaurant/mesa'], {
+      queryParams: {'ventaKey': this.ventaKey,
+                    'codigoMesa': this.codigoMesa,
+                    'mesa': this.mesa,
+                    'mozo': this.mozo,
+                    'codigoMozo': this.codigoMozo,
+                    'mesaLiberada': true } });
   }
 
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
@@ -75,6 +88,7 @@ export class ListaMenuComponent implements OnInit {
   mostrarVentaList = new Array<Carta1>();
   boletaCartaList = new Array<Carta1>();
   listaVentaActualizada = new Array<Carta1>();
+  mesaLiberada: boolean;
 
   matcher = new MyErrorStateMatcher();
 
@@ -100,12 +114,13 @@ export class ListaMenuComponent implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       console.log(params); // {order: "popular"}
-
+debugger;
       this.ventaKey = params['ventaKey'];
       this.mozo = params['mozo'];
       this.codigoMozo = params['codigoMozo'];
       this.codigoMesa = params['codigoMesa'];
       this.mesa = params['mesa'];
+      this.mesaLiberada = params['mesaLiberada'];
 
     });
 

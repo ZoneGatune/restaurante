@@ -49,7 +49,6 @@ export class MesaComponent implements OnInit {
   today = new Date();
   mesaCrudList: MesaCrud[];
   mozoMesaList: MozoMesa[];
-  mozoMesaActivadasList: MozoMesa[];
   empleado: Empleado = new Empleado();
   mozoMesa: MozoMesa = new MozoMesa();
   venta: VentaSeleccionada = new VentaSeleccionada();
@@ -75,13 +74,19 @@ export class MesaComponent implements OnInit {
     console.log(this.route.queryParams);
     this.route.queryParams
     .subscribe(params => {
-      console.log(params); // {order: "popular"}
+      debugger;
       const e = new Empleado();
       Object.assign(e, params);
       this.empleado = e;
-      console.log(this.empleado); // popular
-    });
+      const mozo =  params['mozo'];
+      const codigoMozo =  params['codigoMozo'];
+      if(mozo !== undefined) {
+        this.empleado.nombre = mozo;
+        this.empleado.username = codigoMozo;
+      }
 
+
+    });
 
     const x = this.mesaCrudService.getData();
     x.snapshotChanges().subscribe(item => {
@@ -93,29 +98,11 @@ export class MesaComponent implements OnInit {
       });
 
     });
-
-
-    const xMozoMesa = this.mozoMesaService.getData();
-    xMozoMesa.snapshotChanges().subscribe(item => {
-      this.mozoMesaList = [];
-      item.forEach(element => {
-        const y = element.payload.toJSON();
-        y['$key'] = element.key;
-        this.mozoMesaList.push(y as MozoMesa);
-      });
-
-      this.mozoMesaActivadasList = this.mozoMesaList.filter( x => x.codigoMozo === this.empleado.username);
-
-    });
-
-
-
-
   }
 
   mozoMesaOcupadasList: MozoMesa[];
 
-  private Onclick(mesa: string) {
+  private OnclickMesa(mesa: string) {
     debugger;
     const x = this.ventaService.getData();
       x.snapshotChanges().subscribe(item => {
@@ -130,6 +117,16 @@ export class MesaComponent implements OnInit {
         debugger;
         this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa);
         debugger;
+
+    // if (this.venta === undefined) {
+    //   debugger;
+    //   this.router.navigate(['/auth/restaurant/mesa'], {
+    //   queryParams: {'ventaKey': this.venta.$key,
+    //                 'codigoMesa': this.venta.codigoMesa,
+    //                 'mesa': this.venta.mesa,
+    //                 'mozo': this.venta.mozo,
+    //                 'codigoMozo': this.venta.codigoMozo } });
+    // }
 
     if (this.venta) {
 
@@ -153,7 +150,7 @@ export class MesaComponent implements OnInit {
 
       this.mesaCrudService.updateMesaCrud(this.mesaEncontrada);
       this.mozoMesa.fecha = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-ES', 'UTC -5');
-      this.mozoMesaService.insertMozoMesa(this.mozoMesa);
+      //this.mozoMesaService.insertMozoMesa(this.mozoMesa);
       debugger;
       this.venta  = new VentaSeleccionada();
 
