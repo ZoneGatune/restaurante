@@ -1,3 +1,5 @@
+import { CierreCajaService } from './cierre-caja/shared/cierrecajaservice';
+import { CierreCaja } from './cierre-caja/shared/cierre-caja.model';
 import { MenuEntradaComponent } from './contenedor-menu/menu-entrada.component';
 import { EntradaComponent } from './entradas/entrada.component';
 import { CartaMarinaComponent } from './carta-marina/carta-marina.component';
@@ -64,6 +66,7 @@ import { BoletaService } from './boleta/shared/boletaservice';
 import { ParrillaComponent } from './parrillas/parrilla.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
+import { CierreCajaComponent } from './cierre-caja/cierre-caja.component';
 
 
 
@@ -125,7 +128,8 @@ import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.co
         CartaMarinaComponent,
         MenuCartaMarinoComponent,
         EntradaComponent,
-        MenuEntradaComponent
+        MenuEntradaComponent,
+        CierreCajaComponent
 
     ],
     exports: [
@@ -139,7 +143,8 @@ import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.co
       CartaService,
       CartaSeleccionada,
       VentaSeleccionadaService,
-      BoletaService
+      BoletaService,
+      CierreCajaService
     ]
 })
 export class RestaurantModule {

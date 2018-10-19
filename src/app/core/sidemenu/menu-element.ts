@@ -132,6 +132,13 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+        {
+          'name': 'Cierre Caja',
+          'link': 'restaurant/cierrecaja',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

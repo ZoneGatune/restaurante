@@ -1,3 +1,4 @@
+import { CierreCajaComponent } from './cierre-caja/cierre-caja.component';
 import { EntradaComponent } from './entradas/entrada.component';
 import { MenuParillaComponent } from './contenedor-menu/menu-parrilla.component';
 import { ParrillaComponent } from './parrillas/parrilla.component';
@@ -56,6 +57,8 @@ const pagesRoutes: Routes = [
     { path: 'menuCartaMarina', component: MenuCartaMarinoComponent , data: { animation: 'menuCartaMarina' } },
     { path: 'entradas', component: EntradaComponent , data: { animation: 'entrada' } },
     { path: 'menuEntrada', component: MenuEntradaComponent , data: { animation: 'menuEntrada' } },
+    { path: 'cierrecaja', component: CierreCajaComponent , data: { animation: 'cierrecaja' } },
+
 
     //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},
   //	{ path: 'services', component: ServicesComponent ,data: { animation: 'services' }},
