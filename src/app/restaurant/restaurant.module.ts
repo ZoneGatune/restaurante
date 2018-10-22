@@ -67,6 +67,7 @@ import { ParrillaComponent } from './parrillas/parrilla.component';
 import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
 import { CierreCajaComponent } from './cierre-caja/cierre-caja.component';
+import { VentaComponent } from './venta/venta.component';
 
 
 
@@ -129,7 +130,8 @@ import { CierreCajaComponent } from './cierre-caja/cierre-caja.component';
         MenuCartaMarinoComponent,
         EntradaComponent,
         MenuEntradaComponent,
-        CierreCajaComponent
+        CierreCajaComponent,
+        VentaComponent
 
     ],
     exports: [

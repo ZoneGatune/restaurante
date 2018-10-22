@@ -139,6 +139,13 @@ export const menus = [
           'icon': 'indeterminate_check_box',
           'chip': false,
           'open': false,
+        },
+        {
+          'name': 'Venta',
+          'link': 'restaurant/venta',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
         }
       ]
   },

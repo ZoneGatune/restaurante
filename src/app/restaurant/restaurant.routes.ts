@@ -28,6 +28,7 @@ import { BoletaComponent } from './boleta/boleta.component';
 import { CartaMarinaComponent } from './carta-marina/carta-marina.component';
 import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
 import { MenuEntradaComponent } from './contenedor-menu/menu-entrada.component';
+import { VentaComponent } from './venta/venta.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -58,6 +59,7 @@ const pagesRoutes: Routes = [
     { path: 'entradas', component: EntradaComponent , data: { animation: 'entrada' } },
     { path: 'menuEntrada', component: MenuEntradaComponent , data: { animation: 'menuEntrada' } },
     { path: 'cierrecaja', component: CierreCajaComponent , data: { animation: 'cierrecaja' } },
+    { path: 'venta', component: VentaComponent , data: { animation: 'venta' } },
 
 
     //	{ path: 'about', component: AboutComponent ,data: { animation: 'about' }},

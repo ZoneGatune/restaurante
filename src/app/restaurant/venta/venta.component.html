@@ -1,0 +1,47 @@
+<div fxLayout="column" class="components-container-gt-xs"  [ngClass.xs]="'components-container-xs'"  fxLayoutGap="20px">
+
+    <div fxFlex class="input-component-holder mat-elevation-z4">
+      <mat-toolbar class="input-header">
+        <h1 class="mat-headline center-align" >Mantenimiento de Menu</h1>
+      </mat-toolbar>
+      <div class="input-container">
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+
+          <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" >
+            <h4  class="mat-subheading-2 center-align">Filtro de ventas</h4>
+            <mat-divider></mat-divider>
+
+          </div>
+          <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" >
+            <h4 class="mat-subheading-2 center-align">Ventas</h4>
+            <mat-divider></mat-divider>
+            <div fxLayout="column"  class="components-container-gt-xs"  [ngClass.xs]="'components-container-xs'"  fxLayoutGap="20px">
+
+              <div fxFlex class="table-component-holder mat-elevation-z4">
+                <mat-toolbar class="table-header">
+                  <h1 class="mat-headline center-align" >Lista de Ventas</h1>
+                </mat-toolbar>
+                <div class="table-container">
+
+                <table >
+
+                        <tr *ngFor="let menuCrud of boletaList">
+                          <td>{{menuCrud.codigoMesa}}</td>
+                          <td>{{menuCrud.total}}</td>
+                      </tr>
+
+                    </table>
+
+
+              </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+    </div>
+  </div>
