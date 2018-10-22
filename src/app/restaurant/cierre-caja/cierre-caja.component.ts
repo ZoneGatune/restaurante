@@ -31,6 +31,8 @@ export class CierreCajaComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   menu: Menu = new Menu();
   cierreCaja: CierreCaja = new CierreCaja();
+  cierreCajaActual: CierreCaja = new CierreCaja();
+  mensaje: string;
 
   ngOnInit() {
 
@@ -42,20 +44,29 @@ export class CierreCajaComponent implements OnInit {
         const y = element.payload.toJSON();
       //  y['$key'] = element.key;
         this.cierreCajaList.push(y as CierreCaja);
+
       });
       this.cierreCaja = this.cierreCajaList.find( x => x.codigo === '01');
+      this.cierreCajaActual = this.cierreCajaList.find( x => x.codigo === '02');
+      if (this.cierreCajaActual.estado === 0) {
+        this.mensaje = 'Caja Cerrada';
+      } else {
+        this.mensaje = 'Caja Abierta';
+      }
     });
 
   }
 
   bloquear() {
     this.cierreCaja.estado = 0;
+    this.mensaje = 'Caja Cerrada';
     this.cierreCajaService.updateCierreCaja(this.cierreCaja);
   }
 
 
   desbloquear() {
     this.cierreCaja.estado = 1;
+    this.mensaje = 'Caja Abierta';
     this.cierreCajaService.updateCierreCaja(this.cierreCaja);
   }
 }

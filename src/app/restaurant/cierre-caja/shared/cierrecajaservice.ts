@@ -18,10 +18,10 @@ export class CierreCajaService {
   }
 
   insertCierreCaja(boleta: CierreCaja) {
-      this.cierreCajaList.push({
-        codigo: boleta.codigo,
-        estado: boleta.estado
-      });
+      this.cierreCajaList.update(boleta.codigo,
+        {
+          estado: boleta.estado
+        });
   }
 
   updateCierreCaja(boleta: CierreCaja) {

@@ -9,6 +9,8 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { CierreCajaService } from '../cierre-caja/shared/cierrecajaservice';
+import { CierreCaja } from '../cierre-caja/shared/cierre-caja.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,7 +29,9 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class LoginMozoComponent implements OnInit {
 
   constructor(private cartaService: CartaService,
-    private empleadoService: EmpleadoService , private tostr: ToastrService, public router: Router, public snackBar: MatSnackBar) { }
+    private empleadoService: EmpleadoService,
+    private cierreCajaService: CierreCajaService ,
+    private tostr: ToastrService, public router: Router, public snackBar: MatSnackBar) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -35,6 +39,7 @@ export class LoginMozoComponent implements OnInit {
   categorias = new Array<Categoria>();   // Use any array supports different kind objects
   empleadoList: Empleado[];
   empleado: Empleado = new Empleado();
+  cierreCajaActual: CierreCaja = new CierreCaja();
 
   selectedValue;
   showMultiListCode = false;
@@ -42,6 +47,9 @@ export class LoginMozoComponent implements OnInit {
   codigoMozo: string;
   message = 'El Usuario no existe como mozo en el restaurante Astrid';
   action = 'Finalizar';
+  cierreCajaList: CierreCaja[];
+  mensaje: string;
+  cajaCerrada: boolean;
 
 
   matcher = new MyErrorStateMatcher();
@@ -49,7 +57,24 @@ export class LoginMozoComponent implements OnInit {
 
   ngOnInit() {
 
+    const x = this.cierreCajaService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.cierreCajaList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+      //  y['$key'] = element.key;
+        this.cierreCajaList.push(y as CierreCaja);
 
+      });
+      this.cierreCajaActual = this.cierreCajaList.find( x => x.codigo === '02');
+      if (this.cierreCajaActual.estado === 0) {
+        this.mensaje = 'Caja Cerrada';
+        this.cajaCerrada = false;
+      } else {
+        this.mensaje = 'Caja Abierta';
+        this.cajaCerrada = true;
+      }
+    });
 
 
 

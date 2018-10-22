@@ -10,7 +10,8 @@
 					<h3 class="mat-display-1">Restaurante Astrid</h3>
 					<mat-divider></mat-divider>
 					<p class="mat-body-2">
-					Bienvenido al restaurante Astrid. Por favor, Digite su codigo para empezar
+          Bienvenido al restaurante Astrid. Por favor, Digite su codigo para empezar......
+          {{mensaje}}
 					</p>
                     <form class="example-form" #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)">
 
@@ -23,7 +24,7 @@
 
                      <p>
 
-                        <button mat-raised-button color="primary" type="submit" [disabled]="!menuForm.valid">Guardar en Firebase</button>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!cajaCerrada">Guardar en Firebase</button>
 
                       </p>
                    </form>
