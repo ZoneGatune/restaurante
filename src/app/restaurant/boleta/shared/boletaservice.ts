@@ -21,13 +21,14 @@ export class BoletaService {
    }
 
    getDataRequest( fecha: string) {
+     debugger;
     this.boletaList = this.firebase.list(fecha + '_' + 'boleta');
     return this.boletaList;
   }
 
   getData() {
     const date = new Date();
-    const fecha = this.datePipe.transform(date, 'yyyy-MM-dd');
+    const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
     this.boletaList = this.firebase.list(fecha + '_' + 'boleta');
     return this.boletaList;
   }

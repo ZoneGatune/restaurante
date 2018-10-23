@@ -47,7 +47,7 @@ export class RankingPolloComponent implements OnInit {
 
     ngOnInit() {
       const date = new Date();
-      const fecha = this.datePipe.transform(date, 'yyyy-MM-dd');
+      const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
       const x = this.boletaService.getDataRequest(fecha);
       x.snapshotChanges().subscribe(item => {
         this.boletaList = [];
@@ -56,11 +56,13 @@ export class RankingPolloComponent implements OnInit {
           y['$key'] = element.key;
           this.boletaList.push(y as Boleta);
         });
-    });
 
+        debugger;
     this.boletaList.forEach(element => {
 
       console.log(element);
+    });
+
     });
 
 
