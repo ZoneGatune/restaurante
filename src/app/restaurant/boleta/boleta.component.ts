@@ -114,6 +114,7 @@ export class BoletaComponent implements OnInit {
   pagar(menuForm: NgForm) {
 
       debugger;
+
           this.boletaService.insertBoleta(this.boleta);
           debugger;
           this.ventaService.deleteVenta(this.ventaSeleccionada.$key);

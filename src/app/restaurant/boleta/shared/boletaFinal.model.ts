@@ -8,5 +8,7 @@ export class BoletaFinal {
     estado: string;
     mesa: string;
     codigoMesa: string;
+    fecha: string;
+    fechaHora: string;
 
 }

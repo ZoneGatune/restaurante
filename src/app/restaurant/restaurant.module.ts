@@ -1,3 +1,4 @@
+import { RankingPolloComponent } from './ranking/ranking_pollo.component';
 import { CierreCajaService } from './cierre-caja/shared/cierrecajaservice';
 import { CierreCaja } from './cierre-caja/shared/cierre-caja.model';
 import { MenuEntradaComponent } from './contenedor-menu/menu-entrada.component';
@@ -68,6 +69,7 @@ import { MenuMarinoComponent } from './contenedor-menu/menu-marino.component';
 import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
 import { CierreCajaComponent } from './cierre-caja/cierre-caja.component';
 import { VentaComponent } from './venta/venta.component';
+import {DatePipe} from '@angular/common';
 
 
 
@@ -131,7 +133,8 @@ import { VentaComponent } from './venta/venta.component';
         EntradaComponent,
         MenuEntradaComponent,
         CierreCajaComponent,
-        VentaComponent
+        VentaComponent,
+        RankingPolloComponent
 
     ],
     exports: [
@@ -146,7 +149,8 @@ import { VentaComponent } from './venta/venta.component';
       CartaSeleccionada,
       VentaSeleccionadaService,
       BoletaService,
-      CierreCajaService
+      CierreCajaService,
+      DatePipe
     ]
 })
 export class RestaurantModule {

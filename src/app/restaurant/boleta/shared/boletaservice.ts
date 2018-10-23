@@ -5,6 +5,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Boleta } from './boleta.model';
 import { VentaSeleccionada } from '../../lista-menu/shared/venta.model';
 import { BoletaFinal } from './boletaFinal.model';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable()
@@ -14,13 +15,20 @@ export class BoletaService {
   venta: VentaBoleta = new VentaBoleta();
 
 
-  constructor(private firebase: AngularFireDatabase ) {
+  constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe ) {
 
 
    }
 
+   getDataRequest( fecha: string) {
+    this.boletaList = this.firebase.list(fecha + '_' + 'boleta');
+    return this.boletaList;
+  }
+
   getData() {
-    this.boletaList = this.firebase.list('boleta');
+    const date = new Date();
+    const fecha = this.datePipe.transform(date, 'yyyy-MM-dd');
+    this.boletaList = this.firebase.list(fecha + '_' + 'boleta');
     return this.boletaList;
   }
 
@@ -41,13 +49,18 @@ export class BoletaService {
     this.venta.id = boleta.venta.id;
 
 
+    const date = new Date();
+
+
       this.boletaList.push({
         venta: this.venta,
         total: boleta.total,
         totalPlatos: boleta.totalPlatos,
         estado: boleta.estado,
         mesa: boleta.mesa,
-        codigoMesa: boleta.codigoMesa
+        codigoMesa: boleta.codigoMesa,
+        fecha: this.datePipe.transform(date, 'yyyy-MM-dd'),
+        fechaHora: this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss')
       });
 
   }
