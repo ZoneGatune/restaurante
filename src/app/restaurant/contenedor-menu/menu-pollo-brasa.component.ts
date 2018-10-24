@@ -113,6 +113,9 @@ export class MenuPolloBrasaComponent implements OnInit {
       this.carta1.categoria = entrada.categoria;
       this.carta1.codigoCategoria = entrada.codigoCategoria;
       debugger;
+      if (entrada.descripcion === undefined) {
+        this.carta1.descripcion = '';
+      }
       if (entrada.codigoMenu === undefined) {
         this.carta1.codigoMenu = 0;
       } else {

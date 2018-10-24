@@ -62,6 +62,9 @@ export class PolloBrasaComponent implements OnInit {
     this.menu.categoria = 'Pollo Brasa';
     this.menu.contadorNegativo = 0;
     this.menu.contadorPositivo = 0;
+    if (this.menu.descripcion === undefined) {
+      this.menu.descripcion = '';
+    }
     if (menuForm.value.$key == null) {
       this.menuService.insertmenu(this.menu);
     } else {
