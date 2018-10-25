@@ -1,3 +1,4 @@
+import { CuadreCajaComponent } from './cuadre-caja/cuadre-caja.component';
 import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
 import { GaseosaComponent } from './gaseosa/gaseosa.component';
 import { RankingPolloComponent } from './ranking/ranking_pollo.component';
@@ -66,6 +67,7 @@ const pagesRoutes: Routes = [
     { path: 'ranking_pollo', component: RankingPolloComponent , data: { animation: 'ranking_pollo' } },
     { path: 'gaseosa', component: GaseosaComponent , data: { animation: 'gaseosa' } },
     { path: 'menuGaseosa', component: MenuGaseosaComponent , data: { animation: 'menuGaseosa' } },
+    { path: 'cuadreCaja', component: CuadreCajaComponent , data: { animation: 'cuadreCaja' } },
 
 
 
