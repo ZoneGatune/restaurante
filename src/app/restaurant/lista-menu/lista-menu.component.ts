@@ -103,6 +103,7 @@ export class ListaMenuComponent implements OnInit {
     this.categorias.push({'id': '30', 'name': 'Pollos a la Brasa', 'description': ''});
     this.categorias.push({'id': '80', 'name': 'Parrillas', 'description': ''});
     this.categorias.push({'id': '25', 'name': 'Bebidas', 'description': ''});
+    this.categorias.push({'id': '26', 'name': 'Gaseosas', 'description': ''});
     this.categorias.push({'id': '50', 'name': 'Postres', 'description': ''});
  }
 
@@ -227,6 +228,14 @@ debugger;
     }
     if (categoria.id === '100') {
       this.router.navigate(['/auth/restaurant/menuEntrada'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '26') {
+      this.router.navigate(['/auth/restaurant/menuGaseosa'], {
         queryParams: {'ventaKey': this.ventaKey,
                       'codigoMesa': this.codigoMesa,
                       'mesa': this.mesa,

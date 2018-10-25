@@ -1,3 +1,5 @@
+import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
+import { GaseosaComponent } from './gaseosa/gaseosa.component';
 import { RankingPolloComponent } from './ranking/ranking_pollo.component';
 import { CierreCajaService } from './cierre-caja/shared/cierrecajaservice';
 import { CierreCaja } from './cierre-caja/shared/cierre-caja.model';
@@ -134,7 +136,9 @@ import {DatePipe} from '@angular/common';
         MenuEntradaComponent,
         CierreCajaComponent,
         VentaComponent,
-        RankingPolloComponent
+        RankingPolloComponent,
+        GaseosaComponent,
+        MenuGaseosaComponent
 
     ],
     exports: [

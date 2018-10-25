@@ -1,3 +1,5 @@
+import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
+import { GaseosaComponent } from './gaseosa/gaseosa.component';
 import { RankingPolloComponent } from './ranking/ranking_pollo.component';
 import { CierreCajaComponent } from './cierre-caja/cierre-caja.component';
 import { EntradaComponent } from './entradas/entrada.component';
@@ -62,6 +64,8 @@ const pagesRoutes: Routes = [
     { path: 'cierrecaja', component: CierreCajaComponent , data: { animation: 'cierrecaja' } },
     { path: 'venta', component: VentaComponent , data: { animation: 'venta' } },
     { path: 'ranking_pollo', component: RankingPolloComponent , data: { animation: 'ranking_pollo' } },
+    { path: 'gaseosa', component: GaseosaComponent , data: { animation: 'gaseosa' } },
+    { path: 'menuGaseosa', component: MenuGaseosaComponent , data: { animation: 'menuGaseosa' } },
 
 
 
