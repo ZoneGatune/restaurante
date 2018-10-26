@@ -40,7 +40,9 @@ export class CuadreCajaComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   menu: Menu = new Menu();
   cuadreCaja: CuadreCaja = new CuadreCaja();
+  cuadreCajaBD: CuadreCaja = new CuadreCaja();
   boletaList: BoletaFinal[];
+  cuadreCajaList: CuadreCaja[];
   mensaje: string;
   total: number;
   message = 'Ingresar Saldo Inicial';
@@ -61,32 +63,85 @@ export class CuadreCajaComponent implements OnInit {
     }
     const date = new Date();
     const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
-    this.total = 0;
-    const x = this.boletaService.getDataRequest(fecha);
-    x.snapshotChanges().subscribe(item => {
-      this.boletaList = [];
+    const cuadreCajaFuncion = this.cuadreCajaService.getDataRequest(fecha);
+    cuadreCajaFuncion.snapshotChanges().subscribe(item => {
+      this.cuadreCajaList = [];
       item.forEach(_element => {
         const y = _element.payload.toJSON();
-      //  y['$key'] = element.key;
-        this.boletaList.push(y as BoletaFinal);
+        y['$key'] = _element.key;
+        this.cuadreCajaList.push(y as CuadreCaja);
 
       });
       debugger;
-      if (this.boletaList) {
-        const peopleArray = Object.keys(this.boletaList).map(i => this.boletaList[i]);
-
-        this.boletaList = peopleArray;
-        this.boletaList.forEach( (_element) => {
-          this.total = Number( _element.total + this.total);
-          debugger;
-        });
-        this.cuadreCaja.saldoFinal = Number(this.cuadreCaja.saldoInicial) + this.total;
-        const fechaHora = this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
-        this.cuadreCaja.fecha = this.datePipe.transform(date, 'yyyy-MM-dd');
-        this.cuadreCaja.fechaHora = fechaHora;
+      const tamCuadreList = this.cuadreCajaList.length;
+      if (this.cuadreCajaList.length >= 1 ) {
         debugger;
+        this.cuadreCajaBD = this.cuadreCajaList[0];
+        if (this.cuadreCajaBD !== undefined) {
+          debugger;
+          this.total = 0;
+          const x = this.boletaService.getDataRequest(fecha);
+          x.snapshotChanges().subscribe(item => {
+            this.boletaList = [];
+            item.forEach(_element => {
+              const y = _element.payload.toJSON();
+              //y['$key'] = _element.key;
+              this.boletaList.push(y as BoletaFinal);
+
+            });
+            debugger;
+            if (this.boletaList) {
+              const peopleArray = Object.keys(this.boletaList).map(i => this.boletaList[i]);
+
+              this.boletaList = peopleArray;
+              this.boletaList.forEach( (_element) => {
+                this.total = Number( _element.total + this.total);
+                debugger;
+              });
+              this.cuadreCajaBD.saldoInicial = this.cuadreCaja.saldoInicial;
+              this.cuadreCajaBD.saldoFinal = Number(this.cuadreCaja.saldoInicial) + this.total;
+              const fechaHora = this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+              this.cuadreCajaBD.fecha = this.datePipe.transform(date, 'yyyy-MM-dd');
+              this.cuadreCajaBD.fechaHora = fechaHora;
+              this.cuadreCaja = this.cuadreCajaBD;
+            }
+        });
       }
+
+      //se realiza el match
+
+
+    } else {
+      debugger;
+      this.total = 0;
+      const x = this.boletaService.getDataRequest(fecha);
+      x.snapshotChanges().subscribe(item => {
+        this.boletaList = [];
+        item.forEach(_element => {
+          const y = _element.payload.toJSON();
+        //  y['$key'] = element.key;
+          this.boletaList.push(y as BoletaFinal);
+
+        });
+        debugger;
+        if (this.boletaList) {
+          const peopleArray = Object.keys(this.boletaList).map(i => this.boletaList[i]);
+
+          this.boletaList = peopleArray;
+          this.boletaList.forEach( (_element) => {
+            this.total = Number( _element.total + this.total);
+            debugger;
+          });
+          this.cuadreCaja.saldoFinal = Number(this.cuadreCaja.saldoInicial) + this.total;
+          const fechaHora = this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+          this.cuadreCaja.fecha = this.datePipe.transform(date, 'yyyy-MM-dd');
+          this.cuadreCaja.fechaHora = fechaHora;
+          debugger;
+        }
+    });
+    }
   });
+
 
 
 
@@ -103,9 +158,20 @@ export class CuadreCajaComponent implements OnInit {
     }
     const date = new Date();
     const fechaHoy =  this.datePipe.transform(date, 'yyyy-MM-dd');
-    this.cuadreCajaService.insertCuadreCaja(this.cuadreCaja, fechaHoy);
-    this.snackBar.open('Cuadre Ingresasdo ' + fechaHoy , this.action, {
-      duration: 2000,
-    });
+    debugger;
+    if (this.cuadreCajaBD.$key !== undefined) {
+      this.cuadreCajaService.updateCuadreCaja(this.cuadreCajaBD, fechaHoy);
+      this.snackBar.open('Cuadre Actualizado ' + fechaHoy , this.action, {
+        duration: 2000,
+      });
+
+    } else {
+      this.cuadreCajaService.insertCuadreCaja(this.cuadreCaja, fechaHoy);
+      this.snackBar.open('Cuadre Ingresasdo ' + fechaHoy , this.action, {
+        duration: 2000,
+      });
+
+    }
+
   }
 }

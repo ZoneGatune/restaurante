@@ -33,6 +33,7 @@ export class CuadreCajaService {
   }
 
   updateCuadreCaja(cuadreCaja: CuadreCaja, fecha: string) {
+    debugger;
     this.cuadreCajaList.update(cuadreCaja.$key, {
       saldoFinal: cuadreCaja.saldoFinal,
       saldoInicial: cuadreCaja.saldoInicial,
