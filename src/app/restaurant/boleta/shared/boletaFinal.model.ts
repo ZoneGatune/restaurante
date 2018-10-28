@@ -10,5 +10,6 @@ export class BoletaFinal {
     codigoMesa: string;
     fecha: string;
     fechaHora: string;
+    codigoElectronico: string;
 
 }

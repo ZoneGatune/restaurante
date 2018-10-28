@@ -48,7 +48,9 @@ export class BoletaService {
     this.venta.estado = boleta.venta.estado;
     this.venta.key = boleta.venta.$key;
     this.venta.id = boleta.venta.id;
-
+    if (boleta.codigoElectronico === undefined) {
+        boleta.codigoElectronico = '';
+    }
 
     const date = new Date();
 
@@ -60,6 +62,7 @@ export class BoletaService {
         estado: boleta.estado,
         mesa: boleta.mesa,
         codigoMesa: boleta.codigoMesa,
+        codigoElectronico: boleta.codigoElectronico,
         fecha: this.datePipe.transform(date, 'yyyy-MM-dd'),
         fechaHora: this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss')
       });
@@ -67,6 +70,9 @@ export class BoletaService {
   }
 
   updateCarta(boleta: Boleta) {
+    if (boleta.codigoElectronico === undefined) {
+      boleta.codigoElectronico = '';
+  }
     this.boletaList.update(boleta.$key,
       {
         venta: boleta.venta,
@@ -74,7 +80,8 @@ export class BoletaService {
         totalPlatos: boleta.totalPlatos,
         estado: boleta.estado,
         mesa: boleta.mesa,
-        codigoMesa: boleta.codigoMesa
+        codigoMesa: boleta.codigoMesa,
+        codigoElectronico: boleta.codigoElectronico
       });
   }
 

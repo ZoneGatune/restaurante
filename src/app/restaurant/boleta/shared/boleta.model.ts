@@ -8,5 +8,6 @@ export class Boleta {
     estado: string;
     mesa: string;
     codigoMesa: string;
+    codigoElectronico: string;
 
 }

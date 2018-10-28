@@ -2,7 +2,7 @@
 
     <div fxFlex class="input-component-holder mat-elevation-z4">
       <mat-toolbar class="input-header">
-        <h1 class="mat-headline center-align" >Mantenimiento de cartas</h1>
+        <h1 class="mat-headline center-align" >Carta</h1>
       </mat-toolbar>
       <div class="input-container">
 
@@ -14,7 +14,7 @@
 
         <form class="example-form" #cartaForm="ngForm" (ngSubmit)="onSubmit(cartaForm)" >
     <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="cartaService.selectedCarta.$key">
-    <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50">
+    <div fxFlex.xs="100" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20">
 
       <mat-divider></mat-divider>
       <mat-form-field>
@@ -56,18 +56,15 @@
 
   </p>
         </form>
-  >
-          </div>
-          <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" >
-
-
 
           </div>
+
         </div>
 
 
     </div>
   </div>
+
   <div fxLayout="column" class="components-container-gt-xs"  [ngClass.xs]="'components-container-xs'"  fxLayoutGap="20px">
 
     <div fxFlex class="input-component-holder mat-elevation-z4">
@@ -81,16 +78,15 @@
 
           <div fxFlex.xs="100" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" >
 
-            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="80px">
+            <div   fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="5px">
               <!-- two line list -->
 
-                <div fxLayout="column" fxLayout.xs="column">
-                  <mat-list>
-                      <h3>Lunes</h3>
+                <div fxLayout="column"fxLayout.xs="column">
+                  <mat-list   >
+                      <h3 style="font-size: 20px">Lunes</h3>
                         <mat-list-item *ngFor="let carta of cartaLunesList">
 
-                        <h3 matLine>Categoria : Categoria : {{carta.categoria}}</h3>
-                        <p matLine>
+                        <p matLine style="font-size: 13px">
                           <span> {{carta.plato}}</span>
                           <span class="demo-2"> --s/ {{carta.precio}} </span>
                         </p>
@@ -101,8 +97,7 @@
                       <h3>Martes</h3>
                         <mat-list-item *ngFor="let carta of cartaMartesList">
 
-                        <h3 matLine>Categoria : {{carta.categoria}}</h3>
-                        <p matLine>
+                        <p matLine style="font-size: 13px">
                           <span> {{carta.plato}}</span>
                           <span class="demo-2"> --s/ {{carta.precio}} </span>
                         </p>
@@ -112,13 +107,12 @@
 
                 </div>
 
-                <div fxLayout="column" fxLayout.xs="column">
+                <div fxLayout="column"  fxLayout.xs="column">
                     <mat-list>
                         <h3>Miercoles</h3>
                           <mat-list-item *ngFor="let carta of cartaMiercolesList">
 
-                          <h3 matLine>Categoria : {{carta.categoria}}</h3>
-                          <p matLine>
+                          <p matLine style="font-size: 13px">
                             <span> {{carta.plato}}</span>
                             <span class="demo-2"> --s/ {{carta.precio}} </span>
                           </p>
@@ -129,8 +123,7 @@
                         <h3>Jueves</h3>
                           <mat-list-item *ngFor="let carta of cartaJuevesList">
 
-                          <h3 matLine>Categoria : {{carta.categoria}}</h3>
-                          <p matLine>
+                          <p matLine style="font-size: 13px">
                             <span> {{carta.plato}}</span>
                             <span class="demo-2"> --s/ {{carta.precio}} </span>
                           </p>
@@ -145,8 +138,7 @@
                           <h3>Viernes</h3>
                             <mat-list-item *ngFor="let carta of cartaViernesList">
 
-                            <h3 matLine>Categoria : {{carta.categoria}}</h3>
-                            <p matLine>
+                            <p matLine style="font-size: 13px">
                               <span> {{carta.plato}}</span>
                               <span class="demo-2"> --s/ {{carta.precio}} </span>
                             </p>
@@ -157,8 +149,7 @@
                           <h3>Sabado</h3>
                             <mat-list-item *ngFor="let carta of cartaSabadoList">
 
-                            <h3 matLine>Categoria : {{carta.categoria}}</h3>
-                            <p matLine>
+                            <p matLine style="font-size: 13px">
                               <span> {{carta.plato}}</span>
                               <span class="demo-2"> --s/ {{carta.precio}} </span>
                             </p>
@@ -173,8 +164,8 @@
                             <h3>Domingo</h3>
                               <mat-list-item *ngFor="let carta of cartaDomingoList">
 
-                              <h3 matLine>Categoria : {{carta.categoria}}</h3>
-                              <p matLine>
+
+                              <p matLine style="font-size: 13px">
                                 <span> {{carta.plato}}</span>
                                 <span class="demo-2"> --s/ {{carta.precio}} </span>
                               </p>
@@ -193,4 +184,7 @@
 
 
     </div>
+
+
+
   </div>

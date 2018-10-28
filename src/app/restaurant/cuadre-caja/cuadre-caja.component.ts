@@ -47,8 +47,30 @@ export class CuadreCajaComponent implements OnInit {
   total: number;
   message = 'Ingresar Saldo Inicial';
   action = 'Finalizar';
+  mostrarSaldoInicial: boolean;
 
   ngOnInit() {
+    this.mostrarSaldoInicial = false;
+    const date = new Date();
+    const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
+    const cuadreCajaFuncion = this.cuadreCajaService.getDataRequest(fecha);
+    cuadreCajaFuncion.snapshotChanges().subscribe(item => {
+      this.cuadreCajaList = [];
+      item.forEach(_element => {
+        const y = _element.payload.toJSON();
+        y['$key'] = _element.key;
+        this.cuadreCajaList.push(y as CuadreCaja);
+
+      });
+      debugger;
+      const tamCuadreList = this.cuadreCajaList.length;
+      if (this.cuadreCajaList.length >= 1 ) {
+        debugger;
+        this.cuadreCajaBD = this.cuadreCajaList[0];
+        this.cuadreCaja = this.cuadreCajaBD;
+        this.mostrarSaldoInicial = true;
+      }
+    });
 
   }
 
@@ -63,17 +85,7 @@ export class CuadreCajaComponent implements OnInit {
     }
     const date = new Date();
     const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
-    const cuadreCajaFuncion = this.cuadreCajaService.getDataRequest(fecha);
-    cuadreCajaFuncion.snapshotChanges().subscribe(item => {
-      this.cuadreCajaList = [];
-      item.forEach(_element => {
-        const y = _element.payload.toJSON();
-        y['$key'] = _element.key;
-        this.cuadreCajaList.push(y as CuadreCaja);
 
-      });
-      debugger;
-      const tamCuadreList = this.cuadreCajaList.length;
       if (this.cuadreCajaList.length >= 1 ) {
         debugger;
         this.cuadreCajaBD = this.cuadreCajaList[0];
@@ -140,7 +152,7 @@ export class CuadreCajaComponent implements OnInit {
         }
     });
     }
-  });
+
 
 
 

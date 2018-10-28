@@ -87,9 +87,11 @@ cursor: default;
   background-color: #327ebd;
   color: white;
   padding: 0 5px;
+  font-size: 20px;
 }
 .input-container {
   padding: 5px 15px 15px 15px;
+
 
 }
 .input-component-holder {
@@ -112,8 +114,8 @@ $navigation-font-size-base: 14px !default;
 $navigation-border-radius: 2px !default;
 
 mat-card {
-  padding: 10px;
-  margin: 10px;
+  padding: 5px;
+  margin: 5px;
   .mat-card-avatar {
     width: 100px;
     height:100px;

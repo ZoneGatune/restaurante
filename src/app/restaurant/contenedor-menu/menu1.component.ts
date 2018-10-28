@@ -93,10 +93,21 @@ export class Menu1Component implements OnInit {
         this.cartaList.push(y as Carta);
       });
       this.entradaList = this.cartaList;
-      this.cartaList = this.cartaList.filter( x => x.codigoDia === '01');
+
+      const d = new Date();
+      const weekday = new Array(7);
+      weekday[0] =  '07';
+      weekday[1] = '01';
+      weekday[2] = '02';
+      weekday[3] = '03';
+      weekday[4] = '04';
+      weekday[5] = '05';
+      weekday[6] = '06';
+
+      const diaSemana = weekday[d.getDay()];
+
+      this.cartaList = this.cartaList.filter( x => x.codigoDia === diaSemana);
       this.cartaList = this.cartaList.filter( x => x.codigoCategoria === '01');
-      this.entradaList = this.entradaList.filter( x => x.codigoCategoria === '10');
-      this.entradaList = this.entradaList.filter( x => x.codigoDia === '01');
     });
 
 

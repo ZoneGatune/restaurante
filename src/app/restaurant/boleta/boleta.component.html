@@ -33,6 +33,13 @@
             </p>
 
             <p>
+              <mat-form-field class="example-full-width">
+                <input matInput name="codigoElectronico" #name="ngModel" [(ngModel)]="boleta.codigoElectronico" placeholder="Numero Visa O mastercard" >
+
+              </mat-form-field>
+            </p>
+
+            <p>
               <button mat-raised-button color="primary" (click)="pagar(menuForm)"   [disabled]="!menuForm.valid">Pagar Consumo</button>
               <!-- <button mat-raised-button color="primary" type="submit" [disabled]="!menuForm.valid">Imprimir</button> -->
 
@@ -80,16 +87,21 @@
 
 
 <div id="print-section" hidden>
-
+  <label> Restaurante Atrid - RUC 999 999 999</label>
+  <br>
+  <label> Direccion : Av. Miguel Grau 732/label></label>
   <table >
-
+    <tr>
+      <th>Plato</th>
+      <th>Precio</th>
+    </tr>
     <tr *ngFor="let menu of arrayVentaList">
       <td>{{menu.plato}}</td>
       <td>{{menu.precio}}</td>
     </tr>
 
 </table>
-
+<br>
 <label> El total es :     S/ {{boleta.total}}</label>
 
 </div>

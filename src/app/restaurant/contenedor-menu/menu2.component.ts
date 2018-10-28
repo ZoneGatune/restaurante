@@ -11,7 +11,7 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
-
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 import { Router } from '@angular/router';
 
@@ -35,7 +35,8 @@ export class Menu2Component implements OnInit {
   constructor(private cartaService: CartaService, private tostr: ToastrService,
     private route: ActivatedRoute,
     private ventaSeleccionadaService: VentaSeleccionadaService,
-    public router: Router) { }
+    public router: Router,
+    private firebase: AngularFireDatabase ) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -56,6 +57,7 @@ export class Menu2Component implements OnInit {
   codigoMesa: string;
   codigoMozo: string;
   mozo: string;
+  ventaListAngular: AngularFireList<any>;
 
   matcher = new MyErrorStateMatcher();
 
@@ -71,10 +73,20 @@ export class Menu2Component implements OnInit {
         this.cartaList.push(y as Carta);
       });
       this.entradaList = this.cartaList;
-      this.cartaList = this.cartaList.filter( x => x.codigoDia === '01');
+      const d = new Date();
+      const weekday = new Array(7);
+      weekday[0] =  '07';
+      weekday[1] = '01';
+      weekday[2] = '02';
+      weekday[3] = '03';
+      weekday[4] = '04';
+      weekday[5] = '05';
+      weekday[6] = '06';
+
+      const diaSemana = weekday[d.getDay()];
+
+      this.cartaList = this.cartaList.filter( x => x.codigoDia === diaSemana);
       this.cartaList = this.cartaList.filter( x => x.codigoCategoria === '04');
-      this.entradaList = this.entradaList.filter( x => x.codigoCategoria === '10');
-      this.entradaList = this.entradaList.filter( x => x.codigoDia === '01');
     });
 
 
@@ -114,16 +126,28 @@ export class Menu2Component implements OnInit {
                     'codigoMozo': this.ventaSeleccionada.codigoMozo } });
   }
 
-  agregarEntrada2(entrada: Carta) {
+  agregarEntrada(entrada: Carta) {
     debugger;
 
-    // this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
+    //this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
     debugger;
     if (this.ventaSeleccionada) {
       this.cartaSeleccionada = entrada;
-      // agregando solo la carta.
+
+      //agregando solo la carta.
+
+      const currentTime = new Date();
+      const year = currentTime.getFullYear();
+      const month = currentTime.getMonth();
+      const day = currentTime.getDate();
+
+      const hours = currentTime.getHours();
+      const minutes = currentTime.getMinutes();
+      const seconds = currentTime.getSeconds();
+      const miliseconds = currentTime.getMilliseconds();
+
       this.carta1 = new  Carta1();
-      this.carta1.key = entrada.$key;
+      this.carta1.key = entrada.$key + year + month + day + hours + minutes + seconds + miliseconds;
       this.carta1.categoria = entrada.categoria;
       this.carta1.codigoCategoria = entrada.codigoCategoria;
       this.carta1.codigoMenu = entrada.codigoMenu;
@@ -138,22 +162,41 @@ export class Menu2Component implements OnInit {
       const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
-
     }
+    debugger;
+
+    this.tostr.success('Submitted Succcessfully', 'Usted añadio platos');
+    debugger;
+
   }
 
-  grabarMenu2() {
+  updateVentaAngular(ventaKey: string, venta: VentaSeleccionada) {
+    debugger;
+    this.ventaListAngular = this.firebase.list('ventas');
+    debugger;
+    //const list = this.firebase.object(`https://restaurante1-6523c.firebaseio.com/ventas/` + ventaKey).set(venta);
 
-      this.ventaSeleccionadaService.updateVenta(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+    this.ventaListAngular.update(ventaKey,
+      {
+        id: venta.id,
+        estado: venta.estado,
+        fecha: venta.fecha,
+        cartaList: venta.cartaList
+      });
+  }
 
-      debugger;
-      this.router.navigate(['/auth/restaurant/listaMenu'], {
-        queryParams: {'ventaKey': this.ventaSeleccionada.$key,
-                      'codigoMesa': this.ventaSeleccionada.codigoMesa,
-                      'mesa': this.ventaSeleccionada.mesa,
-                      'mozo': this.ventaSeleccionada.mozo,
-                      'codigoMozo': this.ventaSeleccionada.codigoMozo } });
-    }
+  grabarMenu() {
+
+    this.updateVentaAngular(this.ventaSeleccionada.$key, this.ventaSeleccionada);
+
+    debugger;
+    this.router.navigate(['/auth/restaurant/listaMenu'], {
+      queryParams: {'ventaKey': this.ventaSeleccionada.$key,
+                    'codigoMesa': this.ventaSeleccionada.codigoMesa,
+                    'mesa': this.ventaSeleccionada.mesa,
+                    'mozo': this.ventaSeleccionada.mozo,
+                    'codigoMozo': this.ventaSeleccionada.codigoMozo } });
+  }
 
 
 
