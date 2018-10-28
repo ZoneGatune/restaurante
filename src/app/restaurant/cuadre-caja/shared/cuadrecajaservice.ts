@@ -1,8 +1,8 @@
-import { CuadreCaja } from './cuadre-caja.model';
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { CuadreCaja } from './cuadreCaja.model';
 
 @Injectable()
 export class CuadreCajaService {
