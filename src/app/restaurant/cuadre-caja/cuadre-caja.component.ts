@@ -1,4 +1,4 @@
-import { CuadreCajaService } from './shared/cuadrecajaservice';
+import { CuadreCajaService } from './shared/cuadreCajaService';
 import { element } from 'protractor';
 import { BoletaFinal } from './../boleta/shared/boletaFinal.model';
 import { BoletaService } from './../boleta/shared/boletaservice';
