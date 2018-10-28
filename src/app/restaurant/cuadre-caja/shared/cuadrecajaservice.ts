@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { CuadreCaja } from './cuadreCaja.model';
 @Injectable()
-export class CuadreCajaService {
+export class CuadreCajaService   {
   cuadreCajaList: AngularFireList<any>;
   cuadreCaja: CuadreCaja = new CuadreCaja();
   constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) {
