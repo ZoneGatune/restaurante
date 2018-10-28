@@ -3,8 +3,8 @@ import { Carta1 } from '../../carta/shared/carta1.model';
 
 export class CuadreCaja {
   $key: string;
-  valorInicial: number;
+  saldoInicial: number;
   fecha: string;
   fechaHora: string;
-  valorFinal: string;
+  saldoFinal: number;
 }

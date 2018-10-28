@@ -3,7 +3,6 @@ import { element } from 'protractor';
 import { BoletaFinal } from './../boleta/shared/boletaFinal.model';
 import { BoletaService } from './../boleta/shared/boletaservice';
 import { Boleta } from './../boleta/shared/boleta.model';
-import { CuadreCaja } from './shared/cuadre-caja.model';
 import { MenuService } from './../plato/shared/menuservice';
 import { Menu } from './../plato/shared/menu.model';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material';
 import { ReturnStatement } from '@angular/compiler';
+import { CuadreCaja } from './shared/cuadreCaja.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
