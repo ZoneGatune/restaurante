@@ -1,3 +1,4 @@
+import { CajaService } from './cuadre-caja/shared/cajaservice';
 import { CuadreCajaComponent } from './cuadre-caja/cuadre-caja.component';
 import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
 import { GaseosaComponent } from './gaseosa/gaseosa.component';
@@ -139,7 +140,8 @@ import {DatePipe} from '@angular/common';
         RankingPolloComponent,
         GaseosaComponent,
         MenuGaseosaComponent,
-        CuadreCajaComponent
+        CuadreCajaComponent,
+        CajaService
 
     ],
     exports: [
