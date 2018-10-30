@@ -1,4 +1,4 @@
-import { CuadreCajaService } from './shared/cuadreCajaService';
+import { CajaService } from './shared/cajaservice';
 import { element } from 'protractor';
 import { BoletaFinal } from './../boleta/shared/boletaFinal.model';
 import { BoletaService } from './../boleta/shared/boletaservice';
@@ -31,7 +31,7 @@ export class CuadreCajaComponent implements OnInit {
 
   constructor(private menuService: MenuService,
     private datePipe: DatePipe,
-    private cuadreCajaService: CuadreCajaService,
+    private cuadreCajaService: CajaService,
     public snackBar: MatSnackBar,
     private boletaService: BoletaService, private tostr: ToastrService) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];

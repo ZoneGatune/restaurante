@@ -1,4 +1,3 @@
-import { CuadreCajaService } from './cuadre-caja/shared/cuadreCajaService';
 import { CuadreCajaComponent } from './cuadre-caja/cuadre-caja.component';
 import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
 import { GaseosaComponent } from './gaseosa/gaseosa.component';
@@ -156,8 +155,7 @@ import {DatePipe} from '@angular/common';
       VentaSeleccionadaService,
       BoletaService,
       CierreCajaService,
-      DatePipe,
-      CuadreCajaService
+      DatePipe
     ]
 })
 export class RestaurantModule {
