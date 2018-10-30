@@ -140,8 +140,8 @@ import {DatePipe} from '@angular/common';
         RankingPolloComponent,
         GaseosaComponent,
         MenuGaseosaComponent,
-        CuadreCajaComponent,
-        CajaService
+        CuadreCajaComponent
+
 
     ],
     exports: [
@@ -157,7 +157,8 @@ import {DatePipe} from '@angular/common';
       VentaSeleccionadaService,
       BoletaService,
       CierreCajaService,
-      DatePipe
+      DatePipe,
+      CajaService
     ]
 })
 export class RestaurantModule {
