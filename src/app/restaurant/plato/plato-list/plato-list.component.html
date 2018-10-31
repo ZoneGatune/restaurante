@@ -5,6 +5,13 @@
 			<h1 class="mat-headline center-align" >Lista de Platos</h1>
 		</mat-toolbar>
 		<div class="table-container">
+        <div fxLayout="row">
+            <input matInput name="nombreBuscar" [(ngModel)]="nombreBuscar" placeholder="Filtrar por Nombre"
+            >
+            <button mat-raised-button color="primary"  (click)="buscar()" >Filtrar</button>
+
+            <button mat-raised-button color="primary"  (click)="limpiarFiltro()" >Deshacer</button>
+          </div>
 
 		<table >
 

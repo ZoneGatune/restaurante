@@ -56,7 +56,10 @@ export class PlatoCrudComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   categoriaList: Categoria[];
   menuListObj: Menu[];
+  nombreBuscar: string;
+
   ngOnInit() {
+    this.nombreBuscar = '';
     this.resetForm();
 
     var x = this.categoriaService.getData();
@@ -128,6 +131,37 @@ export class PlatoCrudComponent implements OnInit {
     debugger;
     this.resetForm(menuForm);
     this.tostr.success("Submitted Succcessfully", "Menu Register");
+  }
+
+  cargarLista() {
+    const xMenuObj = this.menuService.getData();
+    if (xMenuObj != null){
+      debugger;
+
+      xMenuObj.snapshotChanges().subscribe(item => {
+        this.menuListObj = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.menuListObj.push(y as Menu);
+        });
+      });
+
+  }
+}
+
+
+  buscar() {
+    this.filtrarResultado(this.nombreBuscar);
+  }
+  limpiarFiltro() {
+   this.cargarLista();
+  }
+
+  filtrarResultado(nombre: string) {
+    debugger;
+    this.menuListObj = this.menuListObj.filter( x => x.nombre.toUpperCase().includes(nombre.toUpperCase()));
+    debugger;
   }
 
   resetForm(menuForm?: NgForm) {

@@ -41,9 +41,11 @@ constructor(private menuService: MenuService, private tostr: ToastrService) { }
   @Output() page = new EventEmitter();
   @Output() sort = new EventEmitter();
   @Output() dup = new EventEmitter();
+  nombreBuscar: string;
 
 
   ngOnInit() {
+    this.nombreBuscar = '';
     var x = this.menuService.getData();
     x.snapshotChanges().subscribe(item => {
       this.menuList = [];
@@ -53,6 +55,33 @@ constructor(private menuService: MenuService, private tostr: ToastrService) { }
         this.menuList.push(y as Menu);
       });
     });
+  }
+
+  cargarLista() {
+    const x = this.menuService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.menuList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.menuList.push(y as Menu);
+      });
+
+    });
+  }
+
+
+  buscar() {
+    this.filtrarResultado(this.nombreBuscar);
+  }
+  limpiarFiltro() {
+   this.cargarLista();
+  }
+
+  filtrarResultado(nombre: string) {
+
+    this.menuList = this.menuList.filter( x => x.nombre.toUpperCase().includes(nombre.toUpperCase()));
+
   }
 
   onEdit(emp: Menu) {

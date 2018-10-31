@@ -28,9 +28,10 @@ export class PostreComponent implements OnInit {
   menuList: Menu[];
   matcher = new MyErrorStateMatcher();
   menu: Menu = new Menu();
+  nombreBuscar: string;
 
   ngOnInit() {
-
+    this.nombreBuscar = '';
     this.resetForm();
     const x = this.menuService.getData();
     x.snapshotChanges().subscribe(item => {
@@ -43,6 +44,33 @@ export class PostreComponent implements OnInit {
       this.menuList = this.menuList.filter( x => x.codigoCategoria === '50');
     });
 
+  }
+
+  cargarLista() {
+    const x = this.menuService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.menuList = [];
+      item.forEach(element => {
+        const y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.menuList.push(y as Menu);
+      });
+      this.menuList = this.menuList.filter( x => x.codigoCategoria === '50');
+    });
+  }
+
+
+  buscar() {
+    this.filtrarResultado(this.nombreBuscar);
+  }
+  limpiarFiltro() {
+   this.cargarLista();
+  }
+
+  filtrarResultado(nombre: string) {
+    debugger;
+    this.menuList = this.menuList.filter( x => x.nombre.toUpperCase().includes(nombre.toUpperCase()));
+    debugger;
   }
 
   onEdit(emp: Menu) {

@@ -36,7 +36,8 @@ export class PlatoComponent implements OnInit {
 	emailFormControls = new FormControl('', [
 		Validators.required,
 		Validators.pattern(EMAIL_REGEX)]);
-	matcher = new MyErrorStateMatcher();
+  matcher = new MyErrorStateMatcher();
+
 
 
 	ngOnInit() {

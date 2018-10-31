@@ -57,6 +57,13 @@
               <mat-toolbar class="table-header">
                 <h1 class="mat-headline center-align" >Lista de Carta Criollos</h1>
               </mat-toolbar>
+              <div fxLayout="row">
+                  <input matInput name="nombreBuscar" [(ngModel)]="nombreBuscar" placeholder="Filtrar por Nombre"
+                  >
+                  <button mat-raised-button color="primary"  (click)="buscar()" >Filtrar</button>
+
+                  <button mat-raised-button color="primary"  (click)="limpiarFiltro()" >Deshacer</button>
+                </div>
               <div class="table-container">
 
               <table >
