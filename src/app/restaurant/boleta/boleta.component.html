@@ -40,6 +40,23 @@
             </p>
 
             <p>
+            <mat-checkbox class="example-margin" [(ngModel)]="esFactura" (click)="convertirFactura()" >Factura</mat-checkbox>
+            </p>
+            <p>
+              <mat-form-field class="example-full-width">
+                <input matInput name="rucCliente" [disabled]="mostrarCamposFactura" #name="ngModel" [(ngModel)]="boleta.rucCliente" placeholder="Ingrese RUC del cliente" >
+
+              </mat-form-field>
+            </p>
+
+            <p>
+              <mat-form-field class="example-full-width">
+                <input matInput name="nombreCliente" [disabled]="mostrarCamposFactura" #name="ngModel" [(ngModel)]="boleta.nombreCliente" placeholder="Ingrese Nombre del cliente" >
+
+              </mat-form-field>
+            </p>
+
+            <p>
               <button mat-raised-button color="primary" (click)="pagar(menuForm)"   [disabled]="!menuForm.valid">Pagar Consumo</button>
               <!-- <button mat-raised-button color="primary" type="submit" [disabled]="!menuForm.valid">Imprimir</button> -->
 
@@ -87,9 +104,13 @@
 
 
 <div id="print-section" hidden>
+  <label>  {{boleta.tipoDocumento}} </label>
+  <br>
   <label> Restaurante Atrid - RUC 20546849679</label>
   <br>
   <label> Av.Nicola de Ayllon N° 377 - Lima</label>
+  <br>
+  <label> Cliente: {{boleta.nombreCliente}} - {{boleta.rucCliente}}</label>
   <table >
     <tr>
       <th>Plato</th>

@@ -9,5 +9,8 @@ export class Boleta {
     mesa: string;
     codigoMesa: string;
     codigoElectronico: string;
+    rucCliente: string;
+    nombreCliente: string;
+    tipoDocumento: string;
 
 }

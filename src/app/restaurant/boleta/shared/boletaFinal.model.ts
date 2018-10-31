@@ -11,5 +11,9 @@ export class BoletaFinal {
     fecha: string;
     fechaHora: string;
     codigoElectronico: string;
+    rucCliente: string;
+    nombreCliente: string;
+    tipoDocumento: string;
+
 
 }

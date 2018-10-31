@@ -64,7 +64,10 @@ export class BoletaService {
         codigoMesa: boleta.codigoMesa,
         codigoElectronico: boleta.codigoElectronico,
         fecha: this.datePipe.transform(date, 'yyyy-MM-dd'),
-        fechaHora: this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss')
+        fechaHora: this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss'),
+        rucCliente: boleta.rucCliente,
+        nombreCliente: boleta.nombreCliente,
+        tipoDocumento: boleta.tipoDocumento
       });
 
   }

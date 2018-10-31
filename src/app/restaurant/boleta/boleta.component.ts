@@ -43,10 +43,13 @@ export class BoletaComponent implements OnInit {
   ventaSeleccionada: VentaSeleccionada = new VentaSeleccionada();
   ventaList: VentaSeleccionada[];
   arrayVentaList = new Array<Carta1>();
+  esFactura: boolean;
+  mostrarCamposFactura: boolean;
   ngOnInit() {
 
     this.resetForm();
-
+    this.esFactura = false;
+    this.mostrarCamposFactura = true;
     this.route.queryParams
     .subscribe(params => {
       console.log(params); // {order: "popular"}
@@ -98,7 +101,17 @@ export class BoletaComponent implements OnInit {
 
 
   }
-
+  convertirFactura() {
+    debugger;
+    this.esFactura;
+    this.mostrarCamposFactura = false;
+    if (this.boleta.rucCliente  === undefined) {
+      this.boleta.tipoDocumento = 'Boleta';
+    } else {
+      this.boleta.tipoDocumento  = 'Factura';
+    }
+    debugger;
+  }
   onEdit(emp: Menu) {
     this.menuService.selectedMenu = Object.assign({}, emp);
   }
@@ -114,7 +127,15 @@ export class BoletaComponent implements OnInit {
   pagar(menuForm: NgForm) {
 
       debugger;
-
+          if (this.boleta.rucCliente  === undefined){
+            this.boleta.rucCliente = '';
+            this.boleta.tipoDocumento = 'Boleta';
+          } else {
+            this.boleta.tipoDocumento  = 'Factura';
+          }
+          if (this.boleta.nombreCliente === undefined) {
+            this.boleta.nombreCliente = '';
+          }
           this.boletaService.insertBoleta(this.boleta);
           debugger;
           this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
