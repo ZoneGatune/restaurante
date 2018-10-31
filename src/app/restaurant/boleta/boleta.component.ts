@@ -96,22 +96,23 @@ export class BoletaComponent implements OnInit {
         this.boleta.venta = this.ventaSeleccionada;
         this.boleta.totalPlatos = i;
         this.boleta.estado = 'activo';
+        this.boleta.tipoDocumento = 'Boleta';
+        this.boleta.rucCliente = '';
+        this.boleta.nombreCliente = '';
 
       });
 
 
   }
   convertirFactura() {
-    debugger;
-    this.esFactura;
-    this.mostrarCamposFactura = false;
-    if (this.boleta.rucCliente  === undefined) {
-      this.boleta.tipoDocumento = 'Boleta';
-    } else {
       this.boleta.tipoDocumento  = 'Factura';
-    }
-    debugger;
+      this.mostrarCamposFactura = false;
   }
+
+  convertirBoleta() {
+    this.boleta.tipoDocumento  = 'Boleta';
+    this.mostrarCamposFactura = true;
+}
   onEdit(emp: Menu) {
     this.menuService.selectedMenu = Object.assign({}, emp);
   }
@@ -126,16 +127,7 @@ export class BoletaComponent implements OnInit {
 
   pagar(menuForm: NgForm) {
 
-      debugger;
-          if (this.boleta.rucCliente  === undefined){
-            this.boleta.rucCliente = '';
-            this.boleta.tipoDocumento = 'Boleta';
-          } else {
-            this.boleta.tipoDocumento  = 'Factura';
-          }
-          if (this.boleta.nombreCliente === undefined) {
-            this.boleta.nombreCliente = '';
-          }
+
           this.boletaService.insertBoleta(this.boleta);
           debugger;
           this.ventaService.deleteVenta(this.ventaSeleccionada.$key);
