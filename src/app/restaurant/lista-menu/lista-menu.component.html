@@ -10,7 +10,10 @@
 
 
 				<h3 class="mat-title" fxFlex>{{categoria.name}}</h3>
-				<p class="mat-body-2"  fxFlex>{{categoria.description}}</p>
+        <p class="mat-body-2"  fxFlex>{{categoria.description}}</p>
+        <button mat-icon-button (click)="sidenav.toggle();" *ngIf="!matDrawerShow">
+            <i class="material-icons app-toolbar-menu">menu </i>
+        </button>
 
 
 			</div>
@@ -85,7 +88,6 @@
 </div>
 
 <div id="print-section" hidden>
-  // your html stuff that you want to print
   <table >
 
     <tr *ngFor="let menu of mostrarVentaList">

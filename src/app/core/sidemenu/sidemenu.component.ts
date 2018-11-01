@@ -30,6 +30,17 @@ export class SidemenuComponent implements OnInit {
          this.menus = menuMozo;
        }
        debugger;
+       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+       if(currentUser !== undefined){
+         debugger;
+        if (currentUser.control  === 'admin'){
+          this.menus = menus;
+        } else {
+          this.menus = menuMozo;
+        }
+       }
+
+       debugger;
     });
   }
 

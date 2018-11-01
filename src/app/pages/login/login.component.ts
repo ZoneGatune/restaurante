@@ -98,6 +98,8 @@ export class LoginComponent implements OnInit {
     this.usuario = this.usuarioList.find( x => x.username === this.username);
     if (this.usuario != null) {
       if (this.usuario.clave === this.clave) {
+        localStorage.setItem('currentUser', JSON.stringify({ 'control' : this.usuario.username }));
+
         this.router.navigate(['auth/restaurant/loginMozo'],{
           queryParams: { 'control': this.usuario.username } });
 
