@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { menus } from './menu-element';
+import { menuMozo } from './menu-element-mozo';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'cdk-sidemenu',
@@ -9,11 +13,24 @@ import { menus } from './menu-element';
 export class SidemenuComponent implements OnInit {
 
     @Input() iconOnly:boolean = false;
-    public menus = menus;
+    public menus = null;
 
-    constructor() { }
+    constructor(public router: Router,
+      private route: ActivatedRoute ) { }
 
     ngOnInit() {
-    }
+
+      this.route.queryParams
+      .subscribe(params => {
+        debugger;
+       const control = params['control'];
+       if (control === 'admin'){
+         this.menus = menus;
+       } else {
+         this.menus = menuMozo;
+       }
+       debugger;
+    });
+  }
 
 }

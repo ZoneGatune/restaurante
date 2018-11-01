@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
-import { RouterModule, Routes } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +19,6 @@ const appRoutes: Routes = [
     MatButtonModule,
     RouterModule.forChild(appRoutes),
   ],
-  declarations: [LoginComponent]
+  declarations: []
 })
 export class LoginModule { }

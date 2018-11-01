@@ -1,3 +1,4 @@
+
 import { CuadreCajaComponent } from './cuadre-caja/cuadre-caja.component';
 import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
 import { GaseosaComponent } from './gaseosa/gaseosa.component';
@@ -33,6 +34,8 @@ import { CartaMarinaComponent } from './carta-marina/carta-marina.component';
 import { MenuCartaMarinoComponent } from './contenedor-menu/menu-carta-marino.component';
 import { MenuEntradaComponent } from './contenedor-menu/menu-entrada.component';
 import { VentaComponent } from './venta/venta.component';
+import { LoginComponent } from '../pages/login/login.component';
+import { LoginPrincipalComponent } from './loginPrincipal/login-secure.component';
 
 const pagesRoutes: Routes = [
     { path: 'mesa', component: MesaComponent , data: { animation: 'mesa' } },
@@ -68,6 +71,8 @@ const pagesRoutes: Routes = [
     { path: 'gaseosa', component: GaseosaComponent , data: { animation: 'gaseosa' } },
     { path: 'menuGaseosa', component: MenuGaseosaComponent , data: { animation: 'menuGaseosa' } },
     { path: 'cuadreCaja', component: CuadreCajaComponent , data: { animation: 'cuadreCaja' } },
+    { path: 'loginSecure', component: LoginPrincipalComponent , data: { animation: 'loginSecure' } },
+
 
 
 

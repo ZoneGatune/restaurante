@@ -1,14 +1,20 @@
+import { Usuario } from './../../restaurant/loginPrincipal/shared/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 // import { AuthService } from '../../core/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UsuarioPageService } from './shared/usuarioservice';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  usuarioList: Usuario[];
+  usuario: Usuario = new Usuario();
+  username: string;
+  clave: string;
   userForm: FormGroup;
   formErrors = {
     'email': '',
@@ -28,11 +34,24 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private usuarioService: UsuarioPageService,
+              public snackBar: MatSnackBar) {
+
   }
 
   ngOnInit() {
     this.buildForm();
+    const x = this.usuarioService.getData();
+      x.snapshotChanges().subscribe(item => {
+        this.usuarioList = [];
+        item.forEach(element => {
+          const y = element.payload.toJSON();
+          //y['$key'] = element.key;
+          this.usuarioList.push(y as Usuario);
+
+        });
+      });
   }
 
   buildForm() {
@@ -75,7 +94,25 @@ export class LoginComponent implements OnInit {
     // }
   }
   login() {
-    this.router.navigate(['/']);
+    debugger;
+    this.usuario = this.usuarioList.find( x => x.username === this.username);
+    if (this.usuario != null) {
+      if (this.usuario.clave === this.clave) {
+        this.router.navigate(['auth/restaurant/loginMozo'],{
+          queryParams: { 'control': this.usuario.username } });
+
+      } else {
+        this.snackBar.open('Usuario no existe', 'Finalizar', {
+          duration: 2000,
+        });
+        return;
+      }
+    } else {
+      this.snackBar.open('Usuario no existe', 'Finalizar', {
+        duration: 2000,
+      });
+      return;
+    }
   }
 }
 
