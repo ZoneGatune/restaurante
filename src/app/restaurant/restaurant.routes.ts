@@ -1,3 +1,5 @@
+import { MenuBarbanComponent } from './contenedor-menu/menu-barban.component';
+import { BarbanComponent } from './barban/barban.component';
 
 import { CuadreCajaComponent } from './cuadre-caja/cuadre-caja.component';
 import { MenuGaseosaComponent } from './contenedor-menu/menu-gaseosa.component';
@@ -26,6 +28,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CartaComponent } from './carta/carta.component';
 import { Menu1Component } from './contenedor-menu/menu1.component';
 import { Menu2Component } from './contenedor-menu/menu2.component';
+import { Menu3Component } from './contenedor-menu/menu3.component';
 import { LoginMozoComponent } from './login-mozo/login-mozo.component';
 import { BebidaComponent } from './bebida/bebida.component';
 import { PolloBrasaComponent } from './pollo-brasa/pollo-brasa.component';
@@ -72,6 +75,9 @@ const pagesRoutes: Routes = [
     { path: 'menuGaseosa', component: MenuGaseosaComponent , data: { animation: 'menuGaseosa' } },
     { path: 'cuadreCaja', component: CuadreCajaComponent , data: { animation: 'cuadreCaja' } },
     { path: 'loginSecure', component: LoginPrincipalComponent , data: { animation: 'loginSecure' } },
+    { path: 'menu3', component: Menu3Component , data: { animation: 'menu3' } },
+    { path: 'barban', component: BarbanComponent , data: { animation: 'barban' } },
+    { path: 'menuBarban', component: MenuBarbanComponent , data: { animation: 'menuBarban' } },
 
 
 

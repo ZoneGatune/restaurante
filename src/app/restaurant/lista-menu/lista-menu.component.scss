@@ -7,7 +7,7 @@
   }
   h3 {
       margin: 0;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       text-align: center;
   }
   p {
@@ -18,15 +18,19 @@
           border-top-color: white;
   }
 
+
 }
+
+
 .service-card-content{
   .service-card-container {
-      padding: 5px;
+      padding: 2px;
       .service-card {
           transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
           cursor: default;
+          display: flex;
           background-color: white;
-          padding: 5px;
+          padding: 2px;
           img {
               height: 100px;
           }
@@ -41,6 +45,7 @@
               transform: translate(0, -8px);
               box-shadow: 0 20px 20px rgba(0, 0, 0, .16)
         }
+
       }
   }
 }

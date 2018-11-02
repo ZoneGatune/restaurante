@@ -1,3 +1,6 @@
+import { MenuBarbanComponent } from './contenedor-menu/menu-barban.component';
+import { BarbanComponent } from './barban/barban.component';
+import { Menu3Component } from './contenedor-menu/menu3.component';
 
 import { CajaService } from './cuadre-caja/shared/cajaservice';
 import { CuadreCajaComponent } from './cuadre-caja/cuadre-caja.component';
@@ -145,9 +148,10 @@ import { LoginPrincipalComponent } from './loginPrincipal/login-secure.component
         GaseosaComponent,
         MenuGaseosaComponent,
         CuadreCajaComponent,
-        LoginPrincipalComponent
-
-
+        LoginPrincipalComponent,
+        Menu3Component,
+        BarbanComponent,
+        MenuBarbanComponent
     ],
     exports: [
     ],

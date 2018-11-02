@@ -78,7 +78,15 @@ export const menus = [
       'icon': 'indeterminate_check_box',
       'chip': false,
       'open': false,
-    }]},
+    },
+    {
+      'name': 'Barban',
+      'link': 'restaurant/barban',
+      'icon': 'indeterminate_check_box',
+      'chip': false,
+      'open': false,
+    }
+  ]},
   {'name': 'Mantenimiento Entradas',
   'icon': 'widgets',
   'link': false,

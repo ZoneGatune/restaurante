@@ -74,7 +74,7 @@ export class ListaMenuComponent implements OnInit {
   CartaList: Carta[];
   ventaList: VentaSeleccionada[];
   categorias = new Array<Categoria>();   // Use any array supports different kind objects
-
+  categoriasMenu = new Array<Categoria>();
   selectedValue;
   showMultiListCode = false;
   value = 'Clear me';
@@ -92,25 +92,33 @@ export class ListaMenuComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
+  loadCategoriasMenu() {
+    this.categoriasMenu.push({'id': '100', 'name': 'Entradas o Adicionales', 'description': ''});
+    this.categoriasMenu.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
+    this.categoriasMenu.push({'id': '11', 'name': 'Menu s/ 10', 'description': 'Incluye Entrada'});
+    this.categoriasMenu.push({'id': '04', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
+    this.categoriasMenu.push({'id': '07', 'name': 'Menú Marino', 'description': ''});
+
+  }
+
   loadCategorias() {
-    this.categorias.push({'id': '100', 'name': 'Entradas o Adicionales', 'description': ''});
-    this.categorias.push({'id': '01', 'name': 'Menú Criollo s/ 9', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '04', 'name': 'Menu Ejecutivo s/ 12', 'description': 'Incluye Entrada'});
-    this.categorias.push({'id': '07', 'name': 'Menú Marino', 'description': ''});
     this.categorias.push({'id': '20', 'name': 'Carta Criolla', 'description': ''});
     this.categorias.push({'id': '60', 'name': 'Carta Marina', 'description': ''});
-
     this.categorias.push({'id': '30', 'name': 'Pollos a la Brasa', 'description': ''});
     this.categorias.push({'id': '80', 'name': 'Parrillas', 'description': ''});
     this.categorias.push({'id': '25', 'name': 'Bebidas', 'description': ''});
     this.categorias.push({'id': '26', 'name': 'Gaseosas', 'description': ''});
     this.categorias.push({'id': '50', 'name': 'Postres', 'description': ''});
+    this.categorias.push({'id': '31', 'name': 'Barban', 'description': ''});
+
+
+
  }
 
   ngOnInit() {
     debugger;
     this.loadCategorias();
-
+    this.loadCategoriasMenu();
 
     this.route.queryParams
     .subscribe(params => {
@@ -236,6 +244,22 @@ debugger;
     }
     if (categoria.id === '26') {
       this.router.navigate(['/auth/restaurant/menuGaseosa'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '11') {
+      this.router.navigate(['/auth/restaurant/menu3'], {
+        queryParams: {'ventaKey': this.ventaKey,
+                      'codigoMesa': this.codigoMesa,
+                      'mesa': this.mesa,
+                      'mozo': this.mozo,
+                      'codigoMozo': this.codigoMozo } });
+    }
+    if (categoria.id === '31') {
+      this.router.navigate(['/auth/restaurant/menuBarban'], {
         queryParams: {'ventaKey': this.ventaKey,
                       'codigoMesa': this.codigoMesa,
                       'mesa': this.mesa,
