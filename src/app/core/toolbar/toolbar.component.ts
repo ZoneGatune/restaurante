@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ToolbarHelpers } from './toolbar.helpers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cdk-toolbar',
@@ -15,9 +16,13 @@ export class ToolbarComponent implements OnInit {
   
 	searchOpen: boolean = false;
     toolbarHelpers = ToolbarHelpers;
-  	constructor() { }
+  	constructor(private router: Router) { }
 
   	ngOnInit() {
   	}
 
+		cerrarSesion(){
+			this.router.navigate(['/'],{
+				queryParams: { 'control': '' } });
+		}
 }
