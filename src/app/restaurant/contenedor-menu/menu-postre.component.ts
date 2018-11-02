@@ -12,7 +12,7 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { MenuService } from '../plato/shared/menuservice';
 
@@ -35,7 +35,8 @@ export class MenuPostreComponent implements OnInit {
   constructor(private menuService: MenuService, private tostr: ToastrService,
     private route: ActivatedRoute,
     private ventaSeleccionadaService: VentaSeleccionadaService,
-    public router: Router) { }
+    public router: Router,
+    public snackBar: MatSnackBar) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -95,7 +96,6 @@ export class MenuPostreComponent implements OnInit {
   }
 
   agregarEntrada(entrada: Menu) {
-    debugger;
     if (this.ventaSeleccionada) {
       this.menuSeleccionado = entrada;
       // agregando solo la carta.
@@ -103,7 +103,6 @@ export class MenuPostreComponent implements OnInit {
       this.carta1.key = entrada.$key;
       this.carta1.categoria = entrada.categoria;
       this.carta1.codigoCategoria = entrada.codigoCategoria;
-      debugger;
       if (entrada.codigoMenu === undefined) {
         this.carta1.codigoMenu = 0;
       } else {
@@ -119,6 +118,9 @@ export class MenuPostreComponent implements OnInit {
       const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
+      this.snackBar.open('Se añadio el plato : ' + this.carta1.plato, 'Gracias', {
+        duration: 2000,
+      });
     }
   }
 

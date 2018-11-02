@@ -12,7 +12,7 @@ import { Carta } from '../carta/shared/carta.model';
 import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { MenuService } from '../plato/shared/menuservice';
 
@@ -35,7 +35,8 @@ export class MenuEntradaComponent implements OnInit {
   constructor(private menuService: MenuService, private tostr: ToastrService,
     private route: ActivatedRoute,
     private ventaSeleccionadaService: VentaSeleccionadaService,
-    public router: Router) { }
+    public router: Router,
+    public snackBar: MatSnackBar) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -128,6 +129,12 @@ export class MenuEntradaComponent implements OnInit {
       const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
+
+      this.snackBar.open('Se añadio el plato : ' + this.carta1.plato, 'Gracias', {
+        duration: 2000,
+      });
+
+
     }
   }
 

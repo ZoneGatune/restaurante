@@ -12,7 +12,7 @@ import { Categoria } from '../carta/shared/categoria.model';
 import { CartaSeleccionada } from './shared/cartaSeleccionada.model';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -36,7 +36,8 @@ export class Menu2Component implements OnInit {
     private route: ActivatedRoute,
     private ventaSeleccionadaService: VentaSeleccionadaService,
     public router: Router,
-    private firebase: AngularFireDatabase ) { }
+    private firebase: AngularFireDatabase,
+    public snackBar: MatSnackBar ) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
@@ -127,10 +128,10 @@ export class Menu2Component implements OnInit {
   }
 
   agregarEntrada(entrada: Carta) {
-    debugger;
+
 
     //this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
-    debugger;
+
     if (this.ventaSeleccionada) {
       this.cartaSeleccionada = entrada;
 
@@ -155,7 +156,7 @@ export class Menu2Component implements OnInit {
       this.carta1.plato = entrada.plato;
       this.carta1.precio = entrada.precio;
       this.cartaSeleccionadas.push(this.carta1);
-      debugger;
+
       if (this.ventaSeleccionada.cartaList === undefined) {
         this.ventaSeleccionada.cartaList = new Array<Carta1>();
       }
@@ -163,19 +164,15 @@ export class Menu2Component implements OnInit {
       peopleArray.push(this.carta1);
       this.ventaSeleccionada.cartaList = peopleArray;
     }
-    debugger;
 
-    this.tostr.success('Submitted Succcessfully', 'Usted añadio platos');
-    debugger;
+    this.snackBar.open('Se añadio el plato : ' + this.carta1.plato, 'Gracias', {
+      duration: 2000,
+    });
 
   }
 
   updateVentaAngular(ventaKey: string, venta: VentaSeleccionada) {
-    debugger;
     this.ventaListAngular = this.firebase.list('ventas');
-    debugger;
-    //const list = this.firebase.object(`https://restaurante1-6523c.firebaseio.com/ventas/` + ventaKey).set(venta);
-
     this.ventaListAngular.update(ventaKey,
       {
         id: venta.id,
@@ -186,10 +183,7 @@ export class Menu2Component implements OnInit {
   }
 
   grabarMenu() {
-
     this.updateVentaAngular(this.ventaSeleccionada.$key, this.ventaSeleccionada);
-
-    debugger;
     this.router.navigate(['/auth/restaurant/listaMenu'], {
       queryParams: {'ventaKey': this.ventaSeleccionada.$key,
                     'codigoMesa': this.ventaSeleccionada.codigoMesa,
@@ -201,9 +195,9 @@ export class Menu2Component implements OnInit {
 
 
   eliminarEntrada(entrada: Carta) {
-    debugger;
+
     this.cartaSeleccionada = entrada;
-    debugger;
+
   }
 
 }
