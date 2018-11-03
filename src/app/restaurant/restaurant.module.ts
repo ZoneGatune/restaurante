@@ -79,8 +79,9 @@ import { VentaComponent } from './venta/venta.component';
 import {DatePipe} from '@angular/common';
 import { UsuarioService } from './loginPrincipal/shared/usuarioservice';
 import { LoginPrincipalComponent } from './loginPrincipal/login-secure.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-
+import { MatNativeDateModule } from '@angular/material';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { LoginPrincipalComponent } from './loginPrincipal/login-secure.component
         MatChipsModule,
         CoreModule,
         RestaurantRouterModule,
+        MatNativeDateModule,
         FormsModule,
         MatMenuModule,
         MatProgressBarModule,
@@ -108,7 +110,8 @@ import { LoginPrincipalComponent } from './loginPrincipal/login-secure.component
         MatTooltipModule,
         MatSortModule,
         MatSelectModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDatepickerModule
        ],
     declarations: [
         MesaComponent,

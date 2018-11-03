@@ -44,6 +44,8 @@ export class RankingPolloComponent implements OnInit {
   poll7Cant: number;
   poll8Cant: number;
   poll9Cant: number;
+  fechaEscogida: string;
+  fechaMostrar: string;
 
   selectedValue;
   showMultiListCode = false;
@@ -58,7 +60,7 @@ export class RankingPolloComponent implements OnInit {
     matcher = new MyErrorStateMatcher();
 
 
-    ngOnInit() {
+    private buscarRanking(fecha: string) {
       this.rankPolloList = [];
       this.poll1Cant = 0;
       this.poll2Cant = 0;
@@ -69,9 +71,7 @@ export class RankingPolloComponent implements OnInit {
       this.poll7Cant = 0;
       this.poll8Cant = 0;
       this.poll9Cant = 0;
-      const date = new Date();
 
-      const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
       const x = this.boletaService.getDataRequest(fecha);
       x.snapshotChanges().subscribe(item => {
         this.boletaList = [];
@@ -172,5 +172,25 @@ export class RankingPolloComponent implements OnInit {
 
     console.log(this.poll1Cant);
 
+    }
+
+    ngOnInit() {
+
+      const date = new Date();
+
+      const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
+      this.buscarRanking(fecha);
+      this.fechaMostrar = this.datePipe.transform(date, 'yyyy-MM-dd');
+
   }
+
+  verFecha() {
+    debugger;
+    this.fechaEscogida;
+    const fecha = this.datePipe.transform(this.fechaEscogida, 'yyyy_MM_dd');
+    this.fechaMostrar = this.datePipe.transform(this.fechaEscogida, 'yyyy-MM-dd');
+    this.buscarRanking(fecha);
+    debugger;
+  }
+
 }
