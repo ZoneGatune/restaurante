@@ -48,11 +48,11 @@ export class CuadreCajaComponent implements OnInit {
   message = 'Ingresar Saldo Inicial';
   action = 'Finalizar';
   mostrarSaldoInicial: boolean;
+  fechaEscogida: string;
+  fechaMostrar: string;
 
-  ngOnInit() {
-    this.mostrarSaldoInicial = false;
-    const date = new Date();
-    const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
+
+  private buscarCuadre(fecha: string) {
     const cuadreCajaFuncion = this.cuadreCajaService.getDataRequest(fecha);
     cuadreCajaFuncion.snapshotChanges().subscribe(item => {
       this.cuadreCajaList = [];
@@ -71,7 +71,23 @@ export class CuadreCajaComponent implements OnInit {
         this.mostrarSaldoInicial = true;
       }
     });
+  }
 
+  ngOnInit() {
+    this.mostrarSaldoInicial = false;
+    const date = new Date();
+    const fecha = this.datePipe.transform(date, 'yyyy_MM_dd');
+    this.buscarCuadre(fecha);
+
+  }
+
+  verFecha() {
+    debugger;
+    this.fechaEscogida;
+    const fecha = this.datePipe.transform(this.fechaEscogida, 'yyyy_MM_dd');
+    this.fechaMostrar = this.datePipe.transform(this.fechaEscogida, 'yyyy-MM-dd');
+    this.buscarCuadre(fecha);
+    debugger;
   }
 
   generarCuadre() {
