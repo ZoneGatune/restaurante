@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BoletaService } from '../boleta/shared/boletaservice';
 import { Boleta } from '../boleta/shared/boleta.model';
 import { MesaCrudService } from '../mesa-crud/shared/mesaCrudService';
+import { DatePipe } from '@angular/common';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,11 +26,14 @@ export class VentaComponent implements OnInit {
 
   constructor(private mesaCrudService: MesaCrudService,
     private boletaService: BoletaService,
-     private tostr: ToastrService) { }
+     private tostr: ToastrService,
+     private datePipe: DatePipe) { }
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
   showResponsiveTableCode;
   boletaList: Boleta[];
+  fechaEscogida: string;
+  fechaMostrar: string;
 
   selectedValue;
   showMultiListCode = false;
@@ -43,10 +47,8 @@ export class VentaComponent implements OnInit {
     Validators.pattern(EMAIL_REGEX)]);
     matcher = new MyErrorStateMatcher();
 
-
-    ngOnInit() {
-
-      const x = this.boletaService.getData();
+    buscarXFecha(fecha: string) {
+      const x = this.boletaService.getDataRequest(fecha);
       x.snapshotChanges().subscribe(item => {
         this.boletaList = [];
         item.forEach(element => {
@@ -55,6 +57,20 @@ export class VentaComponent implements OnInit {
           this.boletaList.push(y as Boleta);
         });
     });
+    }
 
+    ngOnInit() {
+
+      const fecha = this.datePipe.transform(new Date() , 'yyyy_MM_dd');
+      this.buscarXFecha(fecha);
+      this.fechaMostrar = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+
+
+  }
+
+  verFecha() {
+    const fecha = this.datePipe.transform(this.fechaEscogida, 'yyyy_MM_dd');
+    this.fechaMostrar = this.datePipe.transform(this.fechaEscogida, 'yyyy-MM-dd');
+    this.buscarXFecha(fecha);
   }
 }

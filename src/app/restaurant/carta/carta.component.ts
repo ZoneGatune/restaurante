@@ -26,7 +26,24 @@ export class CartaComponent implements OnInit {
 
   dias = new Array<Dia>();   // Use any array supports different kind objects
   categorias = new Array<Categoria>();   // Use any array supports different kind objects
-
+  carta: Carta = new Carta();
+  diaObj: Dia = new Dia();
+  categoriaObj: Categoria = new Categoria();
+  menuObj: Menu = new Menu();
+  displayedColumns = ['userId', 'userName', 'progress', 'color'];
+  rows: Array<any> = [];
+  showResponsiveTableCode;
+  cartaList: Carta[];
+  menuList =  new Array<Menu>();
+  menuAjaxList = new Array<Menu>();
+  cartaLunesList: Carta[];
+  cartaMartesList: Carta[];
+  cartaMiercolesList: Carta[];
+  cartaJuevesList: Carta[];
+  cartaViernesList: Carta[];
+  cartaSabadoList: Carta[];
+  cartaDomingoList: Carta[];
+  categorialist: Categoria[];
 
      loadDias() {
         this.dias.push({'id': '01', 'name': 'Lunes'});
@@ -53,23 +70,10 @@ export class CartaComponent implements OnInit {
     private tostr: ToastrService) { }
 
 
-  displayedColumns = ['userId', 'userName', 'progress', 'color'];
-  rows: Array<any> = [];
-  showResponsiveTableCode;
-  cartaList: Carta[];
-  menuList =  new Array<Menu>();
-  menuAjaxList = new Array<Menu>();
-  cartaLunesList: Carta[];
-  cartaMartesList: Carta[];
-  cartaMiercolesList: Carta[];
-  cartaJuevesList: Carta[];
-  cartaViernesList: Carta[];
-  cartaSabadoList: Carta[];
-  cartaDomingoList: Carta[];
-  categorialist: Categoria[];
 
 
-    public cargarMenu(valorSelect: string){
+
+    public cargarMenu(valorSelect: string) {
 
     }
 
@@ -198,16 +202,14 @@ export class CartaComponent implements OnInit {
     this.cartaService.selectedCarta = Object.assign({}, emp);
   }
 
-  onDelete(key: string) {
-    if (confirm('Are you sure to delete this record ?') === true) {
-      this.cartaService.deleteCarta(key);
+  onDelete(carta: Carta) {
+    if (confirm('¿Esta seguro de eliminar este plato ? : ' + carta.plato) === true) {
+      this.cartaService.deleteCarta(carta);
       this.tostr.warning('Deleted Successfully', 'carta register');
     }
   }
-  carta: Carta = new Carta();
-  diaObj: Dia = new Dia();
-  categoriaObj: Categoria = new Categoria();
-  menuObj: Menu = new Menu();
+
+
   onSubmit(cartaForm: NgForm) {
     if (cartaForm.value.$key == null) {
       debugger;

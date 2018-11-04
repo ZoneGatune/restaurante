@@ -55,8 +55,8 @@ export class CartaService {
       });
   }
 
-  deleteCarta($key: string) {
-    this.cartaList.remove($key);
+  deleteCarta(carta: Carta) {
+    this.cartaList.remove(carta.$key);
   }
 
 }
