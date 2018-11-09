@@ -13,6 +13,9 @@ import { Categoria } from '../carta/shared/categoria.model';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { MesaCrudService } from '../mesa-crud/shared/mesaCrudService';
+import { MesaCrud } from '../mesa-crud/shared/mesa-crud.model';
+import { MatSnackBar } from '@angular/material';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,44 +32,6 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   styleUrls: ['./lista-menu.component.scss']
 })
 export class ListaMenuComponent implements OnInit {
-
-  constructor(private cartaService: CartaService, private tostr: ToastrService, public router: Router ,
-    private route: ActivatedRoute, private firebase: AngularFireDatabase,  private ventaSeleccionadaService: VentaSeleccionadaService) {
-      this.mostrarVentaList = [];
-      this.getData();
-    }
-
-  ventaListFire: AngularFireList<any>;
-
-  getData() {
-    this.ventaListFire = this.firebase.list('ventas');
-    return this.ventaListFire;
-  }
-
-  deleteVenta($key: string) {
-    debugger;
-    this.ventaListFire.remove($key);
-  }
-
-  liberarMesa() {
-    debugger;
-    //this.deleteVenta(this.ventaSeleccionada.$key);
-    debugger;
-    this.router.navigate(['/auth/restaurant/mesa'], {
-      queryParams: {'mozo': this.mozo,
-                    'codigoMozo': this.codigoMozo } });
-   // this.irAMesa();
-  }
-
-  irAMesa(){
-    this.router.navigate(['/auth/restaurant/mesa'], {
-      queryParams: {'ventaKey': this.ventaKey,
-                    'codigoMesa': this.codigoMesa,
-                    'mesa': this.mesa,
-                    'mozo': this.mozo,
-                    'codigoMozo': this.codigoMozo,
-                    'mesaLiberada': true } });
-  }
 
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
   rows: Array<any> = [];
@@ -89,6 +54,124 @@ export class ListaMenuComponent implements OnInit {
   boletaCartaList = new Array<Carta1>();
   listaVentaActualizada = new Array<Carta1>();
   mesaLiberada: boolean;
+  mesaCrud: MesaCrud = new MesaCrud();
+  mesaCrudList: MesaCrud[];
+  mostrarSpinner: boolean;
+
+  constructor(private cartaService: CartaService, private tostr: ToastrService,
+    public router: Router ,
+    private route: ActivatedRoute, private firebase: AngularFireDatabase,
+    private ventaSeleccionadaService: VentaSeleccionadaService,
+    private mesaCrudService: MesaCrudService,
+    public snackBar: MatSnackBar ) {
+      this.mostrarVentaList = [];
+      this.getData();
+    }
+
+  ventaListFire: AngularFireList<any>;
+  mesasListFire: AngularFireList<any>;
+  getData() {
+    this.mostrarSpinner = false;
+    this.ventaListFire = this.firebase.list('ventas');
+    return this.ventaListFire;
+  }
+
+  getDataMesas() {
+    let x = this.mesaCrudService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.mesaCrudList = [];
+      item.forEach(element => {
+        let y = element.payload.toJSON();
+        y['$key'] = element.key;
+        this.mesaCrudList.push(y as MesaCrud);
+      });
+    return this.ventaListFire;
+    });
+  }
+
+  deleteVenta($key: string) {
+    debugger;
+    this.ventaListFire.remove($key);
+  }
+
+  private eliminarVenta() {
+    debugger;
+    this.ventaSeleccionadaService.deleteVenta(this.ventaKey);
+          debugger
+  }
+
+  getBuscarMesas (): any {
+    debugger;
+     let x = this.mesaCrudService.getData();
+     x.snapshotChanges().subscribe(item => {
+       this.mesaCrudList = [];
+       item.forEach(element => {
+         let y = element.payload.toJSON();
+         y['$key'] = element.key;
+         this.mesaCrudList.push(y as MesaCrud);
+       });
+
+       debugger;
+
+       let listaMesas = [];
+       if (this.mesaCrudList) {
+         const peopleArray = Object.keys(this.mesaCrudList).
+                 map(i => this.mesaCrudList[i]);
+           listaMesas = peopleArray;
+         }
+      return this.mesaCrud = listaMesas.find( x => x.numero === this.codigoMesa);
+
+
+      });
+  }
+
+   private async liberarMesa() {
+    debugger;
+
+    //this.mesaCrud.estado
+    let mimesa: any;
+    if(this.mostrarVentaList.length > 0) {
+      this.snackBar.open('Tiene que realizar el Pago, o eliminar los pedidos', 'Gracias', {
+        duration: 2000,
+      });
+      return;
+    }
+    this.mostrarSpinner = true;
+    // this.buscarMesas().then(mesa => {
+    //   mimesa = mesa;
+    // });
+
+    this.getBuscarMesas();
+    setTimeout(() => {
+      debugger;
+    this.mesaCrud.estado = 'libre';
+    debugger;
+    this.mesaCrudService.updateMesaCrud(this.mesaCrud);
+    debugger;
+    //this.eliminarVenta();
+
+    this.router.navigate(['/auth/restaurant/mesa'], {
+      queryParams: {'mozo': this.mozo,
+                    'codigoMozo': this.codigoMozo } });
+
+    this.mostrarSpinner = false;
+    }, 2000);
+
+
+   // this.irAMesa();
+  }
+
+  irAMesa() {
+    this.router.navigate(['/auth/restaurant/mesa'], {
+      queryParams: {'ventaKey': this.ventaKey,
+                    'codigoMesa': this.codigoMesa,
+                    'mesa': this.mesa,
+                    'mozo': this.mozo,
+                    'codigoMozo': this.codigoMozo,
+                    'mesaLiberada': true } });
+  }
+
+
 
   matcher = new MyErrorStateMatcher();
 
@@ -160,7 +243,7 @@ debugger;
 
   }
 
-  Onclick(categoria: Categoria) {
+  private Onclick(categoria: Categoria) {
 
     if (categoria.id === '01') {
       this.router.navigate(['/auth/restaurant/menu1'], {

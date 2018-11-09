@@ -46,7 +46,8 @@ import {
         MatTooltipModule,
         MatSortModule,
         MatPaginatorModule,
-        MatSelectModule
+        MatSelectModule,
+        MatProgressSpinnerModule
        } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
@@ -111,7 +112,8 @@ import { MatNativeDateModule } from '@angular/material';
         MatSortModule,
         MatSelectModule,
         MatSnackBarModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatProgressSpinnerModule
        ],
     declarations: [
         MesaComponent,

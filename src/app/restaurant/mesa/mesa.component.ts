@@ -80,7 +80,7 @@ export class MesaComponent implements OnInit {
       this.empleado = e;
       const mozo =  params['mozo'];
       const codigoMozo =  params['codigoMozo'];
-      if(mozo !== undefined) {
+      if (mozo !== undefined) {
         this.empleado.nombre = mozo;
         this.empleado.username = codigoMozo;
       }
@@ -102,7 +102,7 @@ export class MesaComponent implements OnInit {
 
   mozoMesaOcupadasList: MozoMesa[];
 
-  private OnclickMesa(mesa: string) {
+  private buscarVenta(mesa: MesaCrud): any {
     debugger;
     const x = this.ventaService.getData();
       x.snapshotChanges().subscribe(item => {
@@ -110,13 +110,18 @@ export class MesaComponent implements OnInit {
         item.forEach(element => {
           const y = element.payload.toJSON();
           y['$key'] = element.key;
+
           this.ventasEnLinea.push(y as VentaSeleccionada);
 
-        });
 
-        debugger;
-        this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa);
-        debugger;
+        });
+      });
+
+
+  }
+
+  private OnclickMesa(mesa: MesaCrud) {
+
 
     // if (this.venta === undefined) {
     //   debugger;
@@ -128,19 +133,37 @@ export class MesaComponent implements OnInit {
     //                 'codigoMozo': this.venta.codigoMozo } });
     // }
 
-    if (this.venta) {
+
+    if (mesa.estado === 'ocupado') {
+      debugger;
+      const x = this.ventaService.getData();
+        x.snapshotChanges().subscribe(item => {
+          this.ventasEnLinea = [];
+          item.forEach(element => {
+            const y = element.payload.toJSON();
+            y['$key'] = element.key;
+
+            this.ventasEnLinea.push(y as VentaSeleccionada);
 
 
-        debugger;
-        this.router.navigate(['/auth/restaurant/listaMenu'], {
-          queryParams: {'ventaKey': this.venta.$key,
-                        'codigoMesa': this.venta.codigoMesa,
-                        'mesa': this.venta.mesa,
-                        'mozo': this.venta.mozo,
-                        'codigoMozo': this.venta.codigoMozo } });
+          });
+          debugger;
+          this.venta = this.ventasEnLinea.find( x => x.codigoMesa === mesa.numero);
+          debugger;
+            this.router.navigate(['/auth/restaurant/listaMenu'], {
+              queryParams: {'ventaKey': this.venta.$key,
+                            'codigoMesa': this.venta.codigoMesa,
+                            'mesa': this.venta.mesa,
+                            'mozo': this.venta.mozo,
+                            'codigoMozo': this.venta.codigoMozo } });
+
+        });
+
+      //let listaVentas = this.buscarVenta(mesa);
 
       } else {
-      this.mesaEncontrada = this.mesaCrudList.find( x => x.numero === mesa);
+        debugger;
+      this.mesaEncontrada = this.mesaCrudList.find( x => x.numero === mesa.numero);
       this.mesaEncontrada.estado = 'ocupado';
       this.mozoMesa.codigoMesa = this.mesaEncontrada.numero;
       this.mozoMesa.mesa = this.mesaEncontrada.nombre;
@@ -176,7 +199,6 @@ export class MesaComponent implements OnInit {
 
     }
 
-      });
         // debugger; this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
 
     // this.router.navigate(['/auth/guarded-routes/', { outlets: { popup: [ 'example' ] }}]);
