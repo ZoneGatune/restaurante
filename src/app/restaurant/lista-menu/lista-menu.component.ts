@@ -229,8 +229,8 @@ debugger;
         });
         //  this.menuObj = this.menuList.find( x => x.codigoMenu === this.carta.codigoMenu);
 
-        this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
-
+        this.ventaSeleccionada = this.ventaList.find( x => x.$key === this.ventaKey);
+        debugger;
         if (this.ventaSeleccionada.cartaList) {
           const peopleArray = Object.keys(this.ventaSeleccionada.cartaList).map(i => this.ventaSeleccionada.cartaList[i]);
 

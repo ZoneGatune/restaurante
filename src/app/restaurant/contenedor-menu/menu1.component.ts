@@ -1,3 +1,4 @@
+import { debug } from 'util';
 import { Carta1 } from './../carta/shared/carta1.model';
 import { VentaSeleccionadaService } from './../lista-menu/shared/ventaService';
 import { VentaSeleccionada } from './../lista-menu/shared/venta.model';
@@ -68,7 +69,7 @@ export class Menu1Component implements OnInit {
   }
 
   updateVentaAngular(ventaKey: string, venta: VentaSeleccionada) {
-
+    debugger;
     this.ventaListAngular = this.firebase.list('ventas');
     this.ventaListAngular.update(ventaKey,
       {
@@ -82,6 +83,7 @@ export class Menu1Component implements OnInit {
 
   ngOnInit() {
 
+    debugger;
     this.cartaSeleccionadas = [];
     const x = this.cartaService.getData();
     x.snapshotChanges().subscribe(item => {
@@ -143,7 +145,7 @@ export class Menu1Component implements OnInit {
 
 
     //this.ventaSeleccionada = this.ventaList.find( x => x.codigoMesa === this.codigoMesa);
-
+    debugger;
     if (this.ventaSeleccionada) {
       this.cartaSeleccionada = entrada;
 
@@ -185,7 +187,7 @@ export class Menu1Component implements OnInit {
   }
 
   grabarMenu(){
-
+    debugger;
       this.updateVentaAngular(this.ventaSeleccionada.$key, this.ventaSeleccionada);
 
 
@@ -195,6 +197,7 @@ export class Menu1Component implements OnInit {
                       'mesa': this.ventaSeleccionada.mesa,
                       'mozo': this.ventaSeleccionada.mozo,
                       'codigoMozo': this.ventaSeleccionada.codigoMozo } });
+        debugger;
     }
 
     retroceder() {
