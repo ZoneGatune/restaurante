@@ -57,6 +57,7 @@
                         <tr *ngFor="let menuCrud of mesaCrudList">
                           <td>{{menuCrud.nombre}}</td>
                           <td>{{menuCrud.numero}}</td>
+                          <td>{{menuCrud.estado}}</td>
                           <td>
                             <a (click)="onEdit(menuCrud)" class="modal-trigger waves-effect btn-flat nopadding">
                               <i class="material-icons">edit</i></a>

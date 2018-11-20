@@ -11,7 +11,13 @@ export const menus = [
           'chip': false,
           'open': false,
         },
-
+{
+          'name': 'Menu s/ 10',
+          'link': 'restaurant/menu3',
+          'icon': 'indeterminate_check_box',
+          'chip': false,
+          'open': false,
+        },
         {
           'name': 'Menu s/ 12',
           'link': 'restaurant/menu2',
